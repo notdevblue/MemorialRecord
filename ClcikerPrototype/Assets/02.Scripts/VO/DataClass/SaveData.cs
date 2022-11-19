@@ -9,12 +9,17 @@ namespace MemorialRecord.Data
     [System.Serializable]
     public class SaveData
     {
-        public string SaveTimeString;
+        public SaveData()
+        {
+
+        }
+
+        public string saveTimeString;
         public string characterName;
 
         #region AttendanceCheck
 
-        public string FirstStartDateString;
+        public string firstStartDateString;
         public AttendanceState[] attendanceStateArray = new AttendanceState[12];
 
         #endregion
@@ -33,8 +38,8 @@ namespace MemorialRecord.Data
         #region Settings
 
         [Header("Settings")]
-        public float MusicVolume;
-        public float SoundEffectVolume;
+        public float musicVolume;
+        public float soundEffectVolume;
         public bool isPushAlarmOn;
         public bool isStoryAutoPlayOnUnlocked;
 
@@ -51,19 +56,23 @@ namespace MemorialRecord.Data
         #region ResourceManage
 
         [Header("ResourceManage")]
-        public double CurrentMemorial;
-        public long CurrentQuillPen;
-        public int[] BookLevels;
-        public int[] BookMarkLevels;
-        public bool[] AccessoryActivatedArr;
-        public int ExapndLevel;
-        public bool[] SkinActivatedArr;
+        public double currentMemorial;
+        public long currentQuillPen;
+
+        public int[] bookLevels;
+        public int[] bookMarkLevels;
+        public int[] accessoryActivatedArr; // -1 잠김, 0 구매 가능, 1 구매함
+        public int[] roomActivatedArr; // -1 잠김, 0 구매 가능, 1 구매함
+
+        public int exapndLevel;
+
 
         [Header("research resource")]
-        public int MagnifierResource;
-        public int MagnifierResourceProduceCount;
-        public int[] ResearchLevels;
-        public int[] ResearchProgresses;
+        public int magnifierResource;
+        public int magnifierResourceProduceCount;
+
+        public int[] researchLevels;
+        public int[] researchProgresses;
 
         #endregion
     }

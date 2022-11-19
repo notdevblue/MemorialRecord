@@ -50,3 +50,6 @@ TagManager:
   - name: UI
     uniqueID: 3246381151
     locked: 0
+  - name: TouchEffect
+    uniqueID: 1333373759
+    locked: 0
