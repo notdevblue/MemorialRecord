@@ -712,6 +712,7 @@ GameObject:
   - component: {fileID: 7896032347697998313}
   - component: {fileID: 1321571850519072814}
   - component: {fileID: 876442020912344146}
+  - component: {fileID: 869272031081988607}
   m_Layer: 5
   m_Name: RootContentBox
   m_TagString: Untagged
@@ -759,6 +760,26 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &869272031081988607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859762819393468366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b35932dc525da44d801df904e4042cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textTitle: {fileID: 7333924257469012651}
+  _textWriter: {fileID: 4844542491117312520}
+  _textOutput: {fileID: 7988863885406480067}
+  _textLevelUp: {fileID: 1762670839882009058}
+  _textLevelUpCost: {fileID: 5656251484955163874}
+  _textReward: {fileID: 7156785244638152691}
+  contentImage: {fileID: 8731180479862096135}
+  btnLevelup: {fileID: 1752311473947729256}
 --- !u!1 &7935706721012181672
 GameObject:
   m_ObjectHideFlags: 0
