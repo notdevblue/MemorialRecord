@@ -8,11 +8,6 @@ public class BookListSO : ScriptableObject
 {
     public List<BookData> bookDatas;
 
-    private void OnEnable()
-    {
-        bookDatas = new List<BookData>();
-    }
-
     public BookData this[int idx] 
     { 
         get

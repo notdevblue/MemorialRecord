@@ -59,18 +59,35 @@ public static class SaveManager
         switch (type)
         {
             case DataType.Book:
-                return _data.bookLevels[idx];
+                if (!_data.bookLevelDict.ContainsKey(idx))
+                {
+                    _data.bookLevelDict.Add(idx, -1);
+                }
+                return _data.bookLevelDict[idx];
             case DataType.BookMark:
-                return _data.bookMarkLevels[idx];
+                if (!_data.bookMarkLevelDict.ContainsKey(idx))
+                {
+                    _data.bookMarkLevelDict.Add(idx, -1);
+                }
+                return _data.bookMarkLevelDict[idx];
             case DataType.Accessory:
-                return _data.accessoryActivatedArr[idx];
+                if (!_data.accessoryLevelDict.ContainsKey(idx))
+                {
+                    _data.accessoryLevelDict.Add(idx, -1);
+                }
+                return _data.accessoryLevelDict[idx];
             case DataType.Room:
-                return _data.roomActivatedArr[idx];
+                if (!_data.roomInfoLevelsDict.ContainsKey(idx))
+                {
+                    _data.roomInfoLevelsDict.Add(idx, -1);
+                }
+                return _data.roomInfoLevelsDict[idx];
             case DataType.Research:
-                return _data.researchLevels[idx];
-            default:
-                return -2;
+                // TODO : 구현 필요
+                break;
         }
+
+        return -2;
     }
     #endregion
 

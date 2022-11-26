@@ -6,18 +6,22 @@ using MemorialRecord.Data;
 
 public class ContentListView_Book : ContentListView
 {
-    Sequence _seq = null;
-    BookListSO _data = null;
-
     private void Start()
     {
-        InitChildren(_data.bookDatas);
-        RefreshItems(_data.bookDatas);
+        InitChildren(_data._bookListSO.bookDatas);
+        RefreshItems(_data._bookListSO.bookDatas);
     }
 
     private void OnEnable()
     {
-        RefreshItems(_data.bookDatas);
+        try
+        {
+            RefreshItems(_data._bookListSO.bookDatas);
+        }
+        catch
+        {
+            Debug.Log($"{name}:: We have problem in Refresh Items");
+        }
     }
 
     protected override void InitChildren<T>(List<T> data)
