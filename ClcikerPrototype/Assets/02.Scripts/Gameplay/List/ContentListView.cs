@@ -1,5 +1,6 @@
 using DG.Tweening;
 using MemorialRecord.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,8 +22,46 @@ public abstract class ContentListView : MonoBehaviour
         _data = data;
     }
 
-    protected abstract void InitChildren<T>(List<T> data) where T : DataParent;
-    protected abstract void RefreshItems<T>(List<T> data) where T : DataParent;
-    protected abstract void ForceRefreshItems<T>(List<T> data) where T : DataParent;
-    protected abstract void AddItem<T>(T data) where T : DataParent;
+    protected virtual void InitChildren<T>(List<T> data) where T : DataParent
+    {
+        foreach (var item in data)
+        {
+            AddItem(item);
+        }
+    }
+
+    protected virtual void RefreshItems<T>(List<T> data) where T : DataParent
+    {
+        _seq = DOTween.Sequence();
+
+        foreach (var item in _children)
+        {
+            item.GetComponent<CanvasGroup>().alpha = 0f;
+        }
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            _seq.Append(_children[i].GetComponent<CanvasGroup>().DOFade(1f, 0.1f));
+        }
+        _seq.Play();
+    }
+
+    protected virtual void AddItem<T>(T data) where T : DataParent
+    {
+        ListContent listContent = null;
+        listContent = Instantiate(_contentOriginPrefab, _contentParent);
+
+        listContent.InitContent(data);
+
+        _children.Add(listContent);
+        Debug.Log(listContent);
+    }
+
+    public virtual void HideItems(Action callback)
+    {
+        _seq.OnComplete(() => gameObject.SetActive(false));
+        _seq.OnComplete(() => callback?.Invoke());
+        _seq.SmoothRewind();
+    }
+
 }

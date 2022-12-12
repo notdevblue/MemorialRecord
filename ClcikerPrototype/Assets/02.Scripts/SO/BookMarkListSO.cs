@@ -4,25 +4,19 @@ using UnityEngine;
 using MemorialRecord.Data;
 
 [System.Serializable]
-public class BookMarkListSO : ScriptableObject
+public class BookmarkListSO : ScriptableObject
 {
-    public List<BookMarkData> bookMarkDatas;
+    public List<BookmarkData> bookmarkDatas;
 
-    private void OnEnable()
-    {
-        bookMarkDatas = new List<BookMarkData>();
-    }
-
-
-    public BookMarkData this[int idx]
+    public BookmarkData this[int idx]
     {
         get
         {
-            return bookMarkDatas[idx];
+            return bookmarkDatas[idx];
         }
         set
         {
-            bookMarkDatas[idx] = value;
+            bookmarkDatas[idx] = value;
         }
     }
 }

@@ -65,7 +65,7 @@ public class CSVDataReader : Editor
     }
 
     [MenuItem(itemName: "Data/Read/ReadBookMarkDataFromCSV")]
-    public static void GetBookMarkDataFromCSV()
+    public static void GetBookmarkDataFromCSV()
     {
         string path = EditorUtility.OpenFilePanel("CSV파일 에서 책갈피 데이터 가져오기", "", "csv");
 
@@ -74,26 +74,26 @@ public class CSVDataReader : Editor
             using StreamReader sr = new StreamReader(path);
 
             DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
-            BookMarkListSO bookMarkListSO = AssetDatabase.LoadAssetAtPath<BookMarkListSO>("Assets/Data/BookMarkDataListSO.asset");
+            BookmarkListSO bookmarkListSO = AssetDatabase.LoadAssetAtPath<BookmarkListSO>("Assets/Data/BookMarkDataListSO.asset");
 
-            if (!bookMarkListSO)
+            if (!bookmarkListSO)
             {
-                bookMarkListSO = CreateInstance<BookMarkListSO>();
+                bookmarkListSO = CreateInstance<BookmarkListSO>();
             }
 
             string str = sr.ReadLine();
             str = sr.ReadLine(); // 첫줄 지우기위해서 한번 더
 
-            bookMarkListSO.bookMarkDatas.Clear();
+            bookmarkListSO.bookmarkDatas.Clear();
             while (str != null)
             {
                 string[] strArr = str.Split(',');
 
-                bookMarkListSO.bookMarkDatas.Add(
-                    new BookMarkData(
+                bookmarkListSO.bookmarkDatas.Add(
+                    new BookmarkData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite
-                        strArr[1] // Title
+                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite    
+                        strArr[1] // Name
                         )
                     );
 
@@ -103,7 +103,7 @@ public class CSVDataReader : Editor
             if (dataSO == null)
             {
                 dataSO = CreateInstance<DataSO>();
-                dataSO._bookMarkListSO = bookMarkListSO;
+                dataSO._bookmarkListSO = bookmarkListSO;
             }
 
             if (AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset") == null)
@@ -114,7 +114,64 @@ public class CSVDataReader : Editor
 
             if (!AssetDatabase.LoadAssetAtPath<BookListSO>("Assets/Data/BookMarkDataListSO.asset"))
             {
-                AssetDatabase.CreateAsset(bookMarkListSO, "Assets/Data/BookMarkDataListSO.asset");
+                AssetDatabase.CreateAsset(bookmarkListSO, "Assets/Data/BookMarkDataListSO.asset");
+            }
+
+            AssetDatabase.SaveAssets();
+        }
+    }
+
+    [MenuItem(itemName: "Data/Read/ReadAccDataFromCSV")]
+    public static void ReadAccDataFromCSV()
+    {
+        string path = EditorUtility.OpenFilePanel("CSV파일 에서 악세서리 데이터 가져오기", "", "csv");
+
+        if (File.Exists(path))
+        {
+            using StreamReader sr = new StreamReader(path);
+
+            DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
+            AccessoryListSO accDataListSO = AssetDatabase.LoadAssetAtPath<AccessoryListSO>("Assets/Data/AccessoryDataListSO.asset");
+
+            if (!accDataListSO)
+            {
+                accDataListSO = CreateInstance<AccessoryListSO>();
+            }
+
+            string str = sr.ReadLine();
+            str = sr.ReadLine(); // 첫줄 지우기위해서 한번 더
+
+            accDataListSO.accessoryDatas.Clear();
+            while (str != null)
+            {
+                string[] strArr = str.Split(',');
+
+                accDataListSO.accessoryDatas.Add(
+                    new AccessoryData(
+                        int.Parse(strArr[0]), // idx
+                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite    
+                        strArr[1] // Name
+                        )
+                    );
+
+                str = sr.ReadLine();
+            }
+
+            if (dataSO == null)
+            {
+                dataSO = CreateInstance<DataSO>();
+                dataSO._accessoryListSO = accDataListSO;
+            }
+
+            if (AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset") == null)
+            {
+                AssetDatabase.CreateFolder("Assets", "Data");
+                AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
+            }
+
+            if (!AssetDatabase.LoadAssetAtPath<BookListSO>("Assets/Data/AccessoryDataListSO.asset"))
+            {
+                AssetDatabase.CreateAsset(accDataListSO, "Assets/Data/AccessoryDataListSO.asset");
             }
 
             AssetDatabase.SaveAssets();
