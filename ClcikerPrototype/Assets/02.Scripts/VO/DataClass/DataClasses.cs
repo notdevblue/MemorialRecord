@@ -27,13 +27,6 @@ namespace MemorialRecord.Data
             _title = title;
             _writer = writer;
         }
-
-        public BookData(int idx, string title, string writer)
-        {
-            _idx = idx;
-            _title = title;
-            _writer = writer;
-        }
     }
 
     [System.Serializable]
