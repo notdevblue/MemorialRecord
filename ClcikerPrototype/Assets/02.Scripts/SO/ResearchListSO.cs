@@ -8,12 +8,6 @@ public class ResearchListSO : ScriptableObject
 {
     public List<researchData> researchDatas;
 
-    private void OnEnable()
-    {
-        researchDatas = new List<researchData>();
-    }
-
-
     public researchData this[int idx]
     {
         get

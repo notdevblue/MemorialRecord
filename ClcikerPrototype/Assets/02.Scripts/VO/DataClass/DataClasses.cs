@@ -30,13 +30,13 @@ namespace MemorialRecord.Data
     }
 
     [System.Serializable]
-    public class BookMarkData : DataParent
+    public class BookmarkData : DataParent
     {
-        public BookMarkData(int idx, Sprite sprite, string title)
+        public BookmarkData(int idx, Sprite sprite, string name)
         {
             _idx = idx;
             _image = sprite;
-            _title = title;
+            _name = name;
         }
     }
 

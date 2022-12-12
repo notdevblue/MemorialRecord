@@ -19,7 +19,7 @@ public abstract class ListContent : MonoBehaviour
 
     private void Awake()
     {
-
+        
     }
 
     public abstract void InitContent<T>(T data) where T : DataParent;

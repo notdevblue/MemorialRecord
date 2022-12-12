@@ -5,23 +5,17 @@ using MemorialRecord.Data;
 
 public class AccessoryListSO : ScriptableObject
 {
-    public List<AccessoryData> AccessoryDatas;
-
-    private void OnEnable()
-    {
-        AccessoryDatas = new List<AccessoryData>();
-    }
-
+    public List<AccessoryData> accessoryDatas;
 
     public AccessoryData this[int idx]
     {
         get
         {
-            return AccessoryDatas[idx];
+            return accessoryDatas[idx];
         }
         set
         {
-            AccessoryDatas[idx] = value;
+            accessoryDatas[idx] = value;
         }
     }
 }
