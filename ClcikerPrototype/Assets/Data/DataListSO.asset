@@ -15,4 +15,5 @@ MonoBehaviour:
   _bookListSO: {fileID: 11400000, guid: bf9b88a4676049b4ab4b091ec8b5a73b, type: 2}
   _bookmarkListSO: {fileID: 11400000, guid: 87f86c63753bc9f4b90e7f85ee8261de, type: 2}
   _accessoryListSO: {fileID: 11400000, guid: c2f0e7ab76b6aa7429ff28b651d2978c, type: 2}
+  _roomListSO: {fileID: 0}
   _researchListSO: {fileID: 0}

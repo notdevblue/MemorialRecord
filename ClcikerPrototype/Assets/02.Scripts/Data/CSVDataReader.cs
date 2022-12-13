@@ -112,7 +112,7 @@ public class CSVDataReader : Editor
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
             }
 
-            if (!AssetDatabase.LoadAssetAtPath<BookListSO>("Assets/Data/BookMarkDataListSO.asset"))
+            if (!AssetDatabase.LoadAssetAtPath<BookmarkListSO>("Assets/Data/BookMarkDataListSO.asset"))
             {
                 AssetDatabase.CreateAsset(bookmarkListSO, "Assets/Data/BookMarkDataListSO.asset");
             }
@@ -169,7 +169,7 @@ public class CSVDataReader : Editor
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
             }
 
-            if (!AssetDatabase.LoadAssetAtPath<BookListSO>("Assets/Data/AccessoryDataListSO.asset"))
+            if (!AssetDatabase.LoadAssetAtPath<AccessoryListSO>("Assets/Data/AccessoryDataListSO.asset"))
             {
                 AssetDatabase.CreateAsset(accDataListSO, "Assets/Data/AccessoryDataListSO.asset");
             }

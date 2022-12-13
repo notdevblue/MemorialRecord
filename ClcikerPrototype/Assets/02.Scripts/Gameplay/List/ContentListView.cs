@@ -54,7 +54,6 @@ public abstract class ContentListView : MonoBehaviour
         listContent.InitContent(data);
 
         _children.Add(listContent);
-        Debug.Log(listContent);
     }
 
     public virtual void HideItems(Action callback)

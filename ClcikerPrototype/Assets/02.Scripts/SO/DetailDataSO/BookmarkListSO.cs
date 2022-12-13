@@ -6,7 +6,7 @@ using MemorialRecord.Data;
 [System.Serializable]
 public class BookmarkListSO : ScriptableObject
 {
-    public List<BookmarkData> bookmarkDatas;
+    public List<BookmarkData> bookmarkDatas = new List<BookmarkData>();
 
     public BookmarkData this[int idx]
     {

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListContent_Bookmark : ListContent
+public class ListContent_Book : ListContent
 {
     public override void InitContent<T>(T data)
     {
-        _textTitle.text = $"{data._title} Lv.{SaveManager.GetContentLevel(DataType.BookMark, data._idx)}";
+        int level = SaveManager.GetContentLevel(DataType.Book, data._idx);
+        CommonInit(level);
+        _textTitle.text = $"{data._name} Lv.{(level < 0 ? 1 : level)}";
         _textWriter.text = data._writer;
     }
 

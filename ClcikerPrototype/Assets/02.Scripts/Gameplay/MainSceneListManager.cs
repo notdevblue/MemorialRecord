@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System.Linq;
 
 public class MainSceneListManager : MonoBehaviour
@@ -25,13 +24,18 @@ public class MainSceneListManager : MonoBehaviour
                 item.GetComponentsInChildren<ContentListView>().ToList().ForEach(x => x.SetData(_listInfos));
             }
         }
+    }
+
+    private void Start()
+    {
+        _toggles[0].Select();
 
         _toggles.ForEach(x =>
         {
             x.onValueChanged.AddListener(OnAnyTogglesOn);
         });
     }
-    
+
     private void OnAnyTogglesOn(bool isOn)
     {
         for (int i = 0; i < _views.Count; i++)

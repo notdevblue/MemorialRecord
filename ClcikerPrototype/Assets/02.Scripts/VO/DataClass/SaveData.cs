@@ -56,10 +56,10 @@ namespace MemorialRecord.Data
         public long currentQuillPen;
 
         // -1 잠김, 0 구매 가능, 1 구매함
-        public Dictionary<int, int> bookLevelDict = new Dictionary<int, int>();
-        public Dictionary<int, int> bookMarkLevelDict = new Dictionary<int, int>();
-        public Dictionary<int, int> accessoryLevelDict = new Dictionary<int, int>();
-        public Dictionary<int, int> roomInfoLevelsDict = new Dictionary<int, int>();
+        public Dictionary<int, int> bookLevelDict = new Dictionary<int, int>() { {0, 0} };
+        public Dictionary<int, int> bookMarkLevelDict = new Dictionary<int, int>() { { 0, 0 } };
+        public Dictionary<int, int> accessoryLevelDict = new Dictionary<int, int>() { { 0, 0 } };
+        public Dictionary<int, int> roomInfoLevelsDict = new Dictionary<int, int>() { { 0, 0 } };
 
         public int exapndLevel;
 

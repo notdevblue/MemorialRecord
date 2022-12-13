@@ -7,6 +7,7 @@ namespace MemorialRecord.Data
     [System.Serializable]
     public class DataParent
     {
+        public DataType type;
         public int _idx;
 
         public string _title;
