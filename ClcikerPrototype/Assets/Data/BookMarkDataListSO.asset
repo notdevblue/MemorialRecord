@@ -12,34 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2d98f934fcf0d449abec3a1b40431d, type: 3}
   m_Name: BookMarkDataListSO
   m_EditorClassIdentifier: 
-  bookMarkDatas:
+  bookmarkDatas:
   - _idx: 0
-    _title: "\uBCC4 \uD5E4\uB294 \uBC24"
+    _title: 
     _writer: 
-    _name: 
+    _name: "\uCC45\uAC08\uD53C 1"
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 1
-    _title: "\uC11C\uC2DC"
+    _title: 
     _writer: 
-    _name: 
+    _name: "\uCC45\uAC08\uD53C 2"
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 2
-    _title: "\uC790\uD654\uC0C1"
+    _title: 
     _writer: 
-    _name: 
+    _name: "\uCC45\uAC08\uD53C 3"
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 3
-    _title: "\uC18C\uB144"
+    _title: 
     _writer: 
-    _name: 
+    _name: "\uCC45\uAC08\uD53C 4"
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 4
-    _title: "\uB610 \uB2E4\uB978 \uACE0\uD5A5"
+    _title: 
     _writer: 
-    _name: 
+    _name: "\uCC45\uAC08\uD53C 5"
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 5
-    _title: "\uC2AC\uD508 \uC871\uC18D"
+    _title: 
     _writer: 
-    _name: 
+    _name: "\uCC45\uAC08\uD53C 6"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 6
+    _title: 
+    _writer: 
+    _name: "\uCC45\uAC08\uD53C 7"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 7
+    _title: 
+    _writer: 
+    _name: "\uCC45\uAC08\uD53C 8"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 8
+    _title: 
+    _writer: 
+    _name: "\uCC45\uAC08\uD53C 9"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 9
+    _title: 
+    _writer: 
+    _name: "\uCC45\uAC08\uD53C 10"
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}

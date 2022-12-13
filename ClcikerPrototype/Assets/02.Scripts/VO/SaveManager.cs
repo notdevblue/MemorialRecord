@@ -26,19 +26,6 @@ public static class SaveManager
 
     private static SaveData _data = new MemorialRecord.Data.SaveData();
 
-    // Getter 
-    public static SaveData Data 
-    { 
-        get 
-        { 
-            if(_data == null)
-            {
-                _data = LoadData();
-            }
-            return _data; 
-        } 
-    }
-
     public static string _name = "";
 
     #region 기타 비즈니스 로직
@@ -88,6 +75,40 @@ public static class SaveManager
         }
 
         return -2;
+    }
+
+    public static void SetContentLevel(DataType type, int idx, int level)
+    {
+        switch (type)
+        {
+            case DataType.Book:
+                if (_data.bookLevelDict.ContainsKey(idx))
+                {
+                    _data.bookLevelDict[idx] = level;
+                }
+                break;
+            case DataType.BookMark:
+                if (_data.bookMarkLevelDict.ContainsKey(idx))
+                {
+                    _data.bookMarkLevelDict[idx] = level;
+                }
+                break;
+            case DataType.Accessory:
+                if (_data.accessoryLevelDict.ContainsKey(idx))
+                {
+                    _data.accessoryLevelDict[idx] = level;
+                }
+                break;
+            case DataType.Room:
+                if (_data.roomInfoLevelsDict.ContainsKey(idx))
+                {
+                    _data.roomInfoLevelsDict[idx] = level;
+                }
+                break;
+            case DataType.Research:
+                // TODO : 구현 필요
+                break;
+        }
     }
     #endregion
 

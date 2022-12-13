@@ -14,42 +14,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookDatas:
   - _idx: 0
-    _image: {fileID: 0}
-    _title: "\uAC11"
-    _writer: "\uD0DC"
+    _title: "\uAD8C\uD0DC"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 1
-    _image: {fileID: 0}
-    _title: "\uC744"
-    _writer: "\uC815"
+    _title: "12\uC6D4 12\uC77C"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 2
-    _image: {fileID: 0}
-    _title: "\uBCD1"
-    _writer: "\uD0DC"
+    _title: "\uB0A0\uAC1C"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 3
-    _image: {fileID: 0}
-    _title: "\uC815"
-    _writer: "\uC138"
+    _title: "\uC2E4\uD654"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 4
-    _image: {fileID: 0}
-    _title: "\uBB34"
-    _writer: "\uBB38"
+    _title: "\uC885\uC0DD\uAE30"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 5
-    _image: {fileID: 0}
-    _title: "\uAE30"
-    _writer: "\uB2E8"
+    _title: "\uB3D9\uD574"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 6
-    _image: {fileID: 0}
-    _title: "\uACBD"
-    _writer: "\uC138"
+    _title: "\uC0B0\uCD0C\uC5EC\uC815"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 7
-    _image: {fileID: 0}
-    _title: "\uC2E0"
-    _writer: "\uC608"
+    _title: "\uCCAB\uBC88\uC9F8 \uBC29\uB791"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 8
-    _image: {fileID: 0}
-    _title: "\uC784"
-    _writer: "\uC131"
+    _title: "\uBD09\uBCC4\uAE30"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 9
-    _image: {fileID: 0}
-    _title: "\uACC4"
-    _writer: "\uC5F0"
+    _title: "\uB2E8\uBC1C"
+    _writer: "\uC774\uC0C1"
+    _name: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}

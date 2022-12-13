@@ -6,7 +6,7 @@ using MemorialRecord.Data;
 [System.Serializable]
 public class BookListSO : ScriptableObject
 {
-    public List<BookData> bookDatas;
+    public List<BookData> bookDatas = new List<BookData>();
 
     public BookData this[int idx] 
     { 
