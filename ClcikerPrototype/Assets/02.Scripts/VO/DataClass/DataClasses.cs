@@ -7,7 +7,6 @@ namespace MemorialRecord.Data
     [System.Serializable]
     public class DataParent
     {
-        public DataType type;
         public int _idx;
 
         public string _title;
@@ -52,9 +51,15 @@ namespace MemorialRecord.Data
         }
     }
 
+    [System.Serializable]
     public class RoomData : DataParent
     {
-
+        public RoomData(int idx, Sprite sprite, string name)
+        {
+            _idx = idx;
+            _image = sprite;
+            _name = name;
+        }
     }
 
     [System.Serializable]

@@ -10,7 +10,7 @@ public class CSVDataReader : Editor
     [MenuItem(itemName: "Data/Read/ReadBookDataFromCSV")]
     public static void GetBookDataFromCSV()
     {
-        string path = EditorUtility.OpenFilePanel("CSV파일 에서 책 데이터 가져오기", "", "csv");
+        string path = EditorUtility.OpenFilePanel("CSV파일에서 책 데이터 가져오기", "", "csv");
 
         if(File.Exists(path))
         {
@@ -67,7 +67,7 @@ public class CSVDataReader : Editor
     [MenuItem(itemName: "Data/Read/ReadBookMarkDataFromCSV")]
     public static void GetBookmarkDataFromCSV()
     {
-        string path = EditorUtility.OpenFilePanel("CSV파일 에서 책갈피 데이터 가져오기", "", "csv");
+        string path = EditorUtility.OpenFilePanel("CSV파일에서 책갈피 데이터 가져오기", "", "csv");
 
         if (File.Exists(path))
         {
@@ -106,7 +106,7 @@ public class CSVDataReader : Editor
                 dataSO._bookmarkListSO = bookmarkListSO;
             }
 
-            if (AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset") == null)
+            if (!AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset"))
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
@@ -124,7 +124,7 @@ public class CSVDataReader : Editor
     [MenuItem(itemName: "Data/Read/ReadAccDataFromCSV")]
     public static void ReadAccDataFromCSV()
     {
-        string path = EditorUtility.OpenFilePanel("CSV파일 에서 악세서리 데이터 가져오기", "", "csv");
+        string path = EditorUtility.OpenFilePanel("CSV파일에서 악세서리 데이터 가져오기", "", "csv");
 
         if (File.Exists(path))
         {
@@ -163,7 +163,7 @@ public class CSVDataReader : Editor
                 dataSO._accessoryListSO = accDataListSO;
             }
 
-            if (AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset") == null)
+            if (!AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset"))
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
@@ -172,6 +172,63 @@ public class CSVDataReader : Editor
             if (!AssetDatabase.LoadAssetAtPath<AccessoryListSO>("Assets/Data/AccessoryDataListSO.asset"))
             {
                 AssetDatabase.CreateAsset(accDataListSO, "Assets/Data/AccessoryDataListSO.asset");
+            }
+
+            AssetDatabase.SaveAssets();
+        }
+    }
+
+    [MenuItem(itemName: "Data/Read/ReadRoomDataFromCSV")]
+    public static void ReadRoomDataFromCSV()
+    {
+        string path = EditorUtility.OpenFilePanel("CSV파일에서 방 데이터 가져오기", "", "csv");
+
+        if (File.Exists(path))
+        {
+            using StreamReader sr = new StreamReader(path);
+
+            DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
+            RoomListSO roomDataListSO = AssetDatabase.LoadAssetAtPath<RoomListSO>("Assets/Data/RoomDataListSO.asset");
+
+            if (!roomDataListSO)
+            {
+                roomDataListSO = CreateInstance<RoomListSO>();
+            }
+
+            string str = sr.ReadLine();
+            str = sr.ReadLine(); // 첫줄 지우기위해서 한번 더
+
+            roomDataListSO.roomDatas.Clear();
+            while (str != null)
+            {
+                string[] strArr = str.Split(',');
+
+                roomDataListSO.roomDatas.Add(
+                    new RoomData(
+                        int.Parse(strArr[0]), // idx
+                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite    
+                        strArr[1] // Name
+                        )
+                    );
+
+                str = sr.ReadLine();
+            }
+
+            if (dataSO == null)
+            {
+                dataSO = CreateInstance<DataSO>();
+                dataSO._roomListSO = roomDataListSO;
+            }
+
+            if (!AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset"))
+            {
+                AssetDatabase.CreateFolder("Assets", "Data");
+                AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
+            }
+
+            if (!AssetDatabase.LoadAssetAtPath<AccessoryListSO>("Assets/Data/RoomDataListSO.asset"))
+            {
+                AssetDatabase.CreateAsset(roomDataListSO, "Assets/Data/RoomDataListSO.asset");
             }
 
             AssetDatabase.SaveAssets();
