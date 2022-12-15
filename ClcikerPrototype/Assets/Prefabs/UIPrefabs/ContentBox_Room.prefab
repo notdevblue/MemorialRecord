@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8078287613265609660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0cad47effed66f5449a4c06190c9a55c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -833,6 +833,7 @@ GameObject:
   - component: {fileID: 7896032347697998313}
   - component: {fileID: 1321571850519072814}
   - component: {fileID: 876442020912344146}
+  - component: {fileID: 6305152890555266251}
   m_Layer: 5
   m_Name: ContentBox_Room
   m_TagString: Untagged
@@ -880,6 +881,27 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6305152890555266251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859762819393468366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0dfee20f716314d8c90174166db1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textTitle: {fileID: 7333924257469012651}
+  _textWriter: {fileID: 4844542491117312520}
+  _textOutput: {fileID: 7988863885406480067}
+  _textLevelUp: {fileID: 1762670839882009058}
+  _textLevelUpCost: {fileID: 5656251484955163874}
+  _textReward: {fileID: 7156785244638152691}
+  _lockImage: {fileID: 3531897878194198483}
+  _contentImage: {fileID: 444012419036238902}
+  _btnLevelup: {fileID: 1752311473947729256}
 --- !u!1 &7935706721012181672
 GameObject:
   m_ObjectHideFlags: 0
