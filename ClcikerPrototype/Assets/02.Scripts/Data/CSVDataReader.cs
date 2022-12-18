@@ -226,7 +226,7 @@ public class CSVDataReader : Editor
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
             }
 
-            if (!AssetDatabase.LoadAssetAtPath<AccessoryListSO>("Assets/Data/RoomDataListSO.asset"))
+            if (!AssetDatabase.LoadAssetAtPath<RoomListSO>("Assets/Data/RoomDataListSO.asset"))
             {
                 AssetDatabase.CreateAsset(roomDataListSO, "Assets/Data/RoomDataListSO.asset");
             }

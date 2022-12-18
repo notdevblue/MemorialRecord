@@ -25,8 +25,9 @@ public class ListSwitcher : MonoBehaviour
             return;
 
         isSwitching = true;
-        switchLists.Find(x => x.gameObject.activeSelf).HideItems(() => 
+        switchLists.Find(x => x.gameObject.activeSelf).HideItems(() =>
         {
+            switchLists.ForEach(x => x.gameObject.SetActive(false));
             switchLists[listNum].gameObject.SetActive(true);
             isSwitching = false;
         });
