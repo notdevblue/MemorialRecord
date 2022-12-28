@@ -16,7 +16,7 @@ public class CSVDataReader : Editor
         {
             using StreamReader sr = new StreamReader(path);
 
-            DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
+            InitDataSO dataSO = AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset");
             BookListSO bookListSO = AssetDatabase.LoadAssetAtPath<BookListSO>("Assets/Data/BookDataListSO.asset");
 
             if (!bookListSO)
@@ -45,11 +45,11 @@ public class CSVDataReader : Editor
 
             if (dataSO == null)
             {
-                dataSO = CreateInstance<DataSO>();
+                dataSO = CreateInstance<InitDataSO>();
                 dataSO._bookListSO = bookListSO;
             }
 
-            if (AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset") == null)
+            if (AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset") == null)
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
@@ -73,7 +73,7 @@ public class CSVDataReader : Editor
         {
             using StreamReader sr = new StreamReader(path);
 
-            DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
+            InitDataSO dataSO = AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset");
             BookmarkListSO bookmarkListSO = AssetDatabase.LoadAssetAtPath<BookmarkListSO>("Assets/Data/BookMarkDataListSO.asset");
 
             if (!bookmarkListSO)
@@ -102,11 +102,11 @@ public class CSVDataReader : Editor
 
             if (dataSO == null)
             {
-                dataSO = CreateInstance<DataSO>();
+                dataSO = CreateInstance<InitDataSO>();
                 dataSO._bookmarkListSO = bookmarkListSO;
             }
 
-            if (!AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset"))
+            if (!AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset"))
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
@@ -130,7 +130,7 @@ public class CSVDataReader : Editor
         {
             using StreamReader sr = new StreamReader(path);
 
-            DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
+            InitDataSO dataSO = AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset");
             AccessoryListSO accDataListSO = AssetDatabase.LoadAssetAtPath<AccessoryListSO>("Assets/Data/AccessoryDataListSO.asset");
 
             if (!accDataListSO)
@@ -159,11 +159,11 @@ public class CSVDataReader : Editor
 
             if (dataSO == null)
             {
-                dataSO = CreateInstance<DataSO>();
+                dataSO = CreateInstance<InitDataSO>();
                 dataSO._accessoryListSO = accDataListSO;
             }
 
-            if (!AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset"))
+            if (!AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset"))
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
@@ -187,7 +187,7 @@ public class CSVDataReader : Editor
         {
             using StreamReader sr = new StreamReader(path);
 
-            DataSO dataSO = AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset");
+            InitDataSO dataSO = AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset");
             RoomListSO roomDataListSO = AssetDatabase.LoadAssetAtPath<RoomListSO>("Assets/Data/RoomDataListSO.asset");
 
             if (!roomDataListSO)
@@ -216,11 +216,11 @@ public class CSVDataReader : Editor
 
             if (dataSO == null)
             {
-                dataSO = CreateInstance<DataSO>();
+                dataSO = CreateInstance<InitDataSO>();
                 dataSO._roomListSO = roomDataListSO;
             }
 
-            if (!AssetDatabase.LoadAssetAtPath<DataSO>("Assets/Data/DataListSO.asset"))
+            if (!AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset"))
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");

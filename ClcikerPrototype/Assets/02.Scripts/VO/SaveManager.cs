@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using MemorialRecord.Data;
 using System;
-using System.Security.Cryptography;
 using System.IO;
+using System.Security.Cryptography;
+using UnityEngine;
 
 public enum DataType
 {
@@ -18,6 +16,36 @@ public enum DataType
 
 public static class SaveManager
 {
+    public static Action<int, DataType, int> OnUpdateLevel; // idx, Type, level
+    public static Action<double> OnChangeMemorial;
+    public static Action<long> OnChangeQuillPen;
+
+    public static double CurMemorial
+    {
+        get
+        {
+            return _data.currentMemorial;
+        }
+        set
+        {
+            _data.currentMemorial = value;
+            OnChangeMemorial?.Invoke(value);
+        }
+    }
+
+    public static long CurQuillPen
+    {
+        get
+        {
+            return _data.currentQuillPen;
+        }
+        set
+        {
+            _data.currentQuillPen = value;
+            OnChangeQuillPen?.Invoke(value);
+        }
+    }
+
     #region readonly private fields
     public static readonly string _savePath = Application.persistentDataPath + "/SaveData.txt";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
@@ -34,8 +62,71 @@ public static class SaveManager
         _data.characterName = name;
     }
 
+    public static double GetBookmarkValuePerSec()
+    {
+        double value = 0.0d;
+        foreach (var item in _data.bookMarkLevelDict)
+        {
+            if(item.Value > -1)
+            {
+                if (TryGetContentLevel(DataType.Accessory, item.Key, out int level) && level > 0)
+                {
+                    value += ValueCalculator.GetOutputValueOnLevel(item.Key, item.Value) / 3 * 2;
+                }
+                else
+                {
+                    value += ValueCalculator.GetOutputValueOnLevel(item.Key, item.Value) / 3;
+                }
+            }
+        }
+        return value;
+    }
+
+    public static bool TryGetContentLevel(DataType type, int idx, out int level)
+    {
+        switch (type)
+        {
+            case DataType.Book:
+                if (!_data.bookLevelDict.ContainsKey(idx))
+                {
+                    break;
+                }
+                level = _data.bookLevelDict[idx];
+                return true;
+            case DataType.BookMark:
+                if (!_data.bookMarkLevelDict.ContainsKey(idx))
+                {
+                    break;
+                }
+                level = _data.bookMarkLevelDict[idx];
+                return true;
+            case DataType.Accessory:
+                if (!_data.accessoryLevelDict.ContainsKey(idx))
+                {
+                    break;
+                }
+                level = _data.accessoryLevelDict[idx];
+                return true;
+            case DataType.Room:
+                if (!_data.roomInfoLevelsDict.ContainsKey(idx))
+                {
+                    break;
+                }
+                level = _data.roomInfoLevelsDict[idx];
+                return true;
+            case DataType.Research:
+                // TODO : 구현 필요
+                break;
+        }
+
+        level = -2;
+        return false;
+    }
+
     /// <summary>
     /// 해당 콘텐츠의 레벨을 가져옵니다.
+    /// 해금 되지 않은 콘텐츠는 -1 을 반환합니다.
+    /// 값이 없으면 해당 레벨에 -1 의 콘텐츠를 만듭니다.
     /// 예외 상황엔 -2를 반환합니다.
     /// </summary>
     /// <param name="type"></param>
@@ -77,38 +168,95 @@ public static class SaveManager
         return -2;
     }
 
-    public static void SetContentLevel(DataType type, int idx, int level)
+    public static bool ContentLevelUp(int idx, DataType type)
     {
+        bool isSuccessful = false;
+
+        int updatedLevel = 0;
         switch (type)
         {
             case DataType.Book:
                 if (_data.bookLevelDict.ContainsKey(idx))
                 {
-                    _data.bookLevelDict[idx] = level;
+                    updatedLevel = ++_data.bookLevelDict[idx];
+                    isSuccessful = true;
                 }
                 break;
             case DataType.BookMark:
                 if (_data.bookMarkLevelDict.ContainsKey(idx))
                 {
-                    _data.bookMarkLevelDict[idx] = level;
+                    updatedLevel = ++_data.bookMarkLevelDict[idx];
+                    isSuccessful = true;
                 }
                 break;
             case DataType.Accessory:
                 if (_data.accessoryLevelDict.ContainsKey(idx))
                 {
-                    _data.accessoryLevelDict[idx] = level;
+                    updatedLevel = ++_data.accessoryLevelDict[idx];
+                    isSuccessful = true;
                 }
                 break;
             case DataType.Room:
                 if (_data.roomInfoLevelsDict.ContainsKey(idx))
                 {
-                    _data.roomInfoLevelsDict[idx] = level;
+                    updatedLevel = ++_data.roomInfoLevelsDict[idx];
+                    isSuccessful = true;
                 }
                 break;
             case DataType.Research:
                 // TODO : 구현 필요
                 break;
         }
+
+        if (isSuccessful)
+            OnUpdateLevel?.Invoke(idx, type, updatedLevel);
+
+        return isSuccessful;
+    }
+
+    public static bool SetContentLevel(int idx, DataType type, int level)
+    {
+        bool isSuccessful = false;
+
+        switch (type)
+        {
+            case DataType.Book:
+                if (_data.bookLevelDict.ContainsKey(idx))
+                {
+                    _data.bookLevelDict[idx] = level;
+                    isSuccessful = true;
+                }
+                break;
+            case DataType.BookMark:
+                if (_data.bookMarkLevelDict.ContainsKey(idx))
+                {
+                    _data.bookMarkLevelDict[idx] = level;
+                    isSuccessful = true;
+                }
+                break;
+            case DataType.Accessory:
+                if (_data.accessoryLevelDict.ContainsKey(idx))
+                {
+                    _data.accessoryLevelDict[idx] = level;
+                    isSuccessful = true;
+                }
+                break;
+            case DataType.Room:
+                if (_data.roomInfoLevelsDict.ContainsKey(idx))
+                {
+                    _data.roomInfoLevelsDict[idx] = level;
+                    isSuccessful = true;
+                }
+                break;
+            case DataType.Research:
+                // TODO : 구현 필요
+                break;
+        }
+
+        if(isSuccessful) // 작업이 성공했을 때만 이벤트 발생
+            OnUpdateLevel?.Invoke(idx, type, level);
+
+        return isSuccessful;
     }
     #endregion
 
@@ -123,15 +271,13 @@ public static class SaveManager
     {
         Debug.Log("LocalLoad" + DateTime.Now + " " + _savePath);
         //파일이 존재하는지부터 체크.
-        if (!File.Exists(_savePath))
+        if (File.Exists(_savePath))
         {
             _data = JsonUtility.FromJson<SaveData>(Decrypt(LoadFile(_savePath)));
             return _data;
         }
 
-        _data = JsonUtility.FromJson<SaveData>(Decrypt(LoadFile(_savePath)));
-        return _data;
-        // TODO : 다른 시스템에 이름 넘겨주기
+        return _data = new SaveData();
     }
 
     private static void SaveFile(string jsonData)

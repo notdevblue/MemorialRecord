@@ -5,19 +5,20 @@ using DG.Tweening;
 using MemorialRecord.Data;
 using System;
 
-public class ContentListView_Bookmark : ContentListView
+public class ContentListView_Room : ContentListView
 {
     private void Start()
     {
-        InitChildren(_data._bookmarkListSO.bookmarkDatas);
-        RefreshItems(_data._bookmarkListSO.bookmarkDatas);
+        InitChildren(_data._roomListSO.roomDatas);
+        RefreshItems(_data._roomListSO.roomDatas);
     }
 
     private void OnEnable()
     {
         try
         {
-            RefreshItems(_data._bookmarkListSO.bookmarkDatas);
+            _contentParent.position = new Vector3(0, 0, 0);
+            RefreshItems(_data._roomListSO.roomDatas);
         }
         catch
         {
