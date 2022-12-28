@@ -10,12 +10,17 @@ public class ListSwitcher : MonoBehaviour
 
     private bool isSwitching = false;
 
+    int curIdx = 0;
+
     private void Start()
     {
         for (int i = 0; i < btns.Count; i++)
         {
             int y = i;
-            btns[i].onClick.AddListener(() => SwitchList(y));
+            btns[i].onClick.AddListener(() => {
+                if(curIdx != y)
+                SwitchList(y);
+            });
         }
     }
 
@@ -24,6 +29,7 @@ public class ListSwitcher : MonoBehaviour
         if (isSwitching)
             return;
 
+        curIdx = listNum;
         isSwitching = true;
         switchLists.Find(x => x.gameObject.activeSelf).HideItems(() =>
         {

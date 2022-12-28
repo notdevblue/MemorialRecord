@@ -56,7 +56,7 @@ namespace MemorialRecord.Data
         public long currentQuillPen;
 
         // -1 잠김, 0 구매 가능, 1 구매함
-        public Dictionary<int, int> bookLevelDict = new Dictionary<int, int>() { {0, 0} };
+        public Dictionary<int, int> bookLevelDict = new Dictionary<int, int>() { {0, 1} };
         public Dictionary<int, int> bookMarkLevelDict = new Dictionary<int, int>() { { 0, 0 } };
         public Dictionary<int, int> accessoryLevelDict = new Dictionary<int, int>() { { 0, 0 } };
         public Dictionary<int, int> roomInfoLevelsDict = new Dictionary<int, int>() { { 0, 0 } };
@@ -88,6 +88,16 @@ namespace MemorialRecord.Data
 
         public void OnBeforeSerialize()
         {
+            bookLevelDictKeys = new int[bookLevelDict.Keys.Count];
+            bookMarkLevelDictKeys = new int[bookMarkLevelDict.Keys.Count];
+            accessoryLevelDictKeys = new int[accessoryLevelDict.Keys.Count];
+            roomInfoLevelsDictKeys = new int[roomInfoLevelsDict.Count];
+
+            bookLeveleDictValue = new int[bookLevelDict.Values.Count];
+            bookMarkLevelDictValue = new int[bookMarkLevelDict.Values.Count];
+            accessoryLevelDictValue = new int[accessoryLevelDict.Values.Count];
+            roomInfoLevelsDictValue = new int[roomInfoLevelsDict.Values.Count];
+
             bookLevelDict.Keys.CopyTo(bookLevelDictKeys, 0);
             bookMarkLevelDict.Keys.CopyTo(bookMarkLevelDictKeys, 0);
             accessoryLevelDict.Keys.CopyTo(accessoryLevelDictKeys, 0);
@@ -111,7 +121,7 @@ namespace MemorialRecord.Data
         {
             for (int i = 0; i < keySrc.Length; i++)
             {
-                if (dst.ContainsKey(keySrc[i]))
+                if (!dst.ContainsKey(keySrc[i]))
                 {
                     dst.Add(keySrc[i], valueSrc[i]);
                 }

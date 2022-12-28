@@ -6,23 +6,16 @@ using System.Linq;
 
 public class MainSceneListManager : MonoBehaviour
 {
-    [SerializeField] DataSO _listInfos;
+    [SerializeField] InitDataSO _listInfos;
+    [SerializeField] List<ContentListView> _contentListViews;
     [SerializeField] List<Transform> _views;
     [SerializeField] List<Toggle> _toggles;
 
     private void Awake()
     {
-        ContentListView curList = null;
-        foreach (var item in _views)
+        foreach (var item in _contentListViews)
         {
-            if(item.TryGetComponent<ContentListView>(out curList))
-            {
-                curList.SetData(_listInfos);
-            }
-            else if (item.GetComponentInChildren<ContentListView>() != null)
-            {
-                item.GetComponentsInChildren<ContentListView>().ToList().ForEach(x => x.SetData(_listInfos));
-            }
+            item.SetData(_listInfos);
         }
     }
 

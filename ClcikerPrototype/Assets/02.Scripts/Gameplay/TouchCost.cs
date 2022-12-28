@@ -1,18 +1,24 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchCost : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnTouch()
     {
-        
+        SaveManager.CurMemorial += GetValuePerTouch();
     }
 
-    // Update is called once per frame
-    void Update()
+    private double GetValuePerTouch()
     {
-        
+        double value = 0d;
+
+        InitDataSO datas = DataManager.GetDataSO();
+
+        value += ValueCalculator.CalcBookValues(datas._bookListSO);
+
+        //TODO : 책뿐만 아니라 악세사리나 책갈피 등도 값 산출에 사용하도록 만들 필요가 있음
+        return value;
     }
 }
