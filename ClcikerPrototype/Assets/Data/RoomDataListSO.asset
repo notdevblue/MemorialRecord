@@ -12,3 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250f3ca9e008dfc4a9d9865cef1b39a0, type: 3}
   m_Name: RoomDataListSO
   m_EditorClassIdentifier: 
+  roomDatas:
+  - _idx: 0
+    _title: 
+    _writer: 
+    _name: "\uCE74\uC6B4\uD130"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 1
+    _title: 
+    _writer: 
+    _name: "\uC11C\uACE0"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 2
+    _title: 
+    _writer: 
+    _name: "\uC815\uC6D0"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 3
+    _title: 
+    _writer: 
+    _name: "\uC11C\uC7AC"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 4
+    _title: 
+    _writer: 
+    _name: "\uD53C\uC544\uB178\uBC29"
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}

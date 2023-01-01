@@ -1,5 +1,6 @@
 using MemorialRecord.Data;
 using System;
+using System.Linq;
 using System.IO;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -29,6 +30,7 @@ public static class SaveManager
         set
         {
             _data.currentMemorial = value;
+            SaveData();
             OnChangeMemorial?.Invoke(value);
         }
     }
@@ -65,6 +67,8 @@ public static class SaveManager
     public static double GetBookmarkValuePerSec()
     {
         double value = 0.0d;
+        double roomValue = SaveManager.GetRoomValue();
+
         foreach (var item in _data.bookMarkLevelDict)
         {
             if(item.Value > -1)
@@ -79,7 +83,26 @@ public static class SaveManager
                 }
             }
         }
+
+        value *= roomValue < 1 ? 1 : roomValue;
         return value;
+    }
+
+    public static int GetRoomValue()
+    {
+        var roomlist = _data.roomInfoLevelsDict.ToList();
+        roomlist.Sort((x, y) => 
+        {
+            if(y.Value.CompareTo(x.Value) == 0)
+            {
+                return y.Key.CompareTo(x.Key);
+            }
+            else
+            {
+                return y.Value.CompareTo(x.Value);
+            }    
+        });
+        return roomlist[0].Key + 1;
     }
 
     public static bool TryGetContentLevel(DataType type, int idx, out int level)
@@ -263,13 +286,11 @@ public static class SaveManager
     #region 세이브 관련 로직
     public static void SaveData()
     {
-        Debug.Log("LocalSave" + DateTime.Now + " " + _savePath);
         SaveFile(Encrypt(JsonUtility.ToJson(_data)));
     }
 
     public static SaveData LoadData()
     {
-        Debug.Log("LocalLoad" + DateTime.Now + " " + _savePath);
         //파일이 존재하는지부터 체크.
         if (File.Exists(_savePath))
         {
@@ -277,7 +298,17 @@ public static class SaveManager
             return _data;
         }
 
-        return _data = new SaveData();
+        _data = new SaveData();
+        if (!_data.roomInfoLevelsDict.ContainsKey(0))
+        {
+            _data.roomInfoLevelsDict.Add(0, 1);
+        }
+        else
+        {
+            _data.roomInfoLevelsDict[0] = 1;
+        }
+            
+        return _data;
     }
 
     private static void SaveFile(string jsonData)

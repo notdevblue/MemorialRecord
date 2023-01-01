@@ -23,12 +23,16 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void OnDestroy()
+    {
+        SaveManager.SaveData();
+    }
+
     private void Update()
     {
         if(timer >= 1.0f)
         {
             timer = 0.0f;
-            Debug.Log(SaveManager.GetBookmarkValuePerSec());
             SaveManager.CurMemorial += SaveManager.GetBookmarkValuePerSec();
         }
         else
@@ -45,7 +49,6 @@ public class DataManager : MonoBehaviour
     public static string GetValueF(double value)
     {
         double roundedValue = Math.Round(value);
-        Debug.Log(value);
 
         long log = (long)Math.Log10(roundedValue);
         if(log < 3)
@@ -54,7 +57,6 @@ public class DataManager : MonoBehaviour
         }
         else if (log < 6)
         {
-            Debug.Log(log);
             return Math.Round((roundedValue / Math.Pow(10, 3)), 2).ToString() + "K";
         }
         else if (log < 9)

@@ -14,13 +14,13 @@ public class UpgradeBtn : Button, IPointerDownHandler, IPointerUpHandler
     {
         base.OnPointerDown(eventData);
 
-        onButtonDown();
+        onButtonDown?.Invoke();
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
         base.OnPointerUp(eventData);
 
-        onButtonUp();
+        onButtonUp?.Invoke();
     }
 }

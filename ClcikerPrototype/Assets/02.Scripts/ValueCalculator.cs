@@ -27,8 +27,7 @@ public static class ValueCalculator
             }
         }
 
-        Debug.Log(value / 20d);
-        return value / 20d;
+        return (value / 100d);
     }
 
     public static double GetOutputValue(DataType type, DataParent data)
@@ -47,7 +46,7 @@ public static class ValueCalculator
             } while (curItemLevel > -1);
         }
 
-        return value / 20d;
+        return (value / 100d);
     }
 
     public static double GetOutputValueOnLevel(int idx, int level)
@@ -65,7 +64,7 @@ public static class ValueCalculator
             } while (level > -1);
         }
 
-        return value / 20d;
+        return (value / 100d);
     }
 
     public static double GetUpgradeValue(DataType type, DataParent data)
