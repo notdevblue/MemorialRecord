@@ -59,7 +59,7 @@ namespace MemorialRecord.Data
         public Dictionary<int, int> bookLevelDict = new Dictionary<int, int>() { {0, 1} };
         public Dictionary<int, int> bookMarkLevelDict = new Dictionary<int, int>() { { 0, 0 } };
         public Dictionary<int, int> accessoryLevelDict = new Dictionary<int, int>() { { 0, 0 } };
-        public Dictionary<int, int> roomInfoLevelsDict = new Dictionary<int, int>() { { 0, 0 } };
+        public Dictionary<int, int> roomInfoLevelsDict = new Dictionary<int, int>() { { 0, 1 } };
 
         public int exapndLevel;
 
@@ -74,15 +74,15 @@ namespace MemorialRecord.Data
         #region metadata
         // 직렬화 / 역직렬화 과정에서 Dictonary Data를 보존하기 위해 만든 메타데이터입니다.
 
-        private int[] bookLevelDictKeys;
-        private int[] bookMarkLevelDictKeys;
-        private int[] accessoryLevelDictKeys;
-        private int[] roomInfoLevelsDictKeys;
+        [SerializeField] private int[] bookLevelDictKeys;
+        [SerializeField] private int[] bookMarkLevelDictKeys;
+        [SerializeField] private int[] accessoryLevelDictKeys;
+        [SerializeField] private int[] roomInfoLevelsDictKeys;
 
-        private int[] bookLeveleDictValue;
-        private int[] bookMarkLevelDictValue;
-        private int[] accessoryLevelDictValue;
-        private int[] roomInfoLevelsDictValue;
+        [SerializeField] private int[] bookLeveleDictValue;
+        [SerializeField] private int[] bookMarkLevelDictValue;
+        [SerializeField] private int[] accessoryLevelDictValue;
+        [SerializeField] private int[] roomInfoLevelsDictValue;
 
         #endregion
 

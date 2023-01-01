@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using MemorialRecord.Data;
 
+#if UNITY_EDITOR
 public class CSVDataReader : Editor
 {
     [MenuItem(itemName: "Data/Read/ReadBookDataFromCSV")]
@@ -206,7 +207,7 @@ public class CSVDataReader : Editor
                 roomDataListSO.roomDatas.Add(
                     new RoomData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/å.png"), // sprite    
+                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/å.png"), // sprite   
                         strArr[1] // Name
                         )
                     );
@@ -235,3 +236,4 @@ public class CSVDataReader : Editor
         }
     }
 }
+#endif

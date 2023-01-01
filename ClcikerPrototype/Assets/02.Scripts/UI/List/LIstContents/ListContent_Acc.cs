@@ -11,7 +11,7 @@ public class ListContent_Acc : ListContent
         int level = SaveManager.GetContentLevel(DataType.Accessory, data._idx);
 
         _textTitle.text = $"{data._name} Lv.{(level < 0 ? 0 : level)}";
-        _textOutput.text = $"{DataManager.GetDataSO()._accessoryListSO.accessoryDatas[data._idx]._name} 의 생산량 {(level < 1 ? 0 : 2)}배";
+        _textOutput.text = $"{DataManager.GetDataSO()._accessoryListSO.accessoryDatas[data._idx]._name} 의 생산량 2배";
 
         CommonRefresh(level);
     }
@@ -46,14 +46,14 @@ public class ListContent_Acc : ListContent
         {
             _textLevelUp.text = "완성";
             _textLevelUpCost.gameObject.SetActive(false);
-            _textOutput.text = $"{DataManager.GetDataSO()._bookmarkListSO.bookmarkDatas[data._idx]._name} 의 생산량 {(level < 1 ? 0 : 2)}배";
+            _textOutput.text = $"{DataManager.GetDataSO()._bookmarkListSO.bookmarkDatas[data._idx]._name} 의 생산량 2배";
             _btnLevelup.onClick.RemoveAllListeners();
         }
         else
         {
             _textLevelUp.text = "구매\n";
             _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValueOnLevel(data._idx, 50))}";
-            _textOutput.text = $"{DataManager.GetDataSO()._bookmarkListSO.bookmarkDatas[data._idx]._name} 의 생산량 {(level < 1 ? 0 : 2)}배";
+            _textOutput.text = $"{DataManager.GetDataSO()._bookmarkListSO.bookmarkDatas[data._idx]._name} 의 생산량 2배";
         }
     }
 }

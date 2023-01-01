@@ -44,6 +44,12 @@ public class ListContent_Bookmark : ListContent
 
     protected override void RefreshBtn<T>(T data, int level)
     {
+        if (level == 50 && SaveManager.GetContentLevel(DataType.Accessory, data._idx) == -1)
+        {
+            SaveManager.SetContentLevel(data._idx, DataType.Accessory, 0);
+            OnLockOff();
+        }
+
         if (level >= 100)
         {
             _textLevelUp.text = "¿Ï¼º";

@@ -15,9 +15,9 @@ public class ContentListView_Room : ContentListView
 
     private void OnEnable()
     {
+        _contentParent.position = new Vector3(0, 0, 0);
         try
         {
-            _contentParent.position = new Vector3(0, 0, 0);
             RefreshItems(_data._roomListSO.roomDatas);
         }
         catch

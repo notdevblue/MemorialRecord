@@ -46,6 +46,8 @@ public class ListContent_Book : ListContent
     {
         if (level == 20 && SaveManager.GetContentLevel(DataType.Book, data._idx + 1) == -1)
         {
+            SaveManager.GetContentLevel(DataType.BookMark, data._idx + 1);
+
             SaveManager.SetContentLevel(data._idx + 1, DataType.Book, 0);
             SaveManager.SetContentLevel(data._idx + 1, DataType.BookMark, 0);
             OnLockOff();

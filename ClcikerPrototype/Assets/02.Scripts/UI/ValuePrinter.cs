@@ -23,6 +23,12 @@ public class ValuePrinter : MonoBehaviour
         UpdateValues(ValueType.pen, SaveManager.CurQuillPen);
     }
 
+    private void Start()
+    {
+        UpdateValues(ValueType.memorial, SaveManager.CurMemorial);
+        UpdateValues(ValueType.pen, SaveManager.CurQuillPen);
+    }
+
     public void UpdateValues(ValueType type, double value)
     {
         switch (type)
