@@ -62,6 +62,7 @@ public static class SaveManager
     public static void SaveName(string name)
     {
         _data.characterName = name;
+        SaveData();
     }
 
     public static double GetBookmarkValuePerSec()
