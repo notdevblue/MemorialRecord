@@ -9,8 +9,10 @@ public class BGMSelector : MonoBehaviour
 
     public void SetBGM(AudioClip newClip)
     {
-        bgmSource.DOPitch(0, 0.2f);
-        bgmSource.clip = newClip;
-        bgmSource.DOPitch(1, 0.2f);
+        bgmSource.DOPitch(0, 0.2f).OnComplete(() =>
+        {
+            bgmSource.clip = newClip; 
+            bgmSource.DOPitch(1, 0.2f);
+        });
     }
 }
