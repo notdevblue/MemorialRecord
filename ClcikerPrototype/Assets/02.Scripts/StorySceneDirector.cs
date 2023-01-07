@@ -183,8 +183,32 @@ public class StorySceneDirector : MonoBehaviour
 
                 illustDirector.FadeOutIllurst(duration);
                 break;
+            case "FadeInCharacter":
+                duration = float.Parse(args[1].ToString());
+                result = new WaitForSeconds(duration);
+
+                chDirector.FadeInCharacter((Character)Enum.Parse(typeof(Character), args[0].ToString()), duration);
+                break;
+            case "FadeOutCharacter":
+                duration = float.Parse(args[0].ToString());
+                result = new WaitForSeconds(duration);
+
+                chDirector.FadeOutCharacter(duration);
+                break;
+            case "SetCharacterShadow":
+                duration = float.Parse(args[0].ToString());
+                result = new WaitForSeconds(duration);
+
+                chDirector.SetCharacterShadow(duration);
+                break;
+            case "RemoveCharacterShadow":
+                duration = float.Parse(args[0].ToString());
+                result = new WaitForSeconds(duration);
+
+                chDirector.RemoveCharacterShadow(duration);
+                break;
             case "SetCharEmotion":
-                chDirector.SetCharacterEmotionAction(args[0].ToString(), (Character)Enum.Parse(typeof(Direction), args[1].ToString()));
+                chDirector.SetCharacterEmotionAction(args[0].ToString(), (Character)Enum.Parse(typeof(Character), args[1].ToString()));
                 break;
             default:
                 break;

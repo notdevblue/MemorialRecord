@@ -9,13 +9,10 @@ public class CommonPartsManager : MonoBehaviour
 
     private void Awake()
     {
-        if(FindObjectsOfType<CommonPartsManager>().Length > 1)
+        if(FindObjectsOfType<CommonPartsManager>() != null)
         {
-            if (FindObjectsOfType<CommonPartsManager>()[1] != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            Destroy(gameObject);
+            return;
         }
 
         DontDestroyOnLoad(gameObject);
