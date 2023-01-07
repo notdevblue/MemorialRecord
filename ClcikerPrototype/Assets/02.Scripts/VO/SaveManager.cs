@@ -17,9 +17,11 @@ public enum DataType
 
 public static class SaveManager
 {
-    public static Action<int, DataType, int> OnUpdateLevel; // idx, Type, level
-    public static Action<double> OnChangeMemorial;
-    public static Action<long> OnChangeQuillPen;
+    public static event Action<int, DataType, int> OnUpdateLevel; // idx, Type, level
+    public static event Action<double> OnChangeMemorial;
+    public static event Action<long> OnChangeQuillPen;
+    public static event Action<float> OnChangeMusicVolume;
+    public static event Action<float> OnChangeSoundEffectVolume;
 
     public static double CurMemorial
     {
@@ -48,6 +50,45 @@ public static class SaveManager
         }
     }
 
+    public static float MusicVolume
+    {
+        get
+        {
+            return _data.musicVolume;
+        }
+        set
+        {
+            _data.musicVolume = value;
+            OnChangeMusicVolume?.Invoke(value);
+        }
+    }
+
+    public static float SoundEffectVolume
+    {
+        get
+        {
+            return _data.soundEffectVolume;
+        }
+        set
+        {
+            _data.soundEffectVolume = value;
+            OnChangeSoundEffectVolume?.Invoke(value);
+        }
+    }
+
+    public static string Name
+    {
+        get
+        {
+            return _data.characterName;
+        }
+        set
+        {
+            _data.characterName = value;
+            SaveData();
+        }
+    }
+
     #region readonly private fields
     public static readonly string _savePath = Application.persistentDataPath + "/SaveData.txt";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
@@ -56,14 +97,7 @@ public static class SaveManager
 
     private static SaveData _data = new MemorialRecord.Data.SaveData();
 
-    public static string _name = "";
-
     #region 기타 비즈니스 로직
-    public static void SaveName(string name)
-    {
-        _data.characterName = name;
-        SaveData();
-    }
 
     public static double GetBookmarkValuePerSec()
     {

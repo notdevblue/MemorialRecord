@@ -13,6 +13,19 @@ public class BGMSelector : MonoBehaviour
         {
             bgmSource.clip = newClip; 
             bgmSource.DOPitch(1, 0.2f);
+            bgmSource.Play();
         });
+    }
+
+    public void SetActiveBGM(bool isActive)
+    {
+        if(isActive)
+        {
+            bgmSource.DOPitch(0, 0.2f);
+        }
+        else
+        {
+            bgmSource.DOPitch(1, 0.2f);
+        }
     }
 }

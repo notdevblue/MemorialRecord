@@ -18,6 +18,11 @@ public class PlayerInputManager : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            CustomSceneManager.StorySceneChange(0);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             _touchEffectManager.GetEffect(Camera.main.ScreenToWorldPoint(Input.mousePosition));

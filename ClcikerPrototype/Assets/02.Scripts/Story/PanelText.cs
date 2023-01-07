@@ -26,7 +26,6 @@ public class PanelText : MonoBehaviour
     private void Start()
     {
         ssDirector = FindObjectOfType<StorySceneDirector>();
-        SetText(0);
     }
 
     private void Update()
@@ -54,6 +53,11 @@ public class PanelText : MonoBehaviour
         {
             for (int j = 0; j < splitScirpts[i].Length; j++)
             {
+                if (splitScirpts[i].Contains("BoyCharName") && SaveManager.Name != null)
+                {
+                    splitScirpts[i] = splitScirpts[i].Replace("BoyCharName", SaveManager.Name);
+                }
+
                 if (splitScirpts[i][j] == '#')
                 {
                     j++;
@@ -64,7 +68,8 @@ public class PanelText : MonoBehaviour
                         j++;
                     }
                     isPlayingScirpt = false;
-                    yield return ssDirector.SetAction(actionStr);
+                    object obj = ssDirector.SetAction(actionStr);
+                    yield return obj;
                     isPlayingScirpt = true;
                 }
 
@@ -76,6 +81,7 @@ public class PanelText : MonoBehaviour
                 textMsg.text += splitScirpts[i][j];
                 yield return new WaitForSeconds(isSkipScript ? 0.0f : 0.15f);
             }
+
             isEndScirpt = true;
             isSkipScript = false;
 
@@ -92,13 +98,19 @@ public class PanelText : MonoBehaviour
         }
         isPlayingScirpt = false;
 
-        Debug.Log("All Text Is Finished");
+        CustomSceneManager.SceneChange("MainScene", () => { });
         yield return null;
     }
 
     public void SetNameText(string name, float duration)
     {
         name = name.Trim('\"');
+
+        if (name == "BoyCharName")
+        {
+            name = SaveManager.Name;
+        }
+
         textName.text = "";
         textName.DOText(name, duration);
     }

@@ -8,7 +8,10 @@ public static class CustomSceneManager
 {
     public static void SceneChange(string targetScene, Action onCompleteChange = null)
     {
+        UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetActiveBGM(false);
+
         var sceneLoading = SceneManager.LoadSceneAsync(targetScene);
+        onCompleteChange += () => UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetActiveBGM(true);
 
         sceneLoading.completed += (x) => onCompleteChange?.Invoke();
     }
@@ -22,8 +25,25 @@ public static class CustomSceneManager
         UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetBGM(clip);
     }
 
-    public static void StorySceneChange(string targetScene, bool isChangeBGM, AudioClip clip, Action onCompleteChange = null)
+    public static void StorySceneChange(int chapter)
     {
-        var sceneLoading = SceneManager.LoadSceneAsync(targetScene);
+        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
+
+        //var loading = SceneManager.LoadSceneAsync("StoryScene");
+        //loading.allowSceneActivation = false;
+        //Debug.Log(loading);
+
+        SceneManager.sceneLoaded += (x, y) =>
+        {
+            if(x.name == "LoadingScene")
+            {
+                GameObject.FindObjectOfType<LoadingSceneFade>().onFadeOutComplete += () =>
+                {
+                    SceneManager.UnloadSceneAsync("MainScene");
+                    GameObject.FindObjectOfType<StorySceneDirector>().SetChapter(chapter);
+                };
+            }
+        };
+
     }
 }
