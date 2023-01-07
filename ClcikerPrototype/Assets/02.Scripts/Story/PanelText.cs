@@ -53,9 +53,9 @@ public class PanelText : MonoBehaviour
         {
             for (int j = 0; j < splitScirpts[i].Length; j++)
             {
-                if (splitScirpts[i].Contains("BoyCharName") && SaveManager.Name != null)
+                if (splitScirpts[i].Contains("PlayerName") && SaveManager.Name != null)
                 {
-                    splitScirpts[i] = splitScirpts[i].Replace("BoyCharName", SaveManager.Name);
+                    splitScirpts[i] = splitScirpts[i].Replace("PlayerName", SaveManager.Name);
                 }
 
                 if (splitScirpts[i][j] == '#')
@@ -106,7 +106,7 @@ public class PanelText : MonoBehaviour
     {
         name = name.Trim('\"');
 
-        if (name == "BoyCharName")
+        if (name == "PlayerName")
         {
             name = SaveManager.Name;
         }

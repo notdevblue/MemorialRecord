@@ -4412,6 +4412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc851f0338ebcc74a8c89a6575dbb515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originBGM: {fileID: 0}
 --- !u!4 &1967922967
 Transform:
   m_ObjectHideFlags: 0
@@ -4646,7 +4647,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd4179ddbc609e45aef9625e2ae4e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charAnims: []
+  charAnims:
+  - {fileID: 1768533174}
+  - {fileID: 913904747}
   shadowSR: []
 --- !u!1 &2077464358
 GameObject:

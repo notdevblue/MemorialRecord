@@ -14,6 +14,7 @@ public class CharacterDirector : MonoBehaviour
     {
         try
         {
+            charAnims[(int)character].gameObject.SetActive(true);
             charAnims[(int)character].SetTrigger(key);
         }
         catch (System.Exception)
@@ -23,15 +24,17 @@ public class CharacterDirector : MonoBehaviour
         }
     }
 
-    public void FadeInCaracter(Character character, float duration)
+    public void FadeInCharacter(Character character, float duration)
     {
+        charAnims[(int)curChar].GetComponent<SpriteRenderer>().DOFade(0.0f, 0.25f);
+
         curChar = character;
 
         charAnims[(int)curChar].gameObject.SetActive(true);
         charAnims[(int)curChar].GetComponent<SpriteRenderer>().DOFade(1.0f, duration);
     }
 
-    public void FadeOutCaracter(float duration)
+    public void FadeOutCharacter(float duration)
     {
         charAnims[(int)curChar].GetComponent<SpriteRenderer>().DOFade(0.0f, duration).OnComplete(() => charAnims[(int)curChar].gameObject.SetActive(false));
     }

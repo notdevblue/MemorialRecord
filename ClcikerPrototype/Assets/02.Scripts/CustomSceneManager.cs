@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public static class CustomSceneManager
 {
+    static int curChapter = 0;
+
     public static void SceneChange(string targetScene, Action onCompleteChange = null)
     {
-        UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetActiveBGM(false);
+        UnityEngine.GameObject.FindObjectOfType<BGMSelector>()?.SetActiveBGM(false);
 
         var sceneLoading = SceneManager.LoadSceneAsync(targetScene);
         onCompleteChange += () => UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetActiveBGM(true);
@@ -27,23 +29,30 @@ public static class CustomSceneManager
 
     public static void StorySceneChange(int chapter)
     {
+        curChapter = chapter;
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
 
-        //var loading = SceneManager.LoadSceneAsync("StoryScene");
-        //loading.allowSceneActivation = false;
-        //Debug.Log(loading);
+        SceneManager.sceneLoaded += OnSceneChanged;
 
-        SceneManager.sceneLoaded += (x, y) =>
+        SceneManager.LoadScene("StoryScene", LoadSceneMode.Additive);
+    }
+
+    private static void OnSceneChanged(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "LoadingScene")
         {
-            if(x.name == "LoadingScene")
+            GameObject.FindObjectOfType<LoadingSceneFade>().onFadeOutComplete += () =>
             {
-                GameObject.FindObjectOfType<LoadingSceneFade>().onFadeOutComplete += () =>
-                {
-                    SceneManager.UnloadSceneAsync("MainScene");
-                    GameObject.FindObjectOfType<StorySceneDirector>().SetChapter(chapter);
-                };
-            }
-        };
+                SceneManager.UnloadSceneAsync("MainScene");
+                GameObject.FindObjectOfType<StorySceneDirector>(true).SetChapter(curChapter);
+            };
 
+            GameObject.FindObjectOfType<LoadingSceneFade>().onFadeInComplete += () =>
+            {
+                SceneManager.UnloadSceneAsync("LoadingScene");
+            };
+
+            SceneManager.sceneLoaded -= OnSceneChanged;
+        }
     }
 }
