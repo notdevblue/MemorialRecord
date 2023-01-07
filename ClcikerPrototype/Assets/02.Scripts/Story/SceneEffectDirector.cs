@@ -31,13 +31,14 @@ public class SceneEffectDirector : MonoBehaviour
 
     public float ShakeBackground(Axis axis)
     {
-        backgrounds[curIdx].transform.DOMove(10 * (axis == Axis.Horizontal ? Vector2.up : Vector2.right), 0.5f).onComplete += () => 
-        {
-            backgrounds[curIdx].transform.DOMove(10 * (axis == Axis.Horizontal ? Vector2.down : Vector2.left), 0.5f).onComplete += () =>
-            {
-                backgrounds[curIdx].transform.DOMove(Vector2.zero, 0.25f);
-            };
-        };
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(backgrounds[curIdx].transform.DOMove(10 * (axis == Axis.Horizontal ? Vector2.up : Vector2.right), 0.5f));
+        seq.Append(backgrounds[curIdx].transform.DOMove(10 * (axis == Axis.Horizontal ? Vector2.down : Vector2.left), 0.5f));
+
+        seq.SetLoops(10, LoopType.Yoyo);
+
+        seq.OnComplete(() => backgrounds[curIdx].transform.DOMove(Vector2.zero, 0.25f));
         return 1.25f;
     }
 

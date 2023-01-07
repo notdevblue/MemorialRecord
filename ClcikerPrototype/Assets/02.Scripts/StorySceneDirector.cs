@@ -22,28 +22,24 @@ public enum Character
     Boy,
     Girl
 }
-
-public enum EmotionKey
-{
-    Normal,
-    NomalCrossArm,
-    Think,
-    Sign,
-    Suprised,
-    Frown,
-    Avoid,
-    TearUp,
-    Smile,
-    Headache,
-}
  
 public class StorySceneDirector : MonoBehaviour
 {
+    [Header("About Sound")]
+    [SerializeField] AudioClip[] bgmSources;
+
+    [Header("Others")]
     [SerializeField] PanelText panelText;
     [SerializeField] PanelName panelName;
     [SerializeField] PanelSubObj panelSubObj;
-    [SerializeField] IllustrationDirector iD;
+    [SerializeField] IllustrationDirector illustDirector;
     [SerializeField] SceneEffectDirector seDirector;
+    [SerializeField] CharacterDirector chDirector;
+
+    public void SetChapter(int chapter)
+    {
+        panelText.SetText(chapter);
+    }
 
     public object SetAction(string text = "")
     {
@@ -57,11 +53,22 @@ public class StorySceneDirector : MonoBehaviour
 
         funcName = strs[0].Trim(trimChar);
 
-        string[] strs1 = strs[1].Split(',');
-
-        for (int i = 0; i < strs1.Length; i++)
+        string[] strs1;
+        if (strs.Length < 2)
         {
-            objects.Add(strs1[i].Trim(trimChar));
+            strs1 = null;
+        }
+        else
+        {
+            strs1 = strs[1].Split(',');
+        }
+
+        if(strs1 != null)
+        {
+            for (int i = 0; i < strs1.Length; i++)
+            {
+                objects.Add(strs1[i].Trim(trimChar));
+            }
         }
 
         return PlaySceneAction(funcName, objects.ToArray());
@@ -141,7 +148,7 @@ public class StorySceneDirector : MonoBehaviour
                 result = new WaitUntil(panelName.FadeInNameBox(duration));
                 break;
             case "FadeOutNameBox":
-                duration = float.Parse(args[1].ToString());
+                duration = float.Parse(args[0].ToString());
                 result = new WaitUntil(panelName.FadeOutNameBox(duration));
                 break;
             case "FadeInSubObject":
@@ -168,13 +175,16 @@ public class StorySceneDirector : MonoBehaviour
                 duration = float.Parse(args[1].ToString());
                 result = new WaitForSeconds(duration);
 
-                iD.FadeInIllurst(int.Parse(args[0].ToString()), duration);
+                illustDirector.FadeInIllurst(int.Parse(args[0].ToString()), duration);
                 break;
             case "FadeOutIllustration":
                 duration = float.Parse(args[0].ToString());
                 result = new WaitForSeconds(duration);
 
-                iD.FadeOutIllurst(duration);
+                illustDirector.FadeOutIllurst(duration);
+                break;
+            case "SetCharEmotion":
+                chDirector.SetCharacterEmotionAction(args[0].ToString(), (Character)Enum.Parse(typeof(Direction), args[1].ToString()));
                 break;
             default:
                 break;

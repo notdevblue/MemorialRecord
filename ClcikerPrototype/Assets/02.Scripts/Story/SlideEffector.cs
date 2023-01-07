@@ -9,7 +9,7 @@ public class SlideEffector : MonoBehaviour
 
     public void SlideInFrom(Direction direction, float duration)
     {
-        slidePanels[(int)direction].DOScaleX(5, duration);
+        slidePanels[(int)direction].DOScaleX(10, duration);
     }
 
     public void SlideOutTo(Direction direction, float duration)
@@ -19,7 +19,7 @@ public class SlideEffector : MonoBehaviour
             item.transform.localScale = Vector3.one;
         }
 
-        slidePanels[(int)direction].transform.localScale = Vector3.one + Vector3.right * 4;
+        slidePanels[(int)direction].transform.localScale = Vector3.right * 10;
         slidePanels[(int)direction].DOScaleX(0, duration);
     }
 }

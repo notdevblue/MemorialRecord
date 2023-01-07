@@ -14,7 +14,7 @@ public class PanelName : MonoBehaviour
     {
         inputField.onValueChanged.AddListener((text) =>
         {
-            btnOK.interactable = text != "";
+            btnOK.interactable = text.Trim(' ') != "";
         });
 
         btnOK.onClick.AddListener(OnClickOKBtn);
@@ -23,21 +23,22 @@ public class PanelName : MonoBehaviour
     public Func<bool> FadeInNameBox(float duration)
     {
         gameObject.SetActive(true);
+        btnOK.interactable = inputField.text.Trim(' ') != "";
         GetComponent<CanvasGroup>().DOFade(1, duration);
-        return () => { return gameObject.activeSelf; };
+        return () => { return !gameObject.activeSelf; };
     }
 
     public Func<bool> FadeOutNameBox(float duration)
     {
         GetComponent<CanvasGroup>().DOFade(0, duration).OnComplete(() => gameObject.SetActive(false));
         btnOK.interactable = false;
-        return () => { return gameObject.activeSelf; };
+        return () => { return !gameObject.activeSelf; };
     }
 
     private void OnClickOKBtn()
     {
-        FadeOutNameBox(3.0f);
-        SaveManager.SaveName(inputField.text);
+        FadeOutNameBox(0.5f);
+        SaveManager.Name = inputField.text;
     }
 
 
