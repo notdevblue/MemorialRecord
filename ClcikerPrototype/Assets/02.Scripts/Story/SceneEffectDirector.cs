@@ -29,17 +29,25 @@ public class SceneEffectDirector : MonoBehaviour
         backgrounds[curIdx].DOFade(0.0f, duration).OnComplete(() => backgrounds[curIdx].gameObject.SetActive(false));
     }
 
-    public float ShakeBackground(Axis axis)
+    public void ShakeBackground(Axis axis)
     {
         Sequence seq = DOTween.Sequence();
+        StartCoroutine(Shake(axis, 1.25f));
+    }
 
-        seq.Append(backgrounds[curIdx].transform.DOMove(10 * (axis == Axis.Horizontal ? Vector2.up : Vector2.right), 0.5f));
-        seq.Append(backgrounds[curIdx].transform.DOMove(10 * (axis == Axis.Horizontal ? Vector2.down : Vector2.left), 0.5f));
+    private IEnumerator Shake(Axis axis, float duration)
+    {
+        float timer = 0f;
+        Vector2 originPos = backgrounds[curIdx].transform.position;
+        while (timer <= duration)
+        {
+            Debug.Log(Mathf.Cos(timer));
+            Vector2 plusPos = (axis == Axis.Horizontal ? Vector2.right : Vector2.up) * Mathf.Cos(timer * 100) / 100;
+            backgrounds[curIdx].transform.position += (Vector3)plusPos;
 
-        seq.SetLoops(10, LoopType.Yoyo);
-
-        seq.OnComplete(() => backgrounds[curIdx].transform.DOMove(Vector2.zero, 0.25f));
-        return 1.25f;
+            timer += Time.deltaTime / duration;
+            yield return null;
+        }
     }
 
     public void FadeInWhiteBlank(float duration)

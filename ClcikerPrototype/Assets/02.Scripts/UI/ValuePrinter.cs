@@ -5,42 +5,38 @@ using UnityEngine.UI;
 
 public class ValuePrinter : MonoBehaviour
 {
-    public enum ValueType
-    {
-        memorial,
-        pen,
-    }
 
     [SerializeField] Text _textMemorial = null;
     [SerializeField] Text _textPen = null;
 
     private void Awake()
     {
-        SaveManager.OnChangeMemorial += value => UpdateValues(ValueType.memorial, value);
-        SaveManager.OnChangeQuillPen += value => UpdateValues(ValueType.pen, value);
+        SaveManager.OnChangeMemorial += UpdateMemorialValue;
+        SaveManager.OnChangeQuillPen += UpdatePenValue;
 
-        UpdateValues(ValueType.memorial, SaveManager.CurMemorial);
-        UpdateValues(ValueType.pen, SaveManager.CurQuillPen);
+        UpdateMemorialValue(SaveManager.CurMemorial);
+        UpdatePenValue(SaveManager.CurQuillPen);
     }
 
     private void Start()
     {
-        UpdateValues(ValueType.memorial, SaveManager.CurMemorial);
-        UpdateValues(ValueType.pen, SaveManager.CurQuillPen);
+        UpdateMemorialValue(SaveManager.CurMemorial);
+        UpdatePenValue(SaveManager.CurQuillPen);
     }
 
-    public void UpdateValues(ValueType type, double value)
+    public void UpdateMemorialValue(double value)
     {
-        switch (type)
-        {
-            case ValueType.memorial:
-                _textMemorial.text = $"{DataManager.GetValueF(value)}";
-                break;
-            case ValueType.pen:
-                _textPen.text = $"{DataManager.GetValueF(value)}";
-                break;
-            default:
-                break;
-        }
+        _textMemorial.text = $"{DataManager.GetValueF(value)}";
+    }
+
+    public void UpdatePenValue(long value)
+    {
+        _textPen.text = $"{DataManager.GetValueF(value)}";
+    }
+
+    private void OnDestroy()
+    {
+        SaveManager.OnChangeMemorial -= UpdateMemorialValue;
+        SaveManager.OnChangeQuillPen -= UpdatePenValue;
     }
 }

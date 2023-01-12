@@ -8,36 +8,25 @@ public static class CustomSceneManager
 {
     static int curChapter = 0;
 
-    public static void SceneChange(string targetScene, Action onCompleteChange = null)
+    public static void MainSceneChangeFromStory()
     {
-        UnityEngine.GameObject.FindObjectOfType<BGMSelector>()?.SetActiveBGM(false);
-
-        var sceneLoading = SceneManager.LoadSceneAsync(targetScene);
-        onCompleteChange += () => UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetActiveBGM(true);
-
-        sceneLoading.completed += (x) => onCompleteChange?.Invoke();
-    }
-
-    public static void SceneChange(string targetScene, bool isChangeBGM = false, AudioClip clip = null, Action onCompleteChange = null)
-    {
-        var sceneLoading = SceneManager.LoadSceneAsync(targetScene);
-
-        sceneLoading.completed += (x) => onCompleteChange?.Invoke();
-
-        UnityEngine.GameObject.FindObjectOfType<BGMSelector>().SetBGM(clip);
-    }
-
-    public static void StorySceneChange(int chapter)
-    {
-        curChapter = chapter;
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
 
-        SceneManager.sceneLoaded += OnSceneChanged;
+        SceneManager.sceneLoaded += OnSceneChangedFromStory;
+    }
+
+    public static void StorySceneChangeFromMain(int chapter)
+    {
+        curChapter = chapter;
+        SaveManager.SetStoryDict(chapter, true);
+        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
+
+        SceneManager.sceneLoaded += OnSceneChangedFromMain;
 
         SceneManager.LoadScene("StoryScene", LoadSceneMode.Additive);
     }
 
-    private static void OnSceneChanged(Scene scene, LoadSceneMode mode)
+    private static void OnSceneChangedFromMain(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "LoadingScene")
         {
@@ -52,7 +41,27 @@ public static class CustomSceneManager
                 SceneManager.UnloadSceneAsync("LoadingScene");
             };
 
-            SceneManager.sceneLoaded -= OnSceneChanged;
+            SceneManager.sceneLoaded -= OnSceneChangedFromMain;
+        }
+    }
+
+    private static void OnSceneChangedFromStory(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "LoadingScene")
+        {
+            GameObject.FindObjectOfType<LoadingSceneFade>().onFadeOutComplete += () =>
+            {
+                SceneManager.UnloadSceneAsync("StoryScene");
+                SceneManager.LoadScene("MainScene", LoadSceneMode.Additive);
+                UnityEngine.GameObject.FindObjectOfType<BGMSelector>()?.SetMainBGM();
+            };
+
+            GameObject.FindObjectOfType<LoadingSceneFade>().onFadeInComplete += () =>
+            {
+                SceneManager.UnloadSceneAsync("LoadingScene");
+            };
+
+            SceneManager.sceneLoaded -= OnSceneChangedFromStory;
         }
     }
 }

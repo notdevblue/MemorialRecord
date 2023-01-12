@@ -32,8 +32,8 @@ public static class SaveManager
         set
         {
             _data.currentMemorial = value;
-            SaveData();
             OnChangeMemorial?.Invoke(value);
+            SaveData();
         }
     }
 
@@ -47,6 +47,7 @@ public static class SaveManager
         {
             _data.currentQuillPen = value;
             OnChangeQuillPen?.Invoke(value);
+            SaveData();
         }
     }
 
@@ -60,6 +61,7 @@ public static class SaveManager
         {
             _data.musicVolume = value;
             OnChangeMusicVolume?.Invoke(value);
+            SaveData();
         }
     }
 
@@ -73,6 +75,7 @@ public static class SaveManager
         {
             _data.soundEffectVolume = value;
             OnChangeSoundEffectVolume?.Invoke(value);
+            SaveData();
         }
     }
 
@@ -89,6 +92,48 @@ public static class SaveManager
         }
     }
 
+    public static int IdxCurMusic
+    {
+        get
+        {
+            return _data.curMusicIndex;
+        }
+        set
+        {
+            _data.curMusicIndex = value;
+            GameObject.FindObjectOfType<BGMSelector>()?.SetBGM(value);
+            SaveData();
+        }
+    }
+
+    public static uint IdxCurStory
+    {
+        get
+        {
+            return _data.idxCurStory;
+        }
+
+        set
+        {
+            _data.idxCurStory = value;
+            SaveData();
+        }
+    }
+
+    public static bool[] MusicBoughtArr
+    {
+        get
+        {
+            return _data.MusicBoughtArr;
+        }
+
+        set
+        {
+            _data.MusicBoughtArr = value;
+            SaveData();
+        }
+    }
+
     #region readonly private fields
     public static readonly string _savePath = Application.persistentDataPath + "/SaveData.txt";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
@@ -98,6 +143,18 @@ public static class SaveManager
     private static SaveData _data = new MemorialRecord.Data.SaveData();
 
     #region 기타 비즈니스 로직
+    public static void SetStoryDict(int idx, bool value)
+    {
+        if(!_data.storyReadDict.ContainsKey(idx))
+        {
+            _data.storyReadDict.Add(idx, value);
+        }
+        else
+        {
+            _data.storyReadDict[idx] = value;
+        }
+        SaveData();
+    }
 
     public static double GetBookmarkValuePerSec()
     {

@@ -50,6 +50,7 @@ public class ListContent_Book : ListContent
 
             SaveManager.SetContentLevel(data._idx + 1, DataType.Book, 0);
             SaveManager.SetContentLevel(data._idx + 1, DataType.BookMark, 0);
+            FindObjectOfType<StoryAlarm>().CallStoryAlarm((int)SaveManager.IdxCurStory);
             OnLockOff();
         }
 

@@ -22,12 +22,15 @@ public enum Character
     Boy,
     Girl
 }
+
+public enum DirectionOne
+{
+    Left,
+    Right
+}
  
 public class StorySceneDirector : MonoBehaviour
 {
-    [Header("About Sound")]
-    [SerializeField] AudioClip[] bgmSources;
-
     [Header("Others")]
     [SerializeField] PanelText panelText;
     [SerializeField] PanelName panelName;
@@ -104,8 +107,7 @@ public class StorySceneDirector : MonoBehaviour
                 seDirector.FadeOutBackground(duration);
                 break;
             case "ShakeBackground":
-                duration = seDirector.ShakeBackground((Axis)Enum.Parse(typeof(Axis), args[0].ToString()));
-                result = new WaitForSeconds(duration);
+                seDirector.ShakeBackground((Axis)Enum.Parse(typeof(Axis), args[0].ToString()));
                 break;
             case "FadeInWhiteBlank":
                 duration = float.Parse(args[0].ToString());
@@ -195,6 +197,31 @@ public class StorySceneDirector : MonoBehaviour
 
                 chDirector.FadeOutCharacter(duration);
                 break;
+            case "SetCharacterShake":
+                duration = float.Parse(args[1].ToString());
+
+                chDirector.SetCharacterShake((Axis)Enum.Parse(typeof(Axis), args[0].ToString()), duration);
+                break;
+            case "MoveCharacter":
+                duration = float.Parse(args[1].ToString());
+
+                chDirector.CharacterMove((DirectionOne)Enum.Parse(typeof(DirectionOne), args[0].ToString()), duration);
+                break;
+            case "MoveCharacterReturn":
+                duration = float.Parse(args[0].ToString());
+
+                chDirector.MoveCharacterReturn(duration);
+                break;
+            case "SetCharacterStandUp":
+                duration = float.Parse(args[0].ToString());
+
+                chDirector.SetCharacterStandUp(duration);
+                break;
+            case "SetCharacterJump":
+                duration = float.Parse(args[0].ToString());
+
+                chDirector.SetCharacterJump(duration);
+                break;
             case "SetCharacterShadow":
                 duration = float.Parse(args[0].ToString());
                 result = new WaitForSeconds(duration);
@@ -209,6 +236,18 @@ public class StorySceneDirector : MonoBehaviour
                 break;
             case "SetCharEmotion":
                 chDirector.SetCharacterEmotionAction(args[0].ToString(), (Character)Enum.Parse(typeof(Character), args[1].ToString()));
+                break;
+            case "PlaySoundEffect":
+                FindObjectOfType<SoundEffector>()?.PlaySoundEffect(args[0].ToString());
+                break;
+            case "PauseSoundEffect":
+                FindObjectOfType<SoundEffector>()?.StopSoundEffect();
+                break;
+            case "PlayBGM":
+                FindObjectOfType<BGMSelector>()?.SetBGM(int.Parse(args[0].ToString()));
+                break;
+            case "StopBGM":
+                FindObjectOfType<BGMSelector>()?.SetActiveBGM(false);
                 break;
             default:
                 break;

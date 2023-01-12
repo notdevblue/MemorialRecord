@@ -21,12 +21,34 @@ public class SoundEffector : MonoBehaviour
         }
     }
 
-    public void PlaySoundEffect(string name = "")
+    private void Start()
     {
-
+        SaveManager.OnChangeSoundEffectVolume += value =>
+        {
+            foreach (var item in sourcePool)
+            {
+                item.volume = value;
+            }
+        };
     }
 
-    public AudioSource GetAudioClip()
+    public void StopSoundEffect()
+    {
+        foreach (var item in sourcePool)
+        {
+
+        }
+    }
+
+    public void PlaySoundEffect(string name = "")
+    {
+        AudioSource source = GetAudioSource();
+        source.clip = soundEffects[name];
+        source.loop = false;
+        source.Play();
+    }
+
+    public AudioSource GetAudioSource()
     {
         AudioSource result = null;
         if(sourcePool.Count > 0)
