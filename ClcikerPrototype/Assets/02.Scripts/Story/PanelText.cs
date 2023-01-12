@@ -17,10 +17,12 @@ public class PanelText : MonoBehaviour
     [SerializeField] Text textName; 
     [SerializeField] TextAsset[] scenarios;
     [SerializeField] Image textFinishImage;
+    [SerializeField] Button btnSkip;
 
     private void Awake()
     {
         textFinishImage.gameObject.SetActive(false);
+        btnSkip.onClick.AddListener(() => CustomSceneManager.MainSceneChangeFromStory());
     }
 
     private void Start()
@@ -98,7 +100,7 @@ public class PanelText : MonoBehaviour
         }
         isPlayingScirpt = false;
 
-        CustomSceneManager.SceneChange("MainScene", () => { });
+        CustomSceneManager.MainSceneChangeFromStory();
         yield return null;
     }
 

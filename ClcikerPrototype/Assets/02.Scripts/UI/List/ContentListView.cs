@@ -23,6 +23,14 @@ public abstract class ContentListView : MonoBehaviour
         _data = data;
     }
 
+    public void SetSubscribeToChildLockOff(Action onLockOff)
+    {
+        foreach (var item in _children)
+        {
+            item.OnLockOff += onLockOff;
+        }
+    }
+
     protected virtual void InitChildren<T>(List<T> data) where T : DataParent
     {
         foreach (var item in data)

@@ -20,7 +20,7 @@ public class PlayerInputManager : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            CustomSceneManager.StorySceneChange(0);
+            CustomSceneManager.StorySceneChangeFromMain(0);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -52,7 +52,7 @@ public class PlayerInputManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            FindObjectOfType<GameExitUI>()?.SetNoticePanel(() => Application.Quit(), () => gameObject.SetActive(true), "확인", "취소", "게임을 종료하시겠습니까?");
+            FindObjectOfType<GameNoticePanel>()?.SetNoticePanel(() => Application.Quit(), () => gameObject.SetActive(true), "확인", "취소", "게임 종료","게임을 종료하시겠습니까?");
             gameObject.SetActive(false);
         }
     }

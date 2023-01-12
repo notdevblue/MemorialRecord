@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class CommonPartsManager : MonoBehaviour
 {
-    [Header("StartSetting")]
-    [SerializeField] AudioClip originBGM;
+    public static CommonPartsManager Instance = null;
 
     private void Awake()
     {
-        if(FindObjectsOfType<CommonPartsManager>() != null)
+        if(Instance != null)
         {
             Destroy(gameObject);
             return;
         }
 
+        Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        GetComponentInChildren<BGMSelector>().SetBGM(originBGM);
     }
 }

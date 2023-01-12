@@ -1,0 +1,19 @@
+#PlayBGM : 3##RemoveNameText : ##FadeOutTextBox : 0##FadeInBackground : 0, 0#  #PlaySoundEffect : "Foot"##WaitForSeconds : 0.2##FadeInTextBox : 0##TypeInNameText : "연지우", 0##SetCharEmotion : Special, Girl##FadeInCharacter : Girl, 0.3# PlayerName씨!#PlaySoundEffect : "Crash"#	
+찾았어요, 찾았다구요!	
+#RemoveNameText : #...#SlideInFrom : Left, 0.2##WaitForSeconds : 0.1##SlideOutTo : Right, 0.2##FadeInBackground : 1, 0#	
+#TypeInNameText : "연지우", 0##SetCharEmotion : CheekBangBang, Girl##FadeInCharacter : Girl, 0.3#후, 정말 아무도 없는건가?	
+#FadeOutTextBox : 0##SetCharacterShadow : 0#한적해보이는 도서관.	
+그녀는 주변을 조사하는 사이사이 다른 사람들을 찾았다.	
+그러나 도서관에는 그들을 제외한 그 누구도 없는 것 같았다.	
+계속되어가는 무의미한 발걸음에 지쳐가던 그때, 그녀는 번뜩이는 눈으로 무언가를 발견했다.	
+#SetCharEmotion : Thinkques##RemoveCharacterShadow : 0#어라?	
+#RemoveNameText : ##FadeOutCharacter : 0#...#SlideInFrom : Left, 0.2##WaitForSeconds : 0.1##SlideOutTo : Right, 0.2##FadeInBackground : 0, 0#	
+#TypeInNameText : PlayerName, 0##SetCharEmotion : Normal, Boy##FadeInCharacter : Boy, 0.3#음… 그래서 무얼 찾았다는 건가요 지우씨?	
+#RemoveNameText : ##FadeOutCharacter : 0##TypeInNameText : "연지우", 0##SetCharEmotion : Special, Girl##FadeInCharacter : Girl., 0.3#아이참 일단 따라와 봐요. 가면서 말해 줄게요.	
+#DisappearAll : 0##FadeInBackground : 1, 0.5##SetCharEmotion : Smile, Girl#우선 PlayerName씨도 밖으로 나가는 문이 다 닫혀 있는 건 확인하셨죠?	
+#RemoveNameText : ##FadeOutCharacter : 0##TypeInNameText : ???, 0##SetCharEmotion : Sigh, Boy##FadeInCharacter : Boy, 0.3#네… 심지어 창도 밖은 보이지 않게 한 채 빛만 들어오도록 특수 코팅이 되어있더라고요.	
+#RemoveNameText : ##FadeOutCharacter : 0##TypeInNameText : "연지우", 0##SetCharEmotion : Think2, Girl##FadeInCharacter : Girl, 0.3#그럼 결국 이 안에서 무언가를 찾을 수밖에 없다는 건데….	
+#SetCharEmotion : BigBigSmile, Girl#그때 제가 딱! 이 비밀공간을 찾았죠!	
+#RemoveNameText : ##FadeOutCharacter : 0##FadeOutTextBox : 0##FadeInIllustration : 0, 0.5#	
+#FadeOutIllustration : 0##FadeInSubObject : 0, 0.5#	
+#FadeOutSubObject : 0##FadeInTextBox : 0##TypeInNameText : PlayerName, 0##SetCharEmotion : Ooo, Boy##FadeInCharacter : Boy, 0.3#흐음… 그러니까 이건…	
