@@ -1344,6 +1344,8 @@ MonoBehaviour:
   _textTitle: {fileID: 2465220692874455129}
   _textInfo: {fileID: 2465220694209843374}
   _playImage: {fileID: 2465220694151697942}
+  _btnLock: {fileID: 312947035081477715}
+  _btnUnlock: {fileID: 2816284051427463204}
   _toggle: {fileID: 2465220694239098390}
   _slider: {fileID: 2465220692845327443}
   _btnBuy: {fileID: 2465220692734782379}
@@ -1366,7 +1368,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

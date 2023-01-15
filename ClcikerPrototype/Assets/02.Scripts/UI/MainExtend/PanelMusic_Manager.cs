@@ -15,6 +15,8 @@ public class PanelMusic_Manager : MonoBehaviour
     [SerializeField] Transform parentTransform = null;
     [SerializeField] PanelMusic_Content contentPrefab = null;
 
+    [SerializeField] Button btnClose = null;
+
     Custom_Slider curSlider = null;
     BGMSelector bgmSelector = null;
 
@@ -37,6 +39,19 @@ public class PanelMusic_Manager : MonoBehaviour
                 content._toggle.isOn = true;
             }
         }
+
+        btnClose.onClick.AddListener(() =>
+        {
+            btnClose.onClick.AddListener(() =>
+            {
+                FindObjectOfType<SlideEffector>().SlideInFrom(Direction.Bottom, 1f, () =>
+                {
+                    transform.parent.gameObject.SetActive(false); 
+                    
+                    FindObjectOfType<SlideEffector>().SlideOutTo(Direction.Bottom, 1f);
+                });
+            });
+        });
     }
     private void Start()
     {
@@ -55,15 +70,52 @@ public class PanelMusic_Manager : MonoBehaviour
             return;
         }
 
-        SaveManager.CurQuillPen -= 1000;
-        SaveManager.MusicBoughtArr[idx] = true;
+        FindObjectOfType<GameNoticePanel>().SetShopNoticePanel(
+        () =>
+        {
+            SaveManager.MusicBoughtArr[idx] = true;
+            RefreshAll();
+        },
+        () =>
+        {
+
+        },
+        "구매", "취소", "구매", $"곡 '{names[idx]}'를 구매하시겠습니까?", 1000
+        );
+
+    }
+
+    private void RefreshAll()
+    {
+
+        PanelMusic_Content[] panels = GetComponentsInChildren<PanelMusic_Content>();
+        for (int i = 0; i < panels.Length; i++)
+        {
+            int y = i;
+            PanelMusic_Content content = panels[i];
+
+            content.InitContent(names[i], infos[i], SaveManager.MusicBoughtArr[i], _spritePlay, _spritePause);
+
+            content._toggle.onValueChanged.AddListener((value) => OnChangedToggle(value, y, content));
+            content._toggle.group = toggleGroup;
+
+            content._btnBuy.onClick.AddListener(() => OnClickBtnBuy(y));
+
+            if (i == 0)
+            {
+                content._toggle.isOn = true;
+            }
+        }
     }
 
     private void OnChangedToggle(bool value, int idx, PanelMusic_Content panel)
     {
         if(value)
         {
-            SaveManager.IdxCurMusic = idx;
+            if(SaveManager.IdxCurMusic != idx)
+            {
+                SaveManager.IdxCurMusic = idx;
+            }
             curSlider = panel._slider;
         }
     }

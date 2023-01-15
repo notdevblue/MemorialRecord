@@ -63,9 +63,14 @@ namespace MemorialRecord.Data
     }
 
     [System.Serializable]
-    public class researchData : DataParent
+    public class ResearchData : DataParent
     {
-
+        public ResearchData(int idx, string name, string info)
+        {
+            _idx = idx;
+            _name = name;
+            
+        }
     }
 
 }

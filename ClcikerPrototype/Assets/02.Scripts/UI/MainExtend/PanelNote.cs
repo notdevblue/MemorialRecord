@@ -24,7 +24,7 @@ public class PanelNote : MonoBehaviour
         {
             for (int i = 0; i < 8; i++)
             {
-                if(i + curIdx > titles.Length - 1)
+                if(i + (curIdx * 8) > titles.Length - 1)
                 {
                     textTitle[i].text = "";
                     btns[i].onClick.RemoveAllListeners();
@@ -38,7 +38,7 @@ public class PanelNote : MonoBehaviour
         };
 
         btnRight.onClick.AddListener(() => {
-            if (curIdx < ((int)(titles.Length / 8) < 0 ? 1 : (int)(titles.Length / 8)) - 1)
+            if (curIdx < (titles.Length - 1) / 8)
             {
                 curIdx++;
                 onChangeChapter(curIdx);
@@ -53,7 +53,7 @@ public class PanelNote : MonoBehaviour
             }
         });
 
-        btnClose.onClick.AddListener(() => gameObject.SetActive(false));
+        btnClose.onClick.AddListener(() => transform.parent.gameObject.SetActive(false));
         onChangeChapter?.Invoke(curIdx);
     }
 }

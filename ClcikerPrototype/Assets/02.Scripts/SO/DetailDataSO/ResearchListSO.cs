@@ -6,9 +6,9 @@ using MemorialRecord.Data;
 [System.Serializable]
 public class ResearchListSO : ScriptableObject
 {
-    public List<researchData> researchDatas = new List<researchData>();
+    public List<ResearchData> researchDatas = new List<ResearchData>();
 
-    public researchData this[int idx]
+    public ResearchData this[int idx]
     {
         get
         {
