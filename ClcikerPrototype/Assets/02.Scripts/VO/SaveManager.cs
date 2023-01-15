@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Security.Cryptography;
 using UnityEngine;
+using System.Collections.Generic;
 
 public enum DataType
 {
@@ -134,6 +135,20 @@ public static class SaveManager
         }
     }
 
+    public static Dictionary<string, float> ResearchMultiplyDict
+    {
+        get
+        {
+            return _data.researchMultiplyDict;
+        }
+
+        set
+        {
+            _data.researchMultiplyDict = value;
+            SaveData();
+        }
+    }
+
     #region readonly private fields
     public static readonly string _savePath = Application.persistentDataPath + "/SaveData.txt";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
@@ -145,7 +160,7 @@ public static class SaveManager
     #region 기타 비즈니스 로직
     public static void SetStoryDict(int idx, bool value)
     {
-        if(!_data.storyReadDict.ContainsKey(idx))
+        if (!_data.storyReadDict.ContainsKey(idx))
         {
             _data.storyReadDict.Add(idx, value);
         }
@@ -177,12 +192,15 @@ public static class SaveManager
         }
 
         value *= roomValue < 1 ? 1 : roomValue;
+        value *= _data.researchMultiplyDict["PerSec"];
+        value *= _data.researchMultiplyDict["All"];
+
         return value;
     }
 
     public static int GetRoomValue()
     {
-        var roomlist = _data.roomInfoLevelsDict.ToList();
+        var roomlist = _data.roomLevelDict.ToList();
         roomlist.Sort((x, y) => 
         {
             if(y.Value.CompareTo(x.Value) == 0)
@@ -223,14 +241,18 @@ public static class SaveManager
                 level = _data.accessoryLevelDict[idx];
                 return true;
             case DataType.Room:
-                if (!_data.roomInfoLevelsDict.ContainsKey(idx))
+                if (!_data.roomLevelDict.ContainsKey(idx))
                 {
                     break;
                 }
-                level = _data.roomInfoLevelsDict[idx];
+                level = _data.roomLevelDict[idx];
                 return true;
             case DataType.Research:
-                // TODO : 구현 필요
+                if (!_data.researchLevelDict.ContainsKey(idx))
+                {
+                    break;
+                }
+                level = _data.researchLevelDict[idx];
                 break;
         }
 
@@ -270,14 +292,17 @@ public static class SaveManager
                 }
                 return _data.accessoryLevelDict[idx];
             case DataType.Room:
-                if (!_data.roomInfoLevelsDict.ContainsKey(idx))
+                if (!_data.roomLevelDict.ContainsKey(idx))
                 {
-                    _data.roomInfoLevelsDict.Add(idx, -1);
+                    _data.roomLevelDict.Add(idx, -1);
                 }
-                return _data.roomInfoLevelsDict[idx];
+                return _data.roomLevelDict[idx];
             case DataType.Research:
-                // TODO : 구현 필요
-                break;
+                if (!_data.researchLevelDict.ContainsKey(idx))
+                {
+                    _data.researchLevelDict.Add(idx, -1);
+                }
+                return _data.researchLevelDict[idx];
         }
 
         return -2;
@@ -312,14 +337,18 @@ public static class SaveManager
                 }
                 break;
             case DataType.Room:
-                if (_data.roomInfoLevelsDict.ContainsKey(idx))
+                if (_data.roomLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.roomInfoLevelsDict[idx];
+                    updatedLevel = ++_data.roomLevelDict[idx];
                     isSuccessful = true;
                 }
                 break;
             case DataType.Research:
-                // TODO : 구현 필요
+                if (_data.researchLevelDict.ContainsKey(idx))
+                {
+                    updatedLevel = ++_data.roomLevelDict[idx];
+                    isSuccessful = true;
+                }
                 break;
         }
 
@@ -357,14 +386,18 @@ public static class SaveManager
                 }
                 break;
             case DataType.Room:
-                if (_data.roomInfoLevelsDict.ContainsKey(idx))
+                if (_data.roomLevelDict.ContainsKey(idx))
                 {
-                    _data.roomInfoLevelsDict[idx] = level;
+                    _data.roomLevelDict[idx] = level;
                     isSuccessful = true;
                 }
                 break;
             case DataType.Research:
-                // TODO : 구현 필요
+                if (_data.researchLevelDict.ContainsKey(idx))
+                {
+                    _data.roomLevelDict[idx] = level;
+                    isSuccessful = true;
+                }
                 break;
         }
 
@@ -391,13 +424,13 @@ public static class SaveManager
         }
 
         _data = new SaveData();
-        if (!_data.roomInfoLevelsDict.ContainsKey(0))
+        if (!_data.roomLevelDict.ContainsKey(0))
         {
-            _data.roomInfoLevelsDict.Add(0, 1);
+            _data.roomLevelDict.Add(0, 1);
         }
         else
         {
-            _data.roomInfoLevelsDict[0] = 1;
+            _data.roomLevelDict[0] = 1;
         }
             
         return _data;

@@ -45,7 +45,7 @@ namespace MemorialRecord.Data
 
         [Header("MusicData")]
         public int curMusicIndex = 0;
-        public bool[] MusicBoughtArr = new bool[] {true, false, false, false, false, false, false};
+        public bool[] MusicBoughtArr = new bool[] {true, false, false, false, false, false, false, false, false};
 
         #endregion
 
@@ -57,13 +57,17 @@ namespace MemorialRecord.Data
 
         public uint idxCurStory = 0;
 
+        public Dictionary<string, float> researchMultiplyDict = new Dictionary<string, float>() { { "PerSec", 1 }, { "Touch", 1 }, { "All", 1 } };
+
         public Dictionary<int, bool> storyReadDict = new Dictionary<int, bool>() { {0, false} };
 
         // -1 잠김, 0 구매 가능, 1 구매함
         public Dictionary<int, int> bookLevelDict = new Dictionary<int, int>() { {0, 1} };
         public Dictionary<int, int> bookMarkLevelDict = new Dictionary<int, int>() { { 0, 0 } };
         public Dictionary<int, int> accessoryLevelDict = new Dictionary<int, int>() { { 0, 0 } };
-        public Dictionary<int, int> roomInfoLevelsDict = new Dictionary<int, int>() { { 0, 1 } };
+        public Dictionary<int, int> roomLevelDict = new Dictionary<int, int>() { { 0, 1 } };
+        public Dictionary<int, int> researchLevelDict = new Dictionary<int, int>() { };
+        public Dictionary<int, uint> researchRemainTimeDict = new Dictionary<int, uint>() { };
 
         public int exapndLevel;
 
@@ -78,54 +82,72 @@ namespace MemorialRecord.Data
         #region metadata
         // 직렬화 / 역직렬화 과정에서 Dictonary Data를 보존하기 위해 만든 메타데이터입니다.
 
+        [SerializeField] private string[] researchMultiplyDictKeys = new string[] { "PerSec", "Touch", "All" };
+        [SerializeField] private int[] researchRemainTimeKeys;
         [SerializeField] private int[] storyReadDictKeys;
         [SerializeField] private int[] bookLevelDictKeys;
         [SerializeField] private int[] bookMarkLevelDictKeys;
         [SerializeField] private int[] accessoryLevelDictKeys;
         [SerializeField] private int[] roomInfoLevelsDictKeys;
+        [SerializeField] private int[] researchInfoLevelsDictKeys;
 
+        [SerializeField] private float[] researchMultiplyDictValues;
+        [SerializeField] private uint[] researchRemainTimeValues;
         [SerializeField] private bool[] storyReadDictValues;
         [SerializeField] private int[] bookLevelDictValues;
         [SerializeField] private int[] bookMarkLevelDictValues;
         [SerializeField] private int[] accessoryLevelDictValues;
         [SerializeField] private int[] roomInfoLevelsDictValues;
+        [SerializeField] private int[] researchInfoLevelsDictValues;
 
         #endregion
 
         public void OnBeforeSerialize()
         {
             storyReadDictKeys = new int[storyReadDict.Keys.Count];
+            researchRemainTimeKeys = new int[researchRemainTimeDict.Keys.Count];
             bookLevelDictKeys = new int[bookLevelDict.Keys.Count];
             bookMarkLevelDictKeys = new int[bookMarkLevelDict.Keys.Count];
             accessoryLevelDictKeys = new int[accessoryLevelDict.Keys.Count];
-            roomInfoLevelsDictKeys = new int[roomInfoLevelsDict.Count];
+            roomInfoLevelsDictKeys = new int[roomLevelDict.Keys.Count];
+            researchInfoLevelsDictKeys = new int[researchLevelDict.Keys.Count];
 
+            researchMultiplyDictValues = new float[researchMultiplyDict.Values.Count];
+            researchRemainTimeValues = new uint[researchRemainTimeDict.Values.Count];
             storyReadDictValues = new bool[storyReadDict.Values.Count];
             bookLevelDictValues = new int[bookLevelDict.Values.Count];
             bookMarkLevelDictValues = new int[bookMarkLevelDict.Values.Count];
             accessoryLevelDictValues = new int[accessoryLevelDict.Values.Count];
-            roomInfoLevelsDictValues = new int[roomInfoLevelsDict.Values.Count];
+            roomInfoLevelsDictValues = new int[roomLevelDict.Values.Count];
+            researchInfoLevelsDictValues = new int[researchLevelDict.Values.Count];
 
             storyReadDict.Keys.CopyTo(storyReadDictKeys, 0);
+            researchRemainTimeDict.Keys.CopyTo(researchRemainTimeKeys, 0);
             bookLevelDict.Keys.CopyTo(bookLevelDictKeys, 0);
             bookMarkLevelDict.Keys.CopyTo(bookMarkLevelDictKeys, 0);
             accessoryLevelDict.Keys.CopyTo(accessoryLevelDictKeys, 0);
-            roomInfoLevelsDict.Keys.CopyTo(roomInfoLevelsDictKeys, 0);
+            roomLevelDict.Keys.CopyTo(roomInfoLevelsDictKeys, 0);
+            researchLevelDict.Keys.CopyTo(researchInfoLevelsDictKeys, 0);
 
+            researchMultiplyDict.Values.CopyTo(researchMultiplyDictValues, 0);
+            researchRemainTimeDict.Values.CopyTo(researchRemainTimeValues, 0);
             storyReadDict.Values.CopyTo(storyReadDictValues, 0);
             bookLevelDict.Values.CopyTo(bookLevelDictValues, 0);
             bookMarkLevelDict.Values.CopyTo(bookMarkLevelDictValues, 0);
             accessoryLevelDict.Values.CopyTo(accessoryLevelDictValues, 0);
-            roomInfoLevelsDict.Values.CopyTo(roomInfoLevelsDictValues, 0);
+            roomLevelDict.Values.CopyTo(roomInfoLevelsDictValues, 0);
+            researchLevelDict.Values.CopyTo(researchInfoLevelsDictValues, 0);
         }
 
         public void OnAfterDeserialize()
         {
+            ArrayToDict(researchMultiplyDict, researchMultiplyDictKeys, researchMultiplyDictValues);
             ArrayToDict(storyReadDict, storyReadDictKeys, storyReadDictValues);
             ArrayToDict(bookLevelDict, bookLevelDictKeys, bookLevelDictValues);
             ArrayToDict(bookMarkLevelDict, bookMarkLevelDictKeys, bookMarkLevelDictValues);
             ArrayToDict(accessoryLevelDict, accessoryLevelDictKeys, accessoryLevelDictValues);
-            ArrayToDict(roomInfoLevelsDict, roomInfoLevelsDictKeys, roomInfoLevelsDictValues);
+            ArrayToDict(roomLevelDict, roomInfoLevelsDictKeys, roomInfoLevelsDictValues);
+            ArrayToDict(researchLevelDict, researchInfoLevelsDictKeys, researchInfoLevelsDictValues);
         }
 
         private void ArrayToDict<TKey, TValue>(Dictionary<TKey, TValue> dst, TKey[] keySrc, TValue[] valueSrc)
