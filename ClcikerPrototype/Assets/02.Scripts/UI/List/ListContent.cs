@@ -21,12 +21,12 @@ public abstract class ListContent : MonoBehaviour
     [SerializeField] protected UpgradeBtn _btnLevelup = null;
 
     public Action OnLockOff;
-    DataParent _cachedData = null;
+    protected DataParent _cachedData = null;
 
     float timer = 0f;
     float clickInterval = 0.05f;
 
-    private void Update()
+    protected virtual void Update()
     {
         if(isPressed)
         {

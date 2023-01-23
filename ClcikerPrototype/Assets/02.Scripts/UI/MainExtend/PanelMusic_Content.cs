@@ -20,6 +20,7 @@ public class PanelMusic_Content : MonoBehaviour
     public Toggle _toggle = null;
     public Custom_Slider _slider;
     public Button _btnBuy;
+
     private void Awake()
     {
         _toggle = GetComponent<Toggle>();
@@ -36,7 +37,7 @@ public class PanelMusic_Content : MonoBehaviour
         _playSprite = playSprite;
         _pauseSprite = pauseSprite;
 
-        if(isUnlocked)
+        if(SaveManager.IsOnAllMusic || isUnlocked)
         {
             _btnUnlock.gameObject.SetActive(true);
             _btnLock.gameObject.SetActive(false);

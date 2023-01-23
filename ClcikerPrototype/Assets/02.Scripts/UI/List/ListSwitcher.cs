@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.UI;
 
 public class ListSwitcher : MonoBehaviour
 {
+    public Button btnClose;
+    public Button btnOpen;
+
     public List<Button> btns;
     public List<ContentListView> switchLists = null;
 
@@ -22,6 +26,18 @@ public class ListSwitcher : MonoBehaviour
                 SwitchList(y);
             });
         }
+
+        btnClose.onClick.AddListener(() =>
+        {
+            btnClose.GetComponent<RectTransform>().DOAnchorPosX(250, 0.2f);
+            btnOpen.gameObject.SetActive(true);
+        });
+
+        btnOpen.onClick.AddListener(() =>
+        {
+            btnClose.GetComponent<RectTransform>().DOAnchorPosX(0, 0.2f);
+            btnOpen.gameObject.SetActive(false);
+        });
     }
 
     public void SwitchList(int listNum)

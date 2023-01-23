@@ -42,14 +42,11 @@ public class PanelMusic_Manager : MonoBehaviour
 
         btnClose.onClick.AddListener(() =>
         {
-            btnClose.onClick.AddListener(() =>
+            FindObjectOfType<SlideEffector>().SlideInFrom(Direction.Bottom, 1f, () =>
             {
-                FindObjectOfType<SlideEffector>().SlideInFrom(Direction.Bottom, 1f, () =>
-                {
-                    transform.parent.gameObject.SetActive(false); 
-                    
-                    FindObjectOfType<SlideEffector>().SlideOutTo(Direction.Bottom, 1f);
-                });
+                transform.parent.gameObject.SetActive(false);
+
+                FindObjectOfType<SlideEffector>().SlideOutTo(Direction.Bottom, 1f);
             });
         });
     }
@@ -70,7 +67,7 @@ public class PanelMusic_Manager : MonoBehaviour
             return;
         }
 
-        FindObjectOfType<GameNoticePanel>().SetShopNoticePanel(
+        FindObjectOfType<PanelGameNotice>().SetShopNoticePanel(
         () =>
         {
             SaveManager.MusicBoughtArr[idx] = true;

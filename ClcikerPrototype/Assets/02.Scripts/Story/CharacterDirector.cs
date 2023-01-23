@@ -81,6 +81,7 @@ public class CharacterDirector : MonoBehaviour
 
     public void CharacterMove(DirectionOne directionOne, float duration)
     {
+        charAnims[(int)curChar].DOComplete();
         originPos = charAnims[(int)curChar].transform.position;
         switch (directionOne)
         {

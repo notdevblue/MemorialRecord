@@ -8,14 +8,20 @@ public class StoryAlarm : MonoBehaviour
     {
         if(SaveManager.IdxCurStory == 0)
         {
-            CallStoryAlarm(0);
+            CustomSceneManager.StorySceneChangeFromMain(0);
+            SaveManager.SetStoryDict(0, true);
+            SaveManager.IdxCurStory += 1;
+        }
+        else if(SaveManager.CharName == null)
+        {
+            FindObjectOfType<PanelName>(true).SetNamePanelInMain();
         }
     }
 
     public void CallStoryAlarm(int idx)
     {
         SaveManager.SetStoryDict(idx, false);
-        FindObjectOfType<GameNoticePanel>().SetNoticePanel(() => 
+        FindObjectOfType<PanelGameNotice>().SetNoticePanel(() => 
         {
             CustomSceneManager.StorySceneChangeFromMain(idx);
             SaveManager.SetStoryDict(idx, true);

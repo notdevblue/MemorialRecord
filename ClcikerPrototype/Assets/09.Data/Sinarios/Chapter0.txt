@@ -1,0 +1,26 @@
+#PlayBGM : 0##RemoveNameText : ##FadeInBackground : 0, 0#빽빽이 놓여있는 책장들 사이, 한 줄기 햇빛이 스며든다.
+그는, 허공을 바라보며 멍하니 서 있다.
+#TypeInNameText : ???, 0##SetCharEmotion : Panicsweat, Boy##FadeInCharacter : Boy, 0.3#(...여긴, 어디지?)
+#SetCharEmotion : Normal, Boy#(도서관... 인건가.)
+#FadeOutCharacter : 0.3##RemoveNameText : #코 끝을 간지럽히는 은은한 향기.
+아몬드와 바닐라 향에 가까운 그 향은, 어디선가 맡아본 적이 있는 듯한 친숙한 향이었다.
+#TypeInNameText : "???", 0##SetCharEmotion : Sigh, Boy##FadeInCharacter : Boy, 0.3#후우, 뭐 하나 제대로 기억나는 게 없네.
+#FadeOutCharacter : 0.3##RemoveNameText : #그러나, 편안한 도서관의 분위기에도 그의 마음은 복잡했다.
+그는 현재, 기억을 잃은 상태였다.
+구체적인 기억은 물론, 스스로의 이름마저 제대로 떠올려낼 수 없었다.
+흙탕물처럼 어지럽게 뒤섞인 기억의 조각들이, 그를 혼란스럽게 만들었다.
+#TypeInNameText : "???", 0##SetCharEmotion : Tiltques, Boy##FadeInCharacter : Boy, 0.3#(그러니까... 내 이름이…)#FadeOutTextBox : 0##FadeOutCharacter : 0.3##RemoveNameText : ##FadeInNameBox : 0.3#
+#FadeOutNameBox : 0.3##FadeInTextBox : 0##TypeInNameText : PlayerName, 0##SetCharEmotion : Normal, Boy##FadeInCharacter : Boy, 0.3#(PlayerName…이름이라도 기억나서 다행이네.)
+#FadeOutCharacter : 0.3##RemoveNameText : #그는 땅이 꺼질 듯 한숨을 내쉬며 무릎을 털고 일어섰다.
+#TypeInNameText : PlayerName, 0##SetCharEmotion : Sigh, Boy##FadeInCharacter : Boy, 0.3##SetCharacterStandUp : 1#여기 있어봤자 더 뭐가 있을 거 같지도 않고, 우선 돌아다녀 볼까
+#FadeOutCharacter : 0.3##RemoveNameText : ##SlideInFrom : Left, 0.2##WaitForSeconds : 0.1##SlideOutTo : Right, 0.2#그렇게 도서관에 나있는 길을 따라 걸었다.
+그는 곳곳에 놓여있는 표지판들을 따라 이곳 저곳을 기웃거렸다.
+그때, 저 멀리 들려오는 부스럭 소리에 그는 고개를 돌렸다.
+#FadeOutTextBox : 0##SetCharEmotion : Normal, Girl##FadeInCharacter : Girl, 0.3##WaitForSeconds : 2##FadeOutCharacter : 0.3##FadeInTextBox : 0.3#바다를 연상시키는 푸른 색 머리. 어깨 위로 드리운 그 긴 머릿결이 인상적인 소녀.
+#FadeOutTextBox : 0##SetCharEmotion : Avoid, Girl##FadeInCharacter : Girl, 0.3##WaitForSeconds : 2##SetCharEmotion : Panicspark, Girl##WaitForSeconds : 1##FadeOutCharacter : 0.3##FadeInTextBox : 0#갑작스러운 만남에 둘은 서로를 물끄러미 마주보았다.
+#TypeInNameText : PlayerName, 0#…#SetCharEmotion : Panic, Boy##FadeInCharacter : Boy, 0.3#
+#RemoveNameText : ##TypeInNameText : "???", 0#…#FadeOutCharacter : 0##SetCharEmotion : Panic, Girl##FadeInCharacter : Girl, 0.3#
+#RemoveNameText : #어색한 침묵이 지나, 그녀는 다소 놀란 목소리로 말했다.
+#TypeInNameText : "???", 0#"저... 누, 누구세요..?"
+#RemoveNameText : #그녀의 한 마디가 조용한 도서관에 울려퍼졌다.
+#DisappearAll : 0##FadeInBlackBlank : 0##FadeOutTextBox : 0#그것이, 그녀와 그의 첫 만남이었다.

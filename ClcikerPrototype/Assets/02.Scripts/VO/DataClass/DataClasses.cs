@@ -12,6 +12,7 @@ namespace MemorialRecord.Data
         public string _title;
         public string _writer;
         public string _name;
+        public string _info;
 
         public Sprite _image;
     }
@@ -69,7 +70,7 @@ namespace MemorialRecord.Data
         {
             _idx = idx;
             _name = name;
-            
+            _info = info;
         }
     }
 

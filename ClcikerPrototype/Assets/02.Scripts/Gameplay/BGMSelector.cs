@@ -21,20 +21,20 @@ public class BGMSelector : MonoBehaviour
 
     public void SetBGM(AudioClip newClip)
     {
-        bgmSource.DOPitch(0, 0.5f).OnComplete(() =>
+        SetActiveBGM(false, 0.5f, () =>
         {
             bgmSource.clip = newClip;
-            SetActiveBGM(true);
+            SetActiveBGM(true, 0.5f);
             bgmSource.Play();
         });
     }
 
     public void SetBGM(int idx)
     {
-        bgmSource.DOPitch(0, 0.5f).OnComplete(() =>
+        SetActiveBGM(false, 0.5f, () =>
         {
             bgmSource.clip = bgmClips[idx];
-            SetActiveBGM(true);
+            SetActiveBGM(true, 0.5f);
             bgmSource.Play();
         });
     }
@@ -44,15 +44,8 @@ public class BGMSelector : MonoBehaviour
         SetBGM(SaveManager.IdxCurMusic);
     }
 
-    public void SetActiveBGM(bool isActive)
+    public void SetActiveBGM(bool isActive, float duration, System.Action onComplete = null)
     {
-        if(isActive)
-        {
-            bgmSource.DOPitch(1, 0.5f);
-        }
-        else
-        {
-            bgmSource.DOPitch(0, 0.5f);
-        }
+        bgmSource.DOFade(isActive ? 1 : 0, duration).OnComplete(() => onComplete?.Invoke());
     }
 }

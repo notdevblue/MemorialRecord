@@ -1,0 +1,20 @@
+#PlayBGM : 4##RemoveNameText : ##FadeInBackground : 3, 0##TypeInNameText : "연지우", 0##SetCharEmotion : Suprisedspark, Girl##FadeInCharacter : Girl, 0.3#...!
+글, 글로 쓰고 싶어..!
+#MoveCharacter : Left, 0.5##PlaySoundEffect : "Crash"##MoveCharacterReturn : 0.5##SetCharEmotion : Headachetangled, Girl#아으…
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Panic, Boy##FadeInCharacter : Boy, 0.3#아이고, 조심 좀 하시지.
+#SetCharEmotion : Smile, Boy#무슨 일인데 그렇게 급해요.
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Embarrassedflushing, Girl##FadeInCharacter : Girl, 0.3#아..! PlayerName씨, 저, 책을 읽다가 너무 맘에 드는 문구를 발견해서요.
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3# 네네
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Girl##FadeInCharacter : Girl, 0.3#글로, 옮겨두고 싶다고 생각했어요.
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Ooo, Boy##FadeInCharacter : Boy, 0.3#오… 필사 좋죠. 그런데 평소에도 필사를 자주 하셨던건가요?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Panicspark, Girl##FadeInCharacter : Girl, 0.3#헉! 기억을 되찾는다는 게 이런 거였던 걸까요!
+저 평소에도 책을 좋아했던 거 같아요!
+#SetCharEmotion : Think2, Girl#그리고, 그리고 평소에 글을 쓰는 걸 좋아했을지도요.
+으음, 글을 좀 써보면 더 떠오를 수도 있을 것 같긴 한데…
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Tilt, Boy##FadeInCharacter : Boy, 0.3#후후, 그럴 줄 알고 미리 이걸 준비해뒀죠
+#RemoveNameText : ##FadeOutCharacter : 0##FadeOutTextBox : 0##FadeInSubObject : 3, 0.5#
+#FadeOutSubObject : 0##FadeInTextBox : 0##RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Suprised, Girl##FadeInCharacter : Girl, 0.3#와! 잉크랑 펜이네요. 어디서 찾으신거에요?
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3# 저쪽 창고에 있더라고요.
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Girl##FadeInCharacter : Girl, 0.3#진짜 고마워요!
+저, 저 잠시만 글 쓰러 가볼게요.#MoveCharacter : Left, 2#
+#MoveCharacterReturn : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Panicsweat, Boy##FadeInCharacter : Boy, 0.3# 우와 바로 순식간에 사라져 버리셨네…

@@ -43,6 +43,12 @@ public class PanelText : MonoBehaviour
 
     public void SetText(int idx)
     {
+        if(scenarios.Length <= idx)
+        {
+            CustomSceneManager.MainSceneChangeFromStory();
+            return;
+        }
+
         StartCoroutine(PlayScenarios(scenarios[idx]));
     }
 
@@ -55,9 +61,9 @@ public class PanelText : MonoBehaviour
         {
             for (int j = 0; j < splitScirpts[i].Length; j++)
             {
-                if (splitScirpts[i].Contains("PlayerName") && SaveManager.Name != null)
+                if (splitScirpts[i].Contains("PlayerName") && SaveManager.CharName != null)
                 {
-                    splitScirpts[i] = splitScirpts[i].Replace("PlayerName", SaveManager.Name);
+                    splitScirpts[i] = splitScirpts[i].Replace("PlayerName", SaveManager.CharName);
                 }
 
                 if (splitScirpts[i][j] == '#')
@@ -110,7 +116,7 @@ public class PanelText : MonoBehaviour
 
         if (name == "PlayerName")
         {
-            name = SaveManager.Name;
+            name = SaveManager.CharName;
         }
 
         textName.text = "";

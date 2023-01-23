@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IllustrationDirector : MonoBehaviour
 {
-    SpriteRenderer[] illurstRenderers = null;
+    [SerializeField] SpriteRenderer[] illurstRenderers = null;
 
     int curIdx = 0;
 

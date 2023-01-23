@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ExtendMenuManager : MonoBehaviour
 {
+    [SerializeField] Camera main;
+    [SerializeField] Camera sub;
+
     [SerializeField] SlideEffector sliderEffector;
     [SerializeField] bool[] hasEffect;
     [SerializeField] Button[] btns;
@@ -22,6 +25,11 @@ public class ExtendMenuManager : MonoBehaviour
                     sliderEffector.SlideInFrom(Direction.Bottom, 1f, () =>
                     {
                         panels[y].gameObject.SetActive(true);
+                        if(y == 1)
+                        {
+                            main.gameObject.SetActive(false);
+                            sub.gameObject.SetActive(true);
+                        }
                         sliderEffector.SlideOutTo(Direction.Bottom, 1f);
                     });
                 });

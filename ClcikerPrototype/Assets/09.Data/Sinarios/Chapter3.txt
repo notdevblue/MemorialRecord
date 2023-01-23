@@ -1,0 +1,15 @@
+#PlayBGM : 1##RemoveNameText : ##FadeInBackground : 1, 0##FadeInSubObject : 0, 0.5##PlaySoundEffect : "Booksound"##TypeInNameText : PlayerName, 0#흐으음...
+#FadeOutSubObject : 0##FadeInSubObject : 1, 0.5##TypeInNameText : ???, 0#[책이 그대들이 원하는 것 을 가져다 주리라.]
+#FadeOutSubObject : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##SetCharEmotion : Thinkellipsis, Boy##FadeInCharacter : Boy, 0.3#책, 책이라…
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Thinkques, Girl##FadeInCharacter : Girl, 0.3#책을 읽으라는 걸까요?
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3#아마도, 그렇겠죠.
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Think, Girl##FadeInCharacter : Girl, 0.3#흐음, 여기 마침 소설 하나를 들고 오긴 했는데 말이죠.
+#RemoveNameText : ##FadeOutCharacter : 0##FadeOutTextBox : 0##FadeInSubObject : 2, 0.5#
+#FadeOutSubObject : 0##FadeInTextBox : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##SetCharEmotion : Normal, Boy##FadeInCharacter : Boy, 0.3#담담하고 차가운 말을 내뱉는 그 내내 미안했다…
+#SetCharEmotion : Panicsweat, Boy#으아, 엄청나게 질척대는 글이네요.
+#FadeOutCharacter : 0##RemoveNameText : ##TypeInNameText : "연지우", 0##SetCharEmotion : Smile, Girl##FadeInCharacter : Girl, 0.3#그런가요. 전 가끔 이런 글이 좋던데
+#FadeOutCharacter : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3#제 취향은 아닌 거 같네요
+#SetCharEmotion : BigBigSmile, Boy#어디보자… 전 이거!
+#FadeOutCharacter : 0##RemoveNameText : ##TypeInNameText : "연지우", 0##SetCharEmotion : Thinkques, Girl##FadeInCharacter : Girl, 0.3#어떤 거 고르셨어요?
+#FadeOutCharacter : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#후후 비밀입니다 나중에 알려드릴게요
+#FadeOutCharacter : 0##RemoveNameText : #[그렇게 둘은 책을 읽어나갔다...]

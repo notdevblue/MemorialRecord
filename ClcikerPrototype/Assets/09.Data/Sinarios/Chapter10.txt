@@ -1,0 +1,16 @@
+#PlayBGM : 5##RemoveNameText : ##FadeInBackground : 0, 0##TypeInNameText : PlayerName, 0##SetCharEmotion : Sightangled, Boy##FadeInCharacter : Boy, 0.3#그랬구나… 난 내가 크게 실수한 줄 알고…
+#SetCharEmotion : Worried, Boy#그런데 전에 울고 있던 건 왜 그런거야?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Headache, Girl##FadeInCharacter : Girl, 0.3#…
+#SetCharEmotion : Sigh, Girl#그냥… 너만 생각하면 가슴이 먹먹해지더라고…
+#SetCharEmotion : Avoid, Girl#사실 아직 전부 기억이 난 건 아니야.
+그냥, 너랑 있던 시기의 기억만 어렴풋이 날 뿐이지
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Think, Boy##FadeInCharacter : Boy, 0.3#같은 학교 도서부라고 했었지?
+#DisappearAll : 0.5##FadeInBackground : 5, 0#(내용은 다 들었는데… 난 왜 아직도 기억이 되돌아오지 않는 걸까)
+(나도 트리거가 될 만한 게 필요한 걸까?)
+#DisappearAll : 0.5##FadeInBackground : 0, 0##RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Say, Girl##FadeInCharacter : Girl, 0맞아 도서부
+#SetCharEmotion : Sigh2, Girl#넌 그다지 진심 같아 보이진 않았지만 말야.
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#하핫, 그랬을 거 같아.
+#SetCharEmotion : Thinkellipsis, Boy#내가 도서부에 왜 들어갔으려나…
+#SetCharEmotion : Say, Boy#혹시 너를 좋아해서 들어간 거 아냐?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Embarrassedflushing, Girl##FadeInCharacter : Girl, 0.3#뭐… 뭐라는 거야!
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#하하하

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using GooglePlayGames;
+
 public class CommonPartsManager : MonoBehaviour
 {
     public static CommonPartsManager Instance = null;
@@ -16,5 +18,15 @@ public class CommonPartsManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        PlayGamesPlatform.Activate();
+    }
+
+    private void Start()
+    {
+        if(PlayGamesPlatform.Instance.IsAuthenticated() == false)
+        {
+            Social.localUser.Authenticate(success => { });
+        }
     }
 }

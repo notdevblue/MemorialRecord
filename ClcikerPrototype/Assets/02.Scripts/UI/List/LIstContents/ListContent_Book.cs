@@ -32,11 +32,18 @@ public class ListContent_Book : ListContent
         if (SaveManager.GetContentLevel(DataType.Book, data._idx) >= 100)
             return;
 
+
         double upgradeValue = ValueCalculator.GetUpgradeValue(DataType.Book, data);
         if (SaveManager.CurMemorial >= upgradeValue)
         {
             SaveManager.CurMemorial -= upgradeValue;
             SaveManager.ContentLevelUp(data._idx, DataType.Book);
+
+            if (SaveManager.GetContentLevel(DataType.Book, data._idx) == 1)
+            {
+                FindObjectOfType<StoryAlarm>().CallStoryAlarm((int)SaveManager.IdxCurStory);
+            }
+
             RefreshContent(data);
             RefreshBtn(data, SaveManager.GetContentLevel(DataType.Book, data._idx));
         }
@@ -50,7 +57,6 @@ public class ListContent_Book : ListContent
 
             SaveManager.SetContentLevel(data._idx + 1, DataType.Book, 0);
             SaveManager.SetContentLevel(data._idx + 1, DataType.BookMark, 0);
-            FindObjectOfType<StoryAlarm>().CallStoryAlarm((int)SaveManager.IdxCurStory);
             OnLockOff();
         }
 

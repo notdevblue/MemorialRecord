@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using UnityEngine;
 using System.Collections.Generic;
+using Inventory;
 
 public enum DataType
 {
@@ -23,7 +24,9 @@ public static class SaveManager
     public static event Action<long> OnChangeQuillPen;
     public static event Action<float> OnChangeMusicVolume;
     public static event Action<float> OnChangeSoundEffectVolume;
+    public static event Action OnSetBooster;
 
+    #region 외부 변수 참조용 Getter, Setter
     public static double CurMemorial
     {
         get
@@ -80,7 +83,7 @@ public static class SaveManager
         }
     }
 
-    public static string Name
+    public static string CharName
     {
         get
         {
@@ -135,19 +138,51 @@ public static class SaveManager
         }
     }
 
-    public static Dictionary<string, float> ResearchMultiplyDict
+    public static ResearchSaveData ResearchSaveData
     {
         get
         {
-            return _data.researchMultiplyDict;
+            return _data.researchSaveData;
         }
 
         set
         {
-            _data.researchMultiplyDict = value;
-            SaveData();
+            _data.researchSaveData = value;
         }
     }
+
+    public static float RemainBoostTime
+    {
+        get { return _data.remainBoostTime; }
+        set
+        {
+            if(RemainBoostTime == 0f)
+            {
+                OnSetBooster?.Invoke();
+            }
+
+            _data.remainBoostTime = value;
+        }
+    }
+
+    public static bool IsOnAllMusic
+    {
+        get { return _data.isOnAllMusic; }
+        set { _data.isOnAllMusic = value; SaveData(); }
+    }
+
+    public static bool IsRemoveAds
+    {
+        get { return _data.isRemoveAds; }
+        set { _data.isRemoveAds = value; SaveData(); }
+    }
+
+    public static ItemParent[] InventoryItems
+    {
+        get { return _data.inventoryItems; }
+        set { _data.inventoryItems = value; SaveData(); }
+    }
+    #endregion
 
     #region readonly private fields
     public static readonly string _savePath = Application.persistentDataPath + "/SaveData.txt";
@@ -155,7 +190,17 @@ public static class SaveManager
     private static readonly string _privateKey = "z$C&F)J@NcRfUjXn";//16byte 이상의 문자열
     #endregion
 
+
     private static SaveData _data = new MemorialRecord.Data.SaveData();
+    private static Dictionary<string, float> _researchMultiplyDict = new Dictionary<string, float>() { { "PerSec", 1 }, { "Touch", 1 }, { "All", 1 } };
+
+    public static Dictionary<string, float> ResearchMultiplyDict
+    {
+        get
+        {
+            return _researchMultiplyDict;
+        }
+    }
 
     #region 기타 비즈니스 로직
     public static void SetStoryDict(int idx, bool value)
@@ -192,8 +237,8 @@ public static class SaveManager
         }
 
         value *= roomValue < 1 ? 1 : roomValue;
-        value *= _data.researchMultiplyDict["PerSec"];
-        value *= _data.researchMultiplyDict["All"];
+        value *= ResearchMultiplyDict["PerSec"];
+        value *= ResearchMultiplyDict["All"];
 
         return value;
     }
@@ -253,11 +298,31 @@ public static class SaveManager
                     break;
                 }
                 level = _data.researchLevelDict[idx];
-                break;
+                return true;
         }
 
         level = -2;
         return false;
+    }
+
+    public static int GetCountOfUnlockDatas(DataType type)
+    {
+        switch (type)
+        {
+            case DataType.Book:
+                return _data.bookLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+            case DataType.BookMark:
+                return _data.bookMarkLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+            case DataType.Accessory:
+                return _data.accessoryLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+            case DataType.Room:
+                return _data.roomLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+            case DataType.Research:
+                return _data.researchLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+            default:
+                break;
+        }
+        return 0;
     }
 
     /// <summary>
@@ -300,7 +365,7 @@ public static class SaveManager
             case DataType.Research:
                 if (!_data.researchLevelDict.ContainsKey(idx))
                 {
-                    _data.researchLevelDict.Add(idx, -1);
+                    _data.researchLevelDict.Add(idx, 0);
                 }
                 return _data.researchLevelDict[idx];
         }
@@ -346,8 +411,9 @@ public static class SaveManager
             case DataType.Research:
                 if (_data.researchLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.roomLevelDict[idx];
+                    updatedLevel = ++_data.researchLevelDict[idx];
                     isSuccessful = true;
+                    RefreshResearch();
                 }
                 break;
         }
@@ -395,8 +461,9 @@ public static class SaveManager
             case DataType.Research:
                 if (_data.researchLevelDict.ContainsKey(idx))
                 {
-                    _data.roomLevelDict[idx] = level;
+                    _data.researchLevelDict[idx] = level;
                     isSuccessful = true;
+                    RefreshResearch();
                 }
                 break;
         }
@@ -409,9 +476,12 @@ public static class SaveManager
     #endregion
 
     #region 세이브 관련 로직
-    public static void SaveData()
+    public static string SaveData()
     {
-        SaveFile(Encrypt(JsonUtility.ToJson(_data)));
+        _data.saveTimeString = DateTime.Now.ToString();
+        string result = Encrypt(JsonUtility.ToJson(_data));
+        SaveFile(result);
+        return result;
     }
 
     public static SaveData LoadData()
@@ -420,6 +490,7 @@ public static class SaveManager
         if (File.Exists(_savePath))
         {
             _data = JsonUtility.FromJson<SaveData>(Decrypt(LoadFile(_savePath)));
+            AfterLoadData();
             return _data;
         }
 
@@ -432,8 +503,80 @@ public static class SaveManager
         {
             _data.roomLevelDict[0] = 1;
         }
-            
+
+        AfterLoadData();
         return _data;
+    }
+
+    private static void AfterLoadData()
+    {
+        ResearchCalc();
+        RefreshResearch();
+    }
+
+    private static void ResearchCalc()
+    {
+        DateTime lastSaveTime = DateTime.Parse(_data.saveTimeString);
+        TimeSpan spanedTime = DateTime.Now - lastSaveTime;
+
+        int spanedMinutes = spanedTime.Minutes;
+
+        _data.researchSaveData.researchRemainTime -= spanedTime.TotalSeconds;
+        if(_data.researchSaveData.researchRemainTime <= 0)
+        {
+            _data.researchSaveData.researchRemainTime = 0;
+            GameObject.FindObjectOfType<ResearchManager>().SetResearch(_data.researchSaveData.curResearchIdx, () => ContentLevelUp(_data.researchSaveData.curResearchIdx, DataType.Research));
+        }
+
+        while (spanedMinutes >= 15)
+        {
+            if(_data.researchSaveData.ResearchResources < _data.researchSaveData.researchResourceMaxCount)
+                _data.researchSaveData.ResearchResources++;
+
+            spanedMinutes -= 15;
+        }
+    }
+
+    public static void RefreshResearch()
+    {
+        int level;
+        if (TryGetContentLevel(DataType.Research, 0, out level))
+        {
+            _researchMultiplyDict["PerSec"] += 0.05f * level;
+        }
+
+        if (TryGetContentLevel(DataType.Research, 1, out level))
+        {
+            _researchMultiplyDict["PerSec"] += 0.10f * level;
+        }
+
+        if (TryGetContentLevel(DataType.Research, 2, out level))
+        {
+            _researchMultiplyDict["Touch"] += 0.05f * level;
+        }
+
+        if (TryGetContentLevel(DataType.Research, 3, out level))
+        {
+            for (int i = 0; i < level; i++)
+            {
+                if (i == 3)
+                {
+                    _researchMultiplyDict["Touch"] += 0.06f;
+                    break;
+                }
+                _researchMultiplyDict["Touch"] += 0.07f;
+            }
+        }
+
+        if (TryGetContentLevel(DataType.Research, 4, out level))
+        {
+            _researchMultiplyDict["All"] += 0.03f * level;
+        }
+
+        if (TryGetContentLevel(DataType.Research, 5, out level))
+        {
+            _researchMultiplyDict["All"] += 0.05f * level;
+        }
     }
 
     private static void SaveFile(string jsonData)

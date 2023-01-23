@@ -6,6 +6,9 @@ using System;
 
 public class SlideEffector : MonoBehaviour
 {
+    [SerializeField] float verticalMultiply = 20f;
+    [SerializeField] float horizontalMultiply = 10f;
+
     [SerializeField] RectTransform[] slidePanels;
 
     public void SlideInFrom(Direction direction, float duration)

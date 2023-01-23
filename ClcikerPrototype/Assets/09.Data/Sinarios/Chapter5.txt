@@ -1,0 +1,19 @@
+#FadeOutTextBox : 0##FadeInIllustration : 1, 0.5##WaitForSeconds : 2##FadeOutIllustration : 0#
+#WaitForSeconds : 1##RemoveNameText : ##TypeInNameText : "연지우", 0##SetCharEmotion : Normal, Girl##FadeInCharacter : Girl, 0.3##WaitForSeconds : 1##RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Normal, Boy##FadeInCharacter : Boy, 0.3#아, 여기 계셨네요. 지우씨.
+#SetCharEmotion : Smile, Boy#계속 찾았네요. 여기서 뭐해요?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Avoid, Girl##FadeInCharacter : Girl, 0.3##SetCharacterShadow : 0#기분이 얼떨떨했다.
+나는 그저 고개를 주억거리며 그를 따라갔다.
+#FadeOutCharacter : 0##FadeInBlackBlank : 0.5#내가 그의 손을 잡고있다는 사실을 전혀 눈치채지 못한 채.
+#FadeOutBlackBlank : 0.5##DisappearAll : 0##FadeInBackground : 0, 0##SetCharEmotion : Avoid, Girl##FadeInCharacter : Girl, 0.3##SetCharacterShadow : 0#방을 나와, PlayerName은 자랑스럽게 사진 하나를 꺼내들었다.
+#RemoveNameText : ##RemoveCharacterShadow : 0##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#짠, 제가 이걸 찾았답니다.
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Avoid, Girl##FadeInCharacter : Girl, 0.3##SetCharacterShadow : 0#그리고, 그 사진에 담겨 있는 것은 바로…
+‘나’였다.
+#FadeInIllustration : 2, 0.5#
+#FadeOutIllustration : 0##DisappearAll : 0.5##FadeInBackground : 5, 0##RemoveNameText : ##RemoveCharacterShadow : 0##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#그러니까 이걸 제가 어디서 찾았냐면…
+#FadeOutCharacter : 0##RemoveNameText : #그의 말은 더는 나에게 닿지 않았다.
+내 머릿속에서는 기억을 일깨우는 하나의 소용돌이가 휘몰아쳤다.
+그 소용돌이는 점점 강렬해져 주변의 모든 것들을 집어삼켰다. 더 이상 그 어떤 것도 보이지 않을 때쯤,
+파도가 쏟아지듯, 기억이 몰려들어왔다. 
+부모님과 여행을 갔던일, 친구 집에서 파자마 파티를 했던 일. 온갖 행복했던 기억들… 그러나, 그 중에서도 가장 빛나는 기억은...
+…
+그와 함께 했던 순간들이었다.

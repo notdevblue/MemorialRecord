@@ -25,7 +25,8 @@ public class PlayerInputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            _touchEffectManager.GetEffect(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            if(Camera.main != null)
+                _touchEffectManager.GetEffect(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
             EventSystem touchEvent = EventSystem.current;
             if (touchEvent.IsPointerOverGameObject() && touchEvent.currentSelectedGameObject)
@@ -44,15 +45,17 @@ public class PlayerInputManager : MonoBehaviour
 
             if (curTouch.phase == TouchPhase.Began)
             {
-                _touchEffectManager.GetEffect(Camera.main.ScreenToWorldPoint(curTouch.position));
+                if(Camera.main != null)
+                    _touchEffectManager.GetEffect(Camera.main.ScreenToWorldPoint(curTouch.position));
+
                 _touchCost.OnTouch();
             }
         }
 #endif
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            FindObjectOfType<GameNoticePanel>()?.SetNoticePanel(() => Application.Quit(), () => gameObject.SetActive(true), "확인", "취소", "게임 종료","게임을 종료하시겠습니까?");
+            FindObjectOfType<PanelGameNotice>()?.SetNoticePanel(() => Application.Quit(), () => gameObject.SetActive(true), "확인", "취소", "게임 종료","게임을 종료하시겠습니까?");
             gameObject.SetActive(false);
         }
     }

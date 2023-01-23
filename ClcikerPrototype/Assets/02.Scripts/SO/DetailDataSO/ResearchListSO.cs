@@ -4,6 +4,7 @@ using UnityEngine;
 using MemorialRecord.Data;
 
 [System.Serializable]
+[CreateAssetMenu(fileName = "ResearchDataListSO", menuName = "ScriptableObject/Research")]
 public class ResearchListSO : ScriptableObject
 {
     public List<ResearchData> researchDatas = new List<ResearchData>();

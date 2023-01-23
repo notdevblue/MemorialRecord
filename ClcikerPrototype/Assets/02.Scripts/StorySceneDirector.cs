@@ -139,7 +139,7 @@ public class StorySceneDirector : MonoBehaviour
 
                 seDirector.SlideInFrom((Direction)Enum.Parse(typeof(Direction), args[0].ToString()), duration);
                 break;
-            case "SlideOutFrom":
+            case "SlideOutTo":
                 duration = float.Parse(args[1].ToString());
                 result = new WaitForSeconds(duration);
 
@@ -147,10 +147,20 @@ public class StorySceneDirector : MonoBehaviour
                 break;
             case "FadeInNameBox":
                 duration = float.Parse(args[0].ToString());
+                if (SaveManager.CharName != null)
+                {
+                    result = null;
+                    break;
+                }
                 result = new WaitUntil(panelName.FadeInNameBox(duration));
                 break;
             case "FadeOutNameBox":
                 duration = float.Parse(args[0].ToString());
+                if (SaveManager.CharName != null)
+                {
+                    result = null;
+                    break;
+                }
                 result = new WaitUntil(panelName.FadeOutNameBox(duration));
                 break;
             case "FadeInSubObject":
@@ -247,7 +257,7 @@ public class StorySceneDirector : MonoBehaviour
                 FindObjectOfType<BGMSelector>()?.SetBGM(int.Parse(args[0].ToString()));
                 break;
             case "StopBGM":
-                FindObjectOfType<BGMSelector>()?.SetActiveBGM(false);
+                FindObjectOfType<BGMSelector>()?.SetActiveBGM(false, 0.5f);
                 break;
             default:
                 break;

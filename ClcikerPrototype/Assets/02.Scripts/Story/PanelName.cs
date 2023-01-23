@@ -35,10 +35,19 @@ public class PanelName : MonoBehaviour
         return () => { return !gameObject.activeSelf; };
     }
 
+    public void SetNamePanelInMain()
+    {
+        transform.parent.gameObject.SetActive(true);
+        btnOK.onClick.RemoveAllListeners();
+        btnOK.onClick.AddListener(() => SaveManager.CharName = inputField.text);
+        btnOK.onClick.AddListener(() => transform.parent.gameObject.SetActive(false));
+        btnOK.onClick.AddListener(() => btnOK.onClick.RemoveAllListeners());
+    }
+
     private void OnClickOKBtn()
     {
         FadeOutNameBox(0.5f);
-        SaveManager.Name = inputField.text;
+        SaveManager.CharName = inputField.text;
     }
 
 

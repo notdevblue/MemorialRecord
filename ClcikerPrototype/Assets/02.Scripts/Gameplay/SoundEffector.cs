@@ -42,10 +42,10 @@ public class SoundEffector : MonoBehaviour
 
     public void PlaySoundEffect(string name = "")
     {
-        AudioSource source = GetAudioSource();
-        source.clip = soundEffects[name];
-        source.loop = false;
-        source.Play();
+        //AudioSource source = GetAudioSource();
+        //source.clip = soundEffects[name];
+        //source.loop = false;
+        //source.Play();
     }
 
     public AudioSource GetAudioSource()

@@ -1,0 +1,6 @@
+#PlayBGM : 3##RemoveNameText : ##FadeInIllustration : 3, 0.5#옛날 옛날에 어느 작은 나라에 공주님이 살았습니다.
+#FadeOutIllustration : 0##FadeInIllustration : 4, 0.5#공주님은 책을 너무 좋아해서 맨날 도서관에 박혀 살았대요.
+#FadeOutIllustration : 0##FadeInIllustration : 5, 0.5#매일매일을 어두침침한 방에서 책만 읽던 공주님은 어느날, 
+#FadeOutIllustration : 0##FadeInIllustration : 6, 0.5#책을 읽다 잠들어버린 창가에서
+#FadeOutIllustration : 0##FadeInIllustration : 7, 0.5#문득 창 사이로 새어 스며들어온 햇빛을 따라
+#FadeOutIllustration : 0##FadeInIllustration : 8, 0.5#밖을 나섰답니다.

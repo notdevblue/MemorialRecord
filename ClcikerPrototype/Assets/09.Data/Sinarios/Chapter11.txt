@@ -1,0 +1,5 @@
+분명 금방 다시 떠올리실 수 있을 거에요.
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#뭐~ 이렇게 축 쳐져 있어봐야 달라지는 건 없겠지만요.
+연주, 한 번 더 들려주시겠어요?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Girl##FadeInCharacter : Girl, 0.3#아 네, 물론이죠.
+#RemoveNameText : ##FadeOutCharacter : 0##FadeOutTextBox : 0.5##PlaySoundEffect : "Piano"#
