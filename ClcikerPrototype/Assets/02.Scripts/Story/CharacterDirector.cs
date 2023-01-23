@@ -10,13 +10,16 @@ public class CharacterDirector : MonoBehaviour
     [SerializeField] SpriteRenderer[] shadowSR;
 
     Character curChar;
-    Vector3 originPos = Vector3.zero;
+    Vector3[] originPos = { Vector3.zero, Vector3.zero };
 
     Action<Vector2> onActOriginPos = (value) => { };
 
     private void Awake()
     {
-        originPos = transform.position;
+        for (int i = 0; i < charAnims.Length; i++)
+        {
+            originPos[i] = charAnims[i].transform.position;
+        }
     }
 
     public void SetCharacterEmotionAction(string key, Character character)
@@ -82,7 +85,6 @@ public class CharacterDirector : MonoBehaviour
     public void CharacterMove(DirectionOne directionOne, float duration)
     {
         charAnims[(int)curChar].DOComplete();
-        originPos = charAnims[(int)curChar].transform.position;
         switch (directionOne)
         {
             case DirectionOne.Left:
@@ -114,6 +116,6 @@ public class CharacterDirector : MonoBehaviour
 
     public void MoveCharacterReturn(float duration)
     {
-        charAnims[(int)curChar].transform.DOMove(originPos, duration);
+        charAnims[(int)curChar].transform.DOMove(originPos[(int)curChar], duration);
     }
 }

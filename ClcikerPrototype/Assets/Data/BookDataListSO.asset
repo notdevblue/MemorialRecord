@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0288ab93c98f8f45a31ffd8e5f9d3d1, type: 3}
+  m_Name: BookDataListSO
+  m_EditorClassIdentifier: 
+  bookDatas:
+  - _idx: 0
+    _title: "\uB2E4\uC815\uD568\uC774 \uC5B4\uB9B0 \uCC3D\uAC00\uC5D0"
+    _writer: "\uB204\uAD70\uAC00\uB97C \uAE30\uB2E4\uB9AC\uB294 \uC5EC\uC778"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 1
+    _title: "\uBC40"
+    _writer: "\uBC84\uC2A4\uC7A5\uC5D0 \uC11C\uC788\uB294 \uCCAD\uB144"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 2
+    _title: "\uC778\uC5F0"
+    _writer: "\uC815\uCC98\uC5C6\uC774 \uB5A0\uB3C4\uB294 \uB098\uADF8\uB124"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 3
+    _title: "\uC815\uC801\uAE30"
+    _writer: "\uBED0\uAFB8\uAE30\uB97C \uD488\uC740 \uC18C\uB140"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 4
+    _title: "\uB2F9\uC2E0\uB3C4 \uD560 \uC218 \uC788\uB2E4! \uD558\uB8E8 5\uBD84
+      \uC2A4\uD1A0\uB9AC \uD2B9\uAC15!"
+    _writer: "\uBB34\uBA85 \uC791\uAC00"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 5
+    _title: "\uBC31\uC77C\uBABD"
+    _writer: "\uAFC8\uC744 \uC5F0\uAD6C\uD558\uB294 \uC815\uC2E0\uC758\uD559\uC790"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 6
+    _title: "\uB0AD\uB9CC\uC758 \uBE44\uADF9"
+    _writer: "\uC0AC\uB791\uC744 \uCC29\uAC01\uD55C \uB0A8\uC790"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 7
+    _title: "\uC791\uC740 \uD68C\uACE0"
+    _writer: "\uBA38\uBB47\uAC70\uB9AC\uB294 \uC18C\uB144"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 8
+    _title: "\uB9AC\uB77C\uAF43"
+    _writer: "\uAF43\uC744 \uC0AC\uB791\uD558\uB294 \uAF43\uC9D1\uC8FC\uC778"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 9
+    _title: "\uACA8\uC6B8\uC740 \uC0AC\uB78C\uC744 \uAC00\uB9AC\uC9C0 \uC54A\uACE0
+      \uCC3E\uC544\uC635\uB2C8\uB2E4."
+    _writer: "\uC124\uC0B0\uC744 \uC624\uB974\uB294 \uB4F1\uC0B0\uAC00"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 10
+    _title: "\"\uBE59\uBE59"
+    _writer: " \uC8FC\uBCC0\uC744 \uBA64\uB3C4\uB294 \uC7A0\uC790\uB9AC\""
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 11
+    _title: "\uBC29\uD559\uC2DD"
+    _writer: "\uC878\uC5C5\uC744 \uAE30\uB2E4\uB9AC\uB294 \uACE0\uB4F1\uD559\uC0DD"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 12
+    _title: "\uB291\uB300\uC655"
+    _writer: "\uB291\uB300\uB97C \uC5F0\uAD6C\uD558\uB294 \uB3D9\uBB3C\uD559\uC790"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 13
+    _title: "\uC0AC\uB791\uC758 \uAFC8"
+    _writer: "\uC2DC\uB97C \uC88B\uC544\uD558\uB294 \uC74C\uC545\uAC00"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 14
+    _title: "\uCE74\uD398"
+    _writer: "\uC5B4\uB290 \uCE74\uD398\uC758 \uC2E0\uC0AC"
+    _name: 
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}

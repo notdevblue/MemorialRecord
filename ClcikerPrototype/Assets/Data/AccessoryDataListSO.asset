@@ -16,50 +16,91 @@ MonoBehaviour:
   - _idx: 0
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 1"
+    _name: "\uD574 \uBAA8\uC591"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 1
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 2"
+    _name: "\uBC40 \uBAA8\uC591"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 2
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 3"
+    _name: "\uBB36\uC5EC\uC788\uB294 \uB048 \uC801\uB2F9\uD788 \uBAA8\uC591\uB0B4\uAE30"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 3
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 4"
+    _name: "\uBED0\uAFB8\uAE30 \uB0A0\uAC1C\uBAA8\uC591"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 4
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 5"
+    _name: "\uC904\uAE00\uC774 \uB044\uC801\uC5EC\uC9C4 \uB450\uB8E8\uB9C8\uB9AC(\uC138\uB85C)"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 5
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 6"
+    _name: "\uBABD\uAE00\uBABD\uAE00\uD55C \uAD6C\uB984 \uC870\uC774 \uC774\uD399\uD2B8
+      \uB290\uB08C"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 6
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 7"
+    _name: "\uBD89\uC740 \uC7A5\uBBF8"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 7
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 8"
+    _name: "\uD558\uD2B8"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 8
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 9"
+    _name: "\uB77C\uC77C\uB77D \uAF43 \uBAA8\uC591"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
   - _idx: 9
     _title: 
     _writer: 
-    _name: "\uC545\uC138\uC11C\uB9AC 10"
+    _name: "\uB208 \uACB0\uC815"
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 10
+    _title: 
+    _writer: 
+    _name: "\uC7A0\uC790\uB9AC"
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 11
+    _title: 
+    _writer: 
+    _name: "\uD559\uC0AC\uBAA8"
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 12
+    _title: 
+    _writer: 
+    _name: "\uACE0\uACE0\uD558\uAC8C \uC808\uBCBD\uC5D0 \uC11C\uC788\uB294 \uB291\uB300"
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 13
+    _title: 
+    _writer: 
+    _name: "\uB192\uC740\uC74C\uC790\uB9AC \uC74C\uD45C"
+    _info: 
+    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+  - _idx: 14
+    _title: 
+    _writer: 
+    _name: "\uCEE4\uD53C"
+    _info: 
     _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e70d30df4f1414e80c78784407cefd, type: 3}
   m_Name: DataListSO
   m_EditorClassIdentifier: 
-  _bookListSO: {fileID: 11400000, guid: bf9b88a4676049b4ab4b091ec8b5a73b, type: 2}
-  _bookmarkListSO: {fileID: 11400000, guid: 87f86c63753bc9f4b90e7f85ee8261de, type: 2}
-  _accessoryListSO: {fileID: 11400000, guid: c2f0e7ab76b6aa7429ff28b651d2978c, type: 2}
-  _roomListSO: {fileID: 11400000, guid: 6b1e59075fd5c86479441f340548048c, type: 2}
+  _bookListSO: {fileID: 11400000, guid: ad13ef6f9fed0794eafeaacbd70f480c, type: 2}
+  _bookmarkListSO: {fileID: 11400000, guid: 0160040ca260c7b44ade45e7afb2c06c, type: 2}
+  _accessoryListSO: {fileID: 11400000, guid: f62577c1d7c894c45bd463e78b751441, type: 2}
+  _roomListSO: {fileID: 11400000, guid: 8b692d0388e12c444b6969a3bf805285, type: 2}
   _researchListSO: {fileID: 11400000, guid: 68dc03004cf5ebd4680bba9c267211fc, type: 2}

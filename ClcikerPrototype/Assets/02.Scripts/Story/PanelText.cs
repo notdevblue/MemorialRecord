@@ -87,8 +87,9 @@ public class PanelText : MonoBehaviour
                 }
 
                 textMsg.text += splitScirpts[i][j];
-                yield return new WaitForSeconds(isSkipScript ? 0.0f : 0.15f);
+                yield return new WaitForSeconds(isSkipScript ? 0.0f : 0.2f);
             }
+            yield return new WaitForSeconds(isSkipScript ? 0.4f : 0.0f); // Ω∫≈µ µÙ∑π¿Ã
 
             isEndScirpt = true;
             isSkipScript = false;

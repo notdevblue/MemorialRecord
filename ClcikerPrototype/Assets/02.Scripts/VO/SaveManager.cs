@@ -31,11 +31,11 @@ public static class SaveManager
     {
         get
         {
-            return _data.currentMemorial;
+            return _savedata.currentMemorial;
         }
         set
         {
-            _data.currentMemorial = value;
+            _savedata.currentMemorial = value;
             OnChangeMemorial?.Invoke(value);
             SaveData();
         }
@@ -45,11 +45,11 @@ public static class SaveManager
     {
         get
         {
-            return _data.currentQuillPen;
+            return _savedata.currentQuillPen;
         }
         set
         {
-            _data.currentQuillPen = value;
+            _savedata.currentQuillPen = value;
             OnChangeQuillPen?.Invoke(value);
             SaveData();
         }
@@ -59,11 +59,11 @@ public static class SaveManager
     {
         get
         {
-            return _data.musicVolume;
+            return _profileData.musicVolume;
         }
         set
         {
-            _data.musicVolume = value;
+            _profileData.musicVolume = value;
             OnChangeMusicVolume?.Invoke(value);
             SaveData();
         }
@@ -73,11 +73,11 @@ public static class SaveManager
     {
         get
         {
-            return _data.soundEffectVolume;
+            return _profileData.soundEffectVolume;
         }
         set
         {
-            _data.soundEffectVolume = value;
+            _profileData.soundEffectVolume = value;
             OnChangeSoundEffectVolume?.Invoke(value);
             SaveData();
         }
@@ -87,11 +87,11 @@ public static class SaveManager
     {
         get
         {
-            return _data.characterName;
+            return _profileData.characterName;
         }
         set
         {
-            _data.characterName = value;
+            _profileData.characterName = value;
             SaveData();
         }
     }
@@ -100,11 +100,11 @@ public static class SaveManager
     {
         get
         {
-            return _data.curMusicIndex;
+            return _profileData.curMusicIndex;
         }
         set
         {
-            _data.curMusicIndex = value;
+            _profileData.curMusicIndex = value;
             GameObject.FindObjectOfType<BGMSelector>()?.SetBGM(value);
             SaveData();
         }
@@ -114,12 +114,12 @@ public static class SaveManager
     {
         get
         {
-            return _data.idxCurStory;
+            return _savedata.idxCurStory;
         }
 
         set
         {
-            _data.idxCurStory = value;
+            _savedata.idxCurStory = value;
             SaveData();
         }
     }
@@ -128,12 +128,12 @@ public static class SaveManager
     {
         get
         {
-            return _data.MusicBoughtArr;
+            return _profileData.MusicBoughtArr;
         }
 
         set
         {
-            _data.MusicBoughtArr = value;
+            _profileData.MusicBoughtArr = value;
             SaveData();
         }
     }
@@ -142,18 +142,18 @@ public static class SaveManager
     {
         get
         {
-            return _data.researchSaveData;
+            return _savedata.researchSaveData;
         }
 
         set
         {
-            _data.researchSaveData = value;
+            _savedata.researchSaveData = value;
         }
     }
 
     public static float RemainBoostTime
     {
-        get { return _data.remainBoostTime; }
+        get { return _savedata.remainBoostTime; }
         set
         {
             if(RemainBoostTime == 0f)
@@ -161,37 +161,41 @@ public static class SaveManager
                 OnSetBooster?.Invoke();
             }
 
-            _data.remainBoostTime = value;
+            _savedata.remainBoostTime = value;
         }
     }
 
     public static bool IsOnAllMusic
     {
-        get { return _data.isOnAllMusic; }
-        set { _data.isOnAllMusic = value; SaveData(); }
+        get { return _profileData.isOnAllMusic; }
+        set { _profileData.isOnAllMusic = value; SaveData(); }
     }
 
     public static bool IsRemoveAds
     {
-        get { return _data.isRemoveAds; }
-        set { _data.isRemoveAds = value; SaveData(); }
+        get { return _profileData.isRemoveAds; }
+        set { _profileData.isRemoveAds = value; SaveData(); }
     }
 
     public static ItemParent[] InventoryItems
     {
-        get { return _data.inventoryItems; }
-        set { _data.inventoryItems = value; SaveData(); }
+        get { return _savedata.inventoryItems; }
+        set { _savedata.inventoryItems = value; SaveData(); }
     }
     #endregion
 
     #region readonly private fields
-    public static readonly string _savePath = Application.persistentDataPath + "/SaveData.txt";
+
+    public static readonly string _saveDir = Application.persistentDataPath;
+    public static readonly string _profileSavePath = _saveDir + "/ProfileData.sav";
+    public static readonly string _dataSavePath = _saveDir + "/SaveData.sav";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
     private static readonly string _privateKey = "z$C&F)J@NcRfUjXn";//16byte 이상의 문자열
     #endregion
 
 
-    private static SaveData _data = new MemorialRecord.Data.SaveData();
+    private static SaveData _savedata = new MemorialRecord.Data.SaveData();
+    private static PlayerProfile _profileData = new MemorialRecord.Data.PlayerProfile();
     private static Dictionary<string, float> _researchMultiplyDict = new Dictionary<string, float>() { { "PerSec", 1 }, { "Touch", 1 }, { "All", 1 } };
 
     public static Dictionary<string, float> ResearchMultiplyDict
@@ -205,13 +209,13 @@ public static class SaveManager
     #region 기타 비즈니스 로직
     public static void SetStoryDict(int idx, bool value)
     {
-        if (!_data.storyReadDict.ContainsKey(idx))
+        if (!_savedata.storyReadDict.ContainsKey(idx))
         {
-            _data.storyReadDict.Add(idx, value);
+            _savedata.storyReadDict.Add(idx, value);
         }
         else
         {
-            _data.storyReadDict[idx] = value;
+            _savedata.storyReadDict[idx] = value;
         }
         SaveData();
     }
@@ -221,7 +225,7 @@ public static class SaveManager
         double value = 0.0d;
         double roomValue = SaveManager.GetRoomValue();
 
-        foreach (var item in _data.bookMarkLevelDict)
+        foreach (var item in _savedata.bookMarkLevelDict)
         {
             if(item.Value > -1)
             {
@@ -245,7 +249,7 @@ public static class SaveManager
 
     public static int GetRoomValue()
     {
-        var roomlist = _data.roomLevelDict.ToList();
+        var roomlist = _savedata.roomLevelDict.ToList();
         roomlist.Sort((x, y) => 
         {
             if(y.Value.CompareTo(x.Value) == 0)
@@ -265,39 +269,39 @@ public static class SaveManager
         switch (type)
         {
             case DataType.Book:
-                if (!_data.bookLevelDict.ContainsKey(idx))
+                if (!_savedata.bookLevelDict.ContainsKey(idx))
                 {
                     break;
                 }
-                level = _data.bookLevelDict[idx];
+                level = _savedata.bookLevelDict[idx];
                 return true;
             case DataType.BookMark:
-                if (!_data.bookMarkLevelDict.ContainsKey(idx))
+                if (!_savedata.bookMarkLevelDict.ContainsKey(idx))
                 {
                     break;
                 }
-                level = _data.bookMarkLevelDict[idx];
+                level = _savedata.bookMarkLevelDict[idx];
                 return true;
             case DataType.Accessory:
-                if (!_data.accessoryLevelDict.ContainsKey(idx))
+                if (!_savedata.accessoryLevelDict.ContainsKey(idx))
                 {
                     break;
                 }
-                level = _data.accessoryLevelDict[idx];
+                level = _savedata.accessoryLevelDict[idx];
                 return true;
             case DataType.Room:
-                if (!_data.roomLevelDict.ContainsKey(idx))
+                if (!_savedata.roomLevelDict.ContainsKey(idx))
                 {
                     break;
                 }
-                level = _data.roomLevelDict[idx];
+                level = _savedata.roomLevelDict[idx];
                 return true;
             case DataType.Research:
-                if (!_data.researchLevelDict.ContainsKey(idx))
+                if (!_savedata.researchLevelDict.ContainsKey(idx))
                 {
                     break;
                 }
-                level = _data.researchLevelDict[idx];
+                level = _savedata.researchLevelDict[idx];
                 return true;
         }
 
@@ -310,15 +314,15 @@ public static class SaveManager
         switch (type)
         {
             case DataType.Book:
-                return _data.bookLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+                return _savedata.bookLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
             case DataType.BookMark:
-                return _data.bookMarkLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+                return _savedata.bookMarkLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
             case DataType.Accessory:
-                return _data.accessoryLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+                return _savedata.accessoryLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
             case DataType.Room:
-                return _data.roomLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+                return _savedata.roomLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
             case DataType.Research:
-                return _data.researchLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
+                return _savedata.researchLevelDict.Values.ToList().FindAll(x => x >= 1).Count;
             default:
                 break;
         }
@@ -339,35 +343,35 @@ public static class SaveManager
         switch (type)
         {
             case DataType.Book:
-                if (!_data.bookLevelDict.ContainsKey(idx))
+                if (!_savedata.bookLevelDict.ContainsKey(idx))
                 {
-                    _data.bookLevelDict.Add(idx, -1);
+                    _savedata.bookLevelDict.Add(idx, -1);
                 }
-                return _data.bookLevelDict[idx];
+                return _savedata.bookLevelDict[idx];
             case DataType.BookMark:
-                if (!_data.bookMarkLevelDict.ContainsKey(idx))
+                if (!_savedata.bookMarkLevelDict.ContainsKey(idx))
                 {
-                    _data.bookMarkLevelDict.Add(idx, -1);
+                    _savedata.bookMarkLevelDict.Add(idx, -1);
                 }
-                return _data.bookMarkLevelDict[idx];
+                return _savedata.bookMarkLevelDict[idx];
             case DataType.Accessory:
-                if (!_data.accessoryLevelDict.ContainsKey(idx))
+                if (!_savedata.accessoryLevelDict.ContainsKey(idx))
                 {
-                    _data.accessoryLevelDict.Add(idx, -1);
+                    _savedata.accessoryLevelDict.Add(idx, -1);
                 }
-                return _data.accessoryLevelDict[idx];
+                return _savedata.accessoryLevelDict[idx];
             case DataType.Room:
-                if (!_data.roomLevelDict.ContainsKey(idx))
+                if (!_savedata.roomLevelDict.ContainsKey(idx))
                 {
-                    _data.roomLevelDict.Add(idx, -1);
+                    _savedata.roomLevelDict.Add(idx, -1);
                 }
-                return _data.roomLevelDict[idx];
+                return _savedata.roomLevelDict[idx];
             case DataType.Research:
-                if (!_data.researchLevelDict.ContainsKey(idx))
+                if (!_savedata.researchLevelDict.ContainsKey(idx))
                 {
-                    _data.researchLevelDict.Add(idx, 0);
+                    _savedata.researchLevelDict.Add(idx, 0);
                 }
-                return _data.researchLevelDict[idx];
+                return _savedata.researchLevelDict[idx];
         }
 
         return -2;
@@ -381,37 +385,37 @@ public static class SaveManager
         switch (type)
         {
             case DataType.Book:
-                if (_data.bookLevelDict.ContainsKey(idx))
+                if (_savedata.bookLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.bookLevelDict[idx];
+                    updatedLevel = ++_savedata.bookLevelDict[idx];
                     isSuccessful = true;
                 }
                 break;
             case DataType.BookMark:
-                if (_data.bookMarkLevelDict.ContainsKey(idx))
+                if (_savedata.bookMarkLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.bookMarkLevelDict[idx];
+                    updatedLevel = ++_savedata.bookMarkLevelDict[idx];
                     isSuccessful = true;
                 }
                 break;
             case DataType.Accessory:
-                if (_data.accessoryLevelDict.ContainsKey(idx))
+                if (_savedata.accessoryLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.accessoryLevelDict[idx];
+                    updatedLevel = ++_savedata.accessoryLevelDict[idx];
                     isSuccessful = true;
                 }
                 break;
             case DataType.Room:
-                if (_data.roomLevelDict.ContainsKey(idx))
+                if (_savedata.roomLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.roomLevelDict[idx];
+                    updatedLevel = ++_savedata.roomLevelDict[idx];
                     isSuccessful = true;
                 }
                 break;
             case DataType.Research:
-                if (_data.researchLevelDict.ContainsKey(idx))
+                if (_savedata.researchLevelDict.ContainsKey(idx))
                 {
-                    updatedLevel = ++_data.researchLevelDict[idx];
+                    updatedLevel = ++_savedata.researchLevelDict[idx];
                     isSuccessful = true;
                     RefreshResearch();
                 }
@@ -431,37 +435,37 @@ public static class SaveManager
         switch (type)
         {
             case DataType.Book:
-                if (_data.bookLevelDict.ContainsKey(idx))
+                if (_savedata.bookLevelDict.ContainsKey(idx))
                 {
-                    _data.bookLevelDict[idx] = level;
+                    _savedata.bookLevelDict[idx] = level;
                     isSuccessful = true;
                 }
                 break;
             case DataType.BookMark:
-                if (_data.bookMarkLevelDict.ContainsKey(idx))
+                if (_savedata.bookMarkLevelDict.ContainsKey(idx))
                 {
-                    _data.bookMarkLevelDict[idx] = level;
+                    _savedata.bookMarkLevelDict[idx] = level;
                     isSuccessful = true;
                 }
                 break;
             case DataType.Accessory:
-                if (_data.accessoryLevelDict.ContainsKey(idx))
+                if (_savedata.accessoryLevelDict.ContainsKey(idx))
                 {
-                    _data.accessoryLevelDict[idx] = level;
+                    _savedata.accessoryLevelDict[idx] = level;
                     isSuccessful = true;
                 }
                 break;
             case DataType.Room:
-                if (_data.roomLevelDict.ContainsKey(idx))
+                if (_savedata.roomLevelDict.ContainsKey(idx))
                 {
-                    _data.roomLevelDict[idx] = level;
+                    _savedata.roomLevelDict[idx] = level;
                     isSuccessful = true;
                 }
                 break;
             case DataType.Research:
-                if (_data.researchLevelDict.ContainsKey(idx))
+                if (_savedata.researchLevelDict.ContainsKey(idx))
                 {
-                    _data.researchLevelDict[idx] = level;
+                    _savedata.researchLevelDict[idx] = level;
                     isSuccessful = true;
                     RefreshResearch();
                 }
@@ -476,36 +480,61 @@ public static class SaveManager
     #endregion
 
     #region 세이브 관련 로직
-    public static string SaveData()
+    public static void SaveData()
     {
-        _data.saveTimeString = DateTime.Now.ToString();
-        string result = Encrypt(JsonUtility.ToJson(_data));
-        SaveFile(result);
-        return result;
+        _savedata.saveTimeString = DateTime.Now.ToString();
+        string encryptedProfile = Encrypt(JsonUtility.ToJson(_profileData));
+        string encryptedData = Encrypt(JsonUtility.ToJson(_savedata));
+        SaveFile(encryptedProfile, _profileSavePath);
+        SaveFile(encryptedData, _dataSavePath);
     }
 
     public static SaveData LoadData()
     {
         //파일이 존재하는지부터 체크.
-        if (File.Exists(_savePath))
+        if (File.Exists(_dataSavePath))
         {
-            _data = JsonUtility.FromJson<SaveData>(Decrypt(LoadFile(_savePath)));
+            _savedata = JsonUtility.FromJson<SaveData>(Decrypt(LoadFile(_dataSavePath)));
             AfterLoadData();
-            return _data;
+            return _savedata;
         }
 
-        _data = new SaveData();
-        if (!_data.roomLevelDict.ContainsKey(0))
+        _savedata = new SaveData();
+        if (!_savedata.roomLevelDict.ContainsKey(0))
         {
-            _data.roomLevelDict.Add(0, 1);
+            _savedata.roomLevelDict.Add(0, 1);
         }
         else
         {
-            _data.roomLevelDict[0] = 1;
+            _savedata.roomLevelDict[0] = 1;
         }
 
         AfterLoadData();
-        return _data;
+        return _savedata;
+    }
+
+    public static PlayerProfile LoadProfile()
+    {
+        //파일이 존재하는지부터 체크.
+        if (File.Exists(_profileSavePath))
+        {
+            _profileData = JsonUtility.FromJson<PlayerProfile>(Decrypt(LoadFile(_profileSavePath)));
+            AfterLoadProfileData();
+            return _profileData;
+        }
+
+        _savedata = new SaveData();
+        if (!_savedata.roomLevelDict.ContainsKey(0))
+        {
+            _savedata.roomLevelDict.Add(0, 1);
+        }
+        else
+        {
+            _savedata.roomLevelDict[0] = 1;
+        }
+
+        AfterLoadProfileData();
+        return _profileData;
     }
 
     private static void AfterLoadData()
@@ -514,24 +543,29 @@ public static class SaveManager
         RefreshResearch();
     }
 
+    private static void AfterLoadProfileData()
+    {
+
+    }
+
     private static void ResearchCalc()
     {
-        DateTime lastSaveTime = DateTime.Parse(_data.saveTimeString);
+        DateTime lastSaveTime = DateTime.Parse(_savedata.saveTimeString);
         TimeSpan spanedTime = DateTime.Now - lastSaveTime;
 
         int spanedMinutes = spanedTime.Minutes;
 
-        _data.researchSaveData.researchRemainTime -= spanedTime.TotalSeconds;
-        if(_data.researchSaveData.researchRemainTime <= 0)
+        _savedata.researchSaveData.researchRemainTime -= spanedTime.TotalSeconds;
+        if(_savedata.researchSaveData.researchRemainTime <= 0)
         {
-            _data.researchSaveData.researchRemainTime = 0;
-            GameObject.FindObjectOfType<ResearchManager>().SetResearch(_data.researchSaveData.curResearchIdx, () => ContentLevelUp(_data.researchSaveData.curResearchIdx, DataType.Research));
+            _savedata.researchSaveData.researchRemainTime = 0;
+            GameObject.FindObjectOfType<ResearchManager>().SetResearch(_savedata.researchSaveData.curResearchIdx, () => ContentLevelUp(_savedata.researchSaveData.curResearchIdx, DataType.Research));
         }
 
         while (spanedMinutes >= 15)
         {
-            if(_data.researchSaveData.ResearchResources < _data.researchSaveData.researchResourceMaxCount)
-                _data.researchSaveData.ResearchResources++;
+            if(_savedata.researchSaveData.ResearchResources < _savedata.researchSaveData.researchResourceMaxCount)
+                _savedata.researchSaveData.ResearchResources++;
 
             spanedMinutes -= 15;
         }
@@ -579,9 +613,9 @@ public static class SaveManager
         }
     }
 
-    private static void SaveFile(string jsonData)
+    private static void SaveFile(string jsonData, string path)
     {
-        using (FileStream fs = new FileStream(_savePath, FileMode.Create, FileAccess.Write))
+        using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
         {
             //파일로 저장할 수 있게 바이트화
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jsonData);

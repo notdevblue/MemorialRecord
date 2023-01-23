@@ -49,16 +49,19 @@ public class CSVDataReader : Editor
                 dataSO = CreateInstance<InitDataSO>();
                 dataSO._bookListSO = bookListSO;
             }
+            Debug.Log("데이터 에셋 생성");
 
             if (AssetDatabase.LoadAssetAtPath<InitDataSO>("Assets/Data/DataListSO.asset") == null)
             {
                 AssetDatabase.CreateFolder("Assets", "Data");
                 AssetDatabase.CreateAsset(dataSO, "Assets/Data/DataListSO.asset");
+                Debug.Log("데이터 에셋 생성");
             }
 
             if (!AssetDatabase.LoadAssetAtPath<BookListSO>("Assets/Data/BookDataListSO.asset"))
             {
                 AssetDatabase.CreateAsset(bookListSO, "Assets/Data/BookDataListSO.asset");
+                Debug.Log("에셋 생성");
             }
 
             AssetDatabase.SaveAssets();

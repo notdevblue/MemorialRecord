@@ -12,6 +12,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Awake()
     {
+        SaveManager.LoadProfile();
         SaveManager.LoadData();
     }
 

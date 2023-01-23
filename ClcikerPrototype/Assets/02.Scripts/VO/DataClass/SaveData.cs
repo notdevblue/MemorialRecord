@@ -33,41 +33,33 @@ namespace MemorialRecord.Data
         public int curResearchIdx = -1;
     }
 
-
-    public enum AttendanceState { none, success, fail }
-
     [Serializable]
-    public class SaveData : ISerializationCallbackReceiver
+    public class PlayerProfile
     {
         public bool isOnAllMusic = false;
         public bool isRemoveAds = false;
 
-        public string saveTimeString = DateTime.Now.ToString();
         public string characterName = null;
 
-        public float remainBoostTime = 0f;
-
-        public ItemParent[] inventoryItems = { new Item_Memorial(0, 0), new Item_Ink(0, 1), new Item_ResearchResource(0, 0), new Item_MemorialPack(0, 10, 36000)};
-
-        #region Settings
+        [Header("MusicData")]
+        public int curMusicIndex = 0;
+        public bool[] MusicBoughtArr = new bool[] { true, false, false, false, false, false, false, false, false };
 
         [Header("Settings")]
         public float musicVolume = 0.3f;
         public float soundEffectVolume = 0.3f;
         public bool isPushAlarmOn = false;
         public bool isStoryAutoPlayOnUnlocked = false;
+    }
 
-        #endregion
+    [Serializable]
+    public class SaveData : ISerializationCallbackReceiver
+    {
+        public string saveTimeString = DateTime.Now.ToString();
 
-        #region MusicData
+        public float remainBoostTime = 0f;
 
-        [Header("MusicData")]
-        public int curMusicIndex = 0;
-        public bool[] MusicBoughtArr = new bool[] {true, false, false, false, false, false, false, false, false};
-
-        #endregion
-
-        #region ResourceManage
+        public ItemParent[] inventoryItems = { new Item_Memorial(0, 0), new Item_Ink(0, 1), new Item_ResearchResource(0, 0), new Item_MemorialPack(0, 10, 36000)};
 
         public ResearchSaveData researchSaveData = new ResearchSaveData();
 
@@ -86,8 +78,6 @@ namespace MemorialRecord.Data
         public Dictionary<int, int> researchLevelDict = new Dictionary<int, int>() { };
 
         public int exapndLevel;
-
-        #endregion
 
         #region metadata
         // 직렬화 / 역직렬화 과정에서 Dictonary Data를 보존하기 위해 만든 메타데이터입니다.
