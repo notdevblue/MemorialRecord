@@ -297,18 +297,49 @@ public class InventoryManager : MonoBehaviour
         {
             InventoryContent content = Instantiate(_contentPrefab, _contentParent);
             _childs.Add(content);
-            content.InventoryInit(item);
+            content.InventoryInit(item as ItemParent);
         }
         Refresh();
     }
 
     public void Refresh()
     {
+        _childs.FindAll(x => x.Item._needDelete).ForEach(x => Destroy(x.gameObject));
+        _childs.RemoveAll(x => x.Item._needDelete);
+
         foreach (var item in _childs)
         {
             item.RefreshInventoryItem();
         }
-        _childs.RemoveAll(x => x == null);
+
+        _childs.Sort((x, y) => 
+        {
+            if (x.Item._type > y.Item._type)
+            {
+                return -1;
+            }
+            else if (x.Item._type == y.Item._type)
+            {
+                if (x.Item._count > y.Item._maxCount)
+                {
+                    return -1;
+                }
+                else if(x.Item._count == y.Item._maxCount)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        });
+
+        _childs.RemoveAll(x => x.gameObject == null);
     }
 
     public void SetItem(ItemParent item)

@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R3CMA02M3EB",
         "name": "com.OuterGames.Memorial",
-        "processId": 13532,
+        "processId": 4534,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,12 +12,36 @@
             "deviceId": "R3CMA02M3EB",
             "name": "com.OuterGames.Memorial",
             "processId": 11868,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "R3CMA02M3EB",
             "name": "com.OuterGames.Memorial",
             "processId": 13532,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 21848,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.sec.android.app.launcher",
+            "processId": 1860,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 26201,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 4534,
             "exited": false
         }
     ],

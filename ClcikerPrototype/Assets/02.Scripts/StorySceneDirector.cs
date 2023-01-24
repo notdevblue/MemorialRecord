@@ -147,7 +147,7 @@ public class StorySceneDirector : MonoBehaviour
                 break;
             case "FadeInNameBox":
                 duration = float.Parse(args[0].ToString());
-                if (SaveManager.CharName != null)
+                if (SaveManager.CharName != "$InitalizedPlayerName$")
                 {
                     result = null;
                     break;
@@ -156,7 +156,7 @@ public class StorySceneDirector : MonoBehaviour
                 break;
             case "FadeOutNameBox":
                 duration = float.Parse(args[0].ToString());
-                if (SaveManager.CharName != null)
+                if (SaveManager.CharName != "$InitalizedPlayerName$")
                 {
                     result = null;
                     break;

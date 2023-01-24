@@ -114,12 +114,12 @@ public static class SaveManager
     {
         get
         {
-            return _savedata.idxCurStory;
+            return _profileData.idxCurStory;
         }
 
         set
         {
-            _savedata.idxCurStory = value;
+            _profileData.idxCurStory = value;
             SaveData();
         }
     }
@@ -177,22 +177,26 @@ public static class SaveManager
         set { _profileData.isRemoveAds = value; SaveData(); }
     }
 
-    public static ItemParent[] InventoryItems
+    public static List<ItemParent> InventoryItems
     {
         get { return _savedata.inventoryItems; }
         set { _savedata.inventoryItems = value; SaveData(); }
     }
+
+    public static bool IsNewUser
+    {
+        get { return _savedata.isNewUser; }
+        set { _savedata.isNewUser = value; SaveData(); }
+    }
     #endregion
 
     #region readonly private fields
-
     public static readonly string _saveDir = Application.persistentDataPath;
     public static readonly string _profileSavePath = _saveDir + "/ProfileData.sav";
     public static readonly string _dataSavePath = _saveDir + "/SaveData.sav";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
     private static readonly string _privateKey = "z$C&F)J@NcRfUjXn";//16byte 이상의 문자열
     #endregion
-
 
     private static SaveData _savedata = new MemorialRecord.Data.SaveData();
     private static PlayerProfile _profileData = new MemorialRecord.Data.PlayerProfile();
@@ -483,8 +487,10 @@ public static class SaveManager
     public static void SaveData()
     {
         _savedata.saveTimeString = DateTime.Now.ToString();
+        
         string encryptedProfile = Encrypt(JsonUtility.ToJson(_profileData));
         string encryptedData = Encrypt(JsonUtility.ToJson(_savedata));
+
         SaveFile(encryptedProfile, _profileSavePath);
         SaveFile(encryptedData, _dataSavePath);
     }
@@ -508,6 +514,7 @@ public static class SaveManager
         {
             _savedata.roomLevelDict[0] = 1;
         }
+
 
         AfterLoadData();
         return _savedata;

@@ -61,7 +61,7 @@ public class PanelText : MonoBehaviour
         {
             for (int j = 0; j < splitScirpts[i].Length; j++)
             {
-                if (splitScirpts[i].Contains("PlayerName") && SaveManager.CharName != null)
+                if (splitScirpts[i].Contains("PlayerName") && SaveManager.CharName != "$InitalizedPlayerName$")
                 {
                     splitScirpts[i] = splitScirpts[i].Replace("PlayerName", SaveManager.CharName);
                 }

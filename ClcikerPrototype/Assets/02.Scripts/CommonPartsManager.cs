@@ -10,7 +10,7 @@ public class CommonPartsManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -26,7 +26,7 @@ public class CommonPartsManager : MonoBehaviour
     {
         if(PlayGamesPlatform.Instance.IsAuthenticated() == false)
         {
-            Social.localUser.Authenticate(success => { });
+            Social.localUser.Authenticate(success => { if (success) Debug.Log("Login Success!!"); });
         }
     }
 }

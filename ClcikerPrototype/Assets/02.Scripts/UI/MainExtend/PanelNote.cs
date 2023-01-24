@@ -10,6 +10,7 @@ public class PanelNote : MonoBehaviour
     [SerializeField] Button btnClose;
 
     [SerializeField] Text[] textTitles;
+    [SerializeField] Text[] textIdxs;
     [SerializeField] Image[] imageChecks;
     [SerializeField] Button[] btns;
  
@@ -69,7 +70,7 @@ public class PanelNote : MonoBehaviour
                 continue;
             }
 
-            textTitles[i].text = curIdx + i + " " + datas[(curIdx * textTitles.Length) + i];
+            textTitles[i].text = (datas[(curIdx * textTitles.Length) + i]._idx + 1) + " " + datas[(curIdx * textTitles.Length) + i]._title;
             
             if((curIdx * textTitles.Length) + i < SaveManager.IdxCurStory)
             {

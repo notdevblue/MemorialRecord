@@ -39,7 +39,7 @@ namespace MemorialRecord.Data
         public bool isOnAllMusic = false;
         public bool isRemoveAds = false;
 
-        public string characterName = null;
+        public string characterName = "$InitalizedPlayerName$";
 
         [Header("MusicData")]
         public int curMusicIndex = 0;
@@ -50,24 +50,26 @@ namespace MemorialRecord.Data
         public float soundEffectVolume = 0.3f;
         public bool isPushAlarmOn = false;
         public bool isStoryAutoPlayOnUnlocked = false;
+
+        public uint idxCurStory = 0;
     }
 
     [Serializable]
     public class SaveData : ISerializationCallbackReceiver
     {
+        public bool isNewUser = true;
+
         public string saveTimeString = DateTime.Now.ToString();
 
         public float remainBoostTime = 0f;
 
-        public ItemParent[] inventoryItems = { new Item_Memorial(0, 0), new Item_Ink(0, 1), new Item_ResearchResource(0, 0), new Item_MemorialPack(0, 10, 36000)};
+        public List<ItemParent> inventoryItems = new List<ItemParent>();
 
         public ResearchSaveData researchSaveData = new ResearchSaveData();
 
         [Header("ResourceManage")]
         public double currentMemorial;
         public long currentQuillPen;
-
-        public uint idxCurStory = 0;
 
         public Dictionary<int, bool> storyReadDict = new Dictionary<int, bool>() { {0, false} };
         // -1 잠김, 0 구매 가능, 1 구매함
@@ -82,7 +84,7 @@ namespace MemorialRecord.Data
         #region metadata
         // 직렬화 / 역직렬화 과정에서 Dictonary Data를 보존하기 위해 만든 메타데이터입니다.
 
-        [SerializeField] private string[] researchMultiplyDictKeys = new string[] { "PerSec", "Touch", "All" };
+        [SerializeField] private ItemParent[] itemsMeta; 
         [SerializeField] private int[] researchRemainTimeKeys;
         [SerializeField] private int[] storyReadDictKeys;
         [SerializeField] private int[] bookLevelDictKeys;
@@ -91,7 +93,6 @@ namespace MemorialRecord.Data
         [SerializeField] private int[] roomInfoLevelsDictKeys;
         [SerializeField] private int[] researchInfoLevelsDictKeys;
 
-        [SerializeField] private float[] researchMultiplyDictValues;
         [SerializeField] private double[] researchRemainTimeValues;
         [SerializeField] private bool[] storyReadDictValues;
         [SerializeField] private int[] bookLevelDictValues;
@@ -104,6 +105,7 @@ namespace MemorialRecord.Data
 
         public void OnBeforeSerialize()
         {
+            itemsMeta = new ItemParent[inventoryItems.Count];
             storyReadDictKeys = new int[storyReadDict.Keys.Count];
             bookLevelDictKeys = new int[bookLevelDict.Keys.Count];
             bookMarkLevelDictKeys = new int[bookMarkLevelDict.Keys.Count];
@@ -131,6 +133,7 @@ namespace MemorialRecord.Data
             accessoryLevelDict.Values.CopyTo(accessoryLevelDictValues, 0);
             roomLevelDict.Values.CopyTo(roomInfoLevelsDictValues, 0);
             researchLevelDict.Values.CopyTo(researchInfoLevelsDictValues, 0);
+            inventoryItems.CopyTo(itemsMeta);
         }
 
         public void OnAfterDeserialize()
@@ -141,6 +144,48 @@ namespace MemorialRecord.Data
             ArrayToDict(accessoryLevelDict, accessoryLevelDictKeys, accessoryLevelDictValues);
             ArrayToDict(roomLevelDict, roomInfoLevelsDictKeys, roomInfoLevelsDictValues);
             ArrayToDict(researchLevelDict, researchInfoLevelsDictKeys, researchInfoLevelsDictValues);
+
+            inventoryItems = new List<ItemParent>();
+            ItemParent item = null;
+            for (int i = 0; i < itemsMeta.Length; i++)
+            {
+                item = itemsMeta[i];
+                if (item._count <= 0)
+                    continue;
+
+                switch (item._type)
+                {
+                    case ItemType.Booster:
+                        inventoryItems.Add(new Item_Booster(0, item._count, item._boosterTime));
+                        break;
+                    case ItemType.NameChanger:
+                        inventoryItems.Add(new Item_NameChanger(0, item._count));
+                        break;
+                    case ItemType.ResearchPlus:
+                        inventoryItems.Add(new Item_ResearchPlus(0, item._count));
+                        break;
+                    case ItemType.GetAllMusic:
+                        inventoryItems.Add(new Item_GetAllMusic(0, item._count));
+                        break;
+                    case ItemType.RemoveAds:
+                        inventoryItems.Add(new Item_RemoveAds(0, item._count));
+                        break;
+                    case ItemType.MemorialPack:
+                        inventoryItems.Add(new Item_MemorialPack(0, item._count, item._boosterTime));
+                        break;
+                    case ItemType.Memorial:
+                        inventoryItems.Add(new Item_Memorial(0, item._count));
+                        break;
+                    case ItemType.Ink:
+                        inventoryItems.Add(new Item_Ink(0, item._count));
+                        break;
+                    case ItemType.ResearchResource:
+                        inventoryItems.Add(new Item_ResearchResource(0, item._count));
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         private void ArrayToDict<TKey, TValue>(Dictionary<TKey, TValue> dst, TKey[] keySrc, TValue[] valueSrc)

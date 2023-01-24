@@ -8,10 +8,13 @@ public class BGMSelector : MonoBehaviour
     [SerializeField] AudioClip[] bgmClips = null;
     [SerializeField] AudioSource bgmSource = null;
 
+    float maxVolume = 0f;
+
     private void Start()
     {
         bgmSource.volume = SaveManager.MusicVolume;
         SaveManager.OnChangeMusicVolume += (value) => bgmSource.volume = value;
+        SaveManager.OnChangeMusicVolume += (value) => maxVolume = value;
     }
 
     public float GetBGMPercent()
@@ -46,6 +49,6 @@ public class BGMSelector : MonoBehaviour
 
     public void SetActiveBGM(bool isActive, float duration, System.Action onComplete = null)
     {
-        bgmSource.DOFade(isActive ? 1 : 0, duration).OnComplete(() => onComplete?.Invoke());
+        bgmSource.DOFade(isActive ? maxVolume : 0, duration).OnComplete(() => onComplete?.Invoke());
     }
 }

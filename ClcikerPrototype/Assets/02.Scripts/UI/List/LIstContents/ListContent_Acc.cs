@@ -49,9 +49,15 @@ public class ListContent_Acc : ListContent
             _textOutput.text = $"{DataManager.GetDataSO()._bookmarkListSO.bookmarkDatas[data._idx]._name} 의 생산량 2배";
             _btnLevelup.onClick.RemoveAllListeners();
         }
-        else
+        else if (level == 1)
         {
             _textLevelUp.text = "구매\n";
+            _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValue(DataType.Book, data))}";
+            _textOutput.text = $"{DataManager.GetValueF(ValueCalculator.GetOutputValue(DataType.Book, data))} / 터치";
+        }
+        else
+        {
+            _textLevelUp.text = "레벨업\n";
             _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValueOnLevel(data._idx, 50))}";
             _textOutput.text = $"{DataManager.GetDataSO()._bookmarkListSO.bookmarkDatas[data._idx]._name} 의 생산량 2배";
         }

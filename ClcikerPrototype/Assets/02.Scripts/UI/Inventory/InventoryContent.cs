@@ -103,12 +103,6 @@ public class InventoryContent : MonoBehaviour
 
     public void RefreshInventoryItem()
     {
-        if (_item._needDelete)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         _textCount.text = _item._count.ToString();
         if (_item._type == ItemType.Memorial)
         {

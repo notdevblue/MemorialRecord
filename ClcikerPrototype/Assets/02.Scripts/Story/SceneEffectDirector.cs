@@ -31,7 +31,6 @@ public class SceneEffectDirector : MonoBehaviour
 
     public void ShakeBackground(Axis axis)
     {
-        Sequence seq = DOTween.Sequence();
         StartCoroutine(Shake(axis, 1.25f));
     }
 

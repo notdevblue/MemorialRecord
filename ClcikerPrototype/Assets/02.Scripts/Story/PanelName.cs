@@ -14,6 +14,12 @@ public class PanelName : MonoBehaviour
     {
         inputField.onValueChanged.AddListener((text) =>
         {
+            text = text.Trim('#');
+            text = text.Trim('\'');
+            text = text.Trim('"');
+            text = text.Trim(',');
+            inputField.SetTextWithoutNotify(text);
+
             btnOK.interactable = text.Trim(' ') != "";
         });
 
