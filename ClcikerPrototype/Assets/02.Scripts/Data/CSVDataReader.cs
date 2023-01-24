@@ -29,6 +29,7 @@ public class CSVDataReader : Editor
             str = sr.ReadLine(); // 첫줄 지우기위해서 한번 더
 
             bookListSO.bookDatas.Clear();
+            int count = 0;
             while (str != null)
             {
                 string[] strArr = str.Split(',');
@@ -36,11 +37,12 @@ public class CSVDataReader : Editor
                 bookListSO.bookDatas.Add(
                     new BookData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite
+                        AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/03.Sprites/ListIcons/Icon{count}/BookIcon.png"), // sprite
                         strArr[1], // Title
                         strArr[2]) // Writer
                     );
 
+                count++;
                 str = sr.ReadLine();
             }
 
@@ -89,6 +91,7 @@ public class CSVDataReader : Editor
             str = sr.ReadLine(); // 첫줄 지우기위해서 한번 더
 
             bookmarkListSO.bookmarkDatas.Clear();
+            int count = 0;
             while (str != null)
             {
                 string[] strArr = str.Split(',');
@@ -96,11 +99,12 @@ public class CSVDataReader : Editor
                 bookmarkListSO.bookmarkDatas.Add(
                     new BookmarkData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite    
+                        AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/03.Sprites/ListIcons/Icon{count}/BookMarkIcon.png"), // sprite    
                         strArr[1] // Name
                         )
                     );
 
+                count++;
                 str = sr.ReadLine();
             }
 
@@ -146,6 +150,7 @@ public class CSVDataReader : Editor
             str = sr.ReadLine(); // 첫줄 지우기위해서 한번 더
 
             accDataListSO.accessoryDatas.Clear();
+            int count = 0;
             while (str != null)
             {
                 string[] strArr = str.Split(',');
@@ -153,11 +158,12 @@ public class CSVDataReader : Editor
                 accDataListSO.accessoryDatas.Add(
                     new AccessoryData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite    
+                        AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/03.Sprites/ListIcons/Icon{count}/AccIcon.png"), // sprite    
                         strArr[1] // Name
                         )
                     );
 
+                count++;
                 str = sr.ReadLine();
             }
 
@@ -210,7 +216,7 @@ public class CSVDataReader : Editor
                 roomDataListSO.roomDatas.Add(
                     new RoomData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/책.png"), // sprite   
+                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/MainBook.png"), // sprite   
                         strArr[1] // Name
                         )
                     );

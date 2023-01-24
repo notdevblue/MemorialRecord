@@ -1,3 +1,6 @@
+#PlayBGM : 6##RemoveNameText : ##FadeInBlackBlank : 0#붉게 물든 연홍이 지평선 아래로 지고 있었다.
+#FadeOutBlackBlank : 0.5##FadeInBackground : 3, 0#창밖 너머의 광경은 경계를 넘어 안으로 들이쳤다. 주홍빛으로 물든 하늘이 세상을 덮었고, 잠식해나가는 어둠은 다시 그 하늘을 덮었다.
+창밖의 끝없는 들판을 바라보던 나는 들려오는 인기척에 고개를 돌렸다.
 #FadeOutTextBox : 0##FadeInIllustration : 1, 0.5##WaitForSeconds : 2##FadeOutIllustration : 0#
 #WaitForSeconds : 1##RemoveNameText : ##TypeInNameText : "연지우", 0##SetCharEmotion : Normal, Girl##FadeInCharacter : Girl, 0.3##WaitForSeconds : 1##RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Normal, Boy##FadeInCharacter : Boy, 0.3#아, 여기 계셨네요. 지우씨.
 #SetCharEmotion : Smile, Boy#계속 찾았네요. 여기서 뭐해요?

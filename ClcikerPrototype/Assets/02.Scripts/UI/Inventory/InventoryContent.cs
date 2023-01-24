@@ -23,6 +23,11 @@ public class InventoryContent : MonoBehaviour
         _btnUse.onClick.AddListener(OnUse);
     }
 
+    private void OnEnable()
+    {
+        RefreshInventoryItem();
+    }
+
     public void InventoryInit(ItemParent item)
     {
         if(item._type == ItemType.Memorial)
@@ -34,6 +39,11 @@ public class InventoryContent : MonoBehaviour
         {
             SaveManager.ResearchSaveData.OnChangeResearchResources += (value) => _textCount.text = value.ToString();
             _textCount.text = SaveManager.ResearchSaveData.ResearchResources.ToString();
+        }
+        else if (item._type == ItemType.Ink)
+        {
+            SaveManager.OnChangeInk += (value) => _textCount.text = value.ToString();
+            _textCount.text = SaveManager.CurInk.ToString();
         }
 
         gameObject.SetActive(true);
@@ -111,6 +121,10 @@ public class InventoryContent : MonoBehaviour
         else if (_item._type == ItemType.ResearchResource)
         {
             _textCount.text = SaveManager.ResearchSaveData.ResearchResources.ToString();
+        }
+        else if (_item._type == ItemType.Ink)
+        {
+            _textCount.text = SaveManager.CurInk.ToString();
         }
     }
 

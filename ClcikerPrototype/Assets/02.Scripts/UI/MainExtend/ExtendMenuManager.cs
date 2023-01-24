@@ -1,3 +1,5 @@
+using DG.Tweening;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +10,7 @@ public class ExtendMenuManager : MonoBehaviour
     [SerializeField] Camera main;
     [SerializeField] Camera sub;
 
-    [SerializeField] SlideEffector sliderEffector;
+    [SerializeField] Image imageFade;
     [SerializeField] bool[] hasEffect;
     [SerializeField] Button[] btns;
     [SerializeField] Transform[] panels;
@@ -22,15 +24,19 @@ public class ExtendMenuManager : MonoBehaviour
             {
                 btns[i].onClick.AddListener(() =>
                 {
-                    sliderEffector.SlideInFrom(Direction.Bottom, 1f, () =>
+                    imageFade.gameObject.SetActive(true);
+                    imageFade.DOFade(1.0f, 1f).OnComplete(() =>
                     {
                         panels[y].gameObject.SetActive(true);
-                        if(y == 1)
+                        
+                        if (y == 1)
                         {
                             main.gameObject.SetActive(false);
                             sub.gameObject.SetActive(true);
                         }
-                        sliderEffector.SlideOutTo(Direction.Bottom, 1f);
+
+                       
+                        imageFade.DOFade(0.0f, 1f).OnComplete(() => imageFade.gameObject.SetActive(false));
                     });
                 });
             }

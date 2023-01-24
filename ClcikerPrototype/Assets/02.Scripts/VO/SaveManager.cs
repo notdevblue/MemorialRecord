@@ -21,7 +21,7 @@ public static class SaveManager
 {
     public static event Action<int, DataType, int> OnUpdateLevel; // idx, Type, level
     public static event Action<double> OnChangeMemorial;
-    public static event Action<long> OnChangeQuillPen;
+    public static event Action<long> OnChangeInk;
     public static event Action<float> OnChangeMusicVolume;
     public static event Action<float> OnChangeSoundEffectVolume;
     public static event Action OnSetBooster;
@@ -41,7 +41,7 @@ public static class SaveManager
         }
     }
 
-    public static long CurQuillPen
+    public static long CurInk
     {
         get
         {
@@ -50,7 +50,7 @@ public static class SaveManager
         set
         {
             _savedata.currentQuillPen = value;
-            OnChangeQuillPen?.Invoke(value);
+            OnChangeInk?.Invoke(value);
             SaveData();
         }
     }
@@ -185,8 +185,20 @@ public static class SaveManager
 
     public static bool IsNewUser
     {
-        get { return _savedata.isNewUser; }
-        set { _savedata.isNewUser = value; SaveData(); }
+        get { return _profileData.isNewUser; }
+        set { _profileData.isNewUser = value; SaveData(); }
+    }
+
+    public static bool IsPushAlarmOn
+    {
+        get { return _profileData.isPushAlarmOn; }
+        set { _profileData.isPushAlarmOn = value; SaveData(); }
+    }
+
+    public static bool IsStoryAutoPlayOnUnlocked
+    {
+        get { return _profileData.isStoryAutoPlayOnUnlocked; }
+        set { _profileData.isStoryAutoPlayOnUnlocked = value; SaveData(); }
     }
     #endregion
 
@@ -563,11 +575,20 @@ public static class SaveManager
         int spanedMinutes = spanedTime.Minutes;
 
         _savedata.researchSaveData.researchRemainTime -= spanedTime.TotalSeconds;
-        if(_savedata.researchSaveData.researchRemainTime <= 0)
+        if (_savedata.researchSaveData.researchRemainTime <= 0)
         {
             _savedata.researchSaveData.researchRemainTime = 0;
-            GameObject.FindObjectOfType<ResearchManager>().SetResearch(_savedata.researchSaveData.curResearchIdx, () => ContentLevelUp(_savedata.researchSaveData.curResearchIdx, DataType.Research));
         }
+
+        GameObject.FindObjectOfType<ResearchManager>().SetResearch
+        (   
+            _savedata.researchSaveData.curResearchIdx, 
+            _savedata.researchSaveData.researchRemainTime, 
+            () =>
+            {
+                ContentLevelUp(_savedata.researchSaveData.curResearchIdx, DataType.Research);
+            }
+        );
 
         while (spanedMinutes >= 15)
         {

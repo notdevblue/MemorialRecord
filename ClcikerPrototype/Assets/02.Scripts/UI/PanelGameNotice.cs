@@ -63,14 +63,14 @@ public class PanelGameNotice : MonoBehaviour
 
     private void OnBuy(int price, Action onSuccess, Action onFailed)
     {
-        if (SaveManager.CurQuillPen < price)
+        if (SaveManager.CurInk < price)
         {
             onFailed?.Invoke();
             return;
         }
         else
         {
-            SaveManager.CurQuillPen -= price;
+            SaveManager.CurInk -= price;
             onSuccess?.Invoke();
         }
 

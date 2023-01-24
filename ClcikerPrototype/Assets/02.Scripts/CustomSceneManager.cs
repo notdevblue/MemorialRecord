@@ -8,8 +8,15 @@ public static class CustomSceneManager
 {
     static int curChapter = 0;
 
+    static bool isLoading = false;
+
     public static void MainSceneChangeFromStory()
     {
+        if (isLoading)
+            return;
+
+        isLoading = true;
+
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
 
         SceneManager.sceneLoaded += OnSceneChangedFromStory;
@@ -17,6 +24,11 @@ public static class CustomSceneManager
 
     public static void StorySceneChangeFromMain(int chapter)
     {
+        if (isLoading)
+            return;
+
+        isLoading = true;
+
         curChapter = chapter;
         SaveManager.SetStoryDict(chapter, true);
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
@@ -39,6 +51,7 @@ public static class CustomSceneManager
             GameObject.FindObjectOfType<LoadingSceneFade>().onFadeInComplete += () =>
             {
                 SceneManager.UnloadSceneAsync("LoadingScene");
+                isLoading = false;
             };
 
             SceneManager.sceneLoaded -= OnSceneChangedFromMain;
@@ -59,6 +72,7 @@ public static class CustomSceneManager
             GameObject.FindObjectOfType<LoadingSceneFade>().onFadeInComplete += () =>
             {
                 SceneManager.UnloadSceneAsync("LoadingScene");
+                isLoading = false;
             };
 
             SceneManager.sceneLoaded -= OnSceneChangedFromStory;

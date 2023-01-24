@@ -12,16 +12,16 @@ public class ValuePrinter : MonoBehaviour
     private void Awake()
     {
         SaveManager.OnChangeMemorial += UpdateMemorialValue;
-        SaveManager.OnChangeQuillPen += UpdatePenValue;
+        SaveManager.OnChangeInk += UpdatePenValue;
 
         UpdateMemorialValue(SaveManager.CurMemorial);
-        UpdatePenValue(SaveManager.CurQuillPen);
+        UpdatePenValue(SaveManager.CurInk);
     }
 
     private void Start()
     {
         UpdateMemorialValue(SaveManager.CurMemorial);
-        UpdatePenValue(SaveManager.CurQuillPen);
+        UpdatePenValue(SaveManager.CurInk);
     }
 
     public void UpdateMemorialValue(double value)
@@ -37,6 +37,6 @@ public class ValuePrinter : MonoBehaviour
     private void OnDestroy()
     {
         SaveManager.OnChangeMemorial -= UpdateMemorialValue;
-        SaveManager.OnChangeQuillPen -= UpdatePenValue;
+        SaveManager.OnChangeInk -= UpdatePenValue;
     }
 }

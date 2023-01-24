@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.Purchasing;
+using System;
+using DG.Tweening;
 
 public class PanelStore : MonoBehaviour
 {
@@ -19,7 +21,16 @@ public class PanelStore : MonoBehaviour
         ink_1000,
     }
 
+    public enum ShopInkItem
+    {
+        Memorial,
+        RemoveAds,
+        ResearchPlus,
+        ChangeName,
+    }
+
     [SerializeField] Button btnClose;
+    [SerializeField] Image imageFade;
 
     [SerializeField] Text[] textMemorials;
 
@@ -30,11 +41,12 @@ public class PanelStore : MonoBehaviour
         invenManager = FindObjectOfType<InventoryManager>(true);
         btnClose.onClick.AddListener(() =>
         {
-            FindObjectOfType<SlideEffector>().SlideInFrom(Direction.Bottom, 1f, () =>
+            imageFade.gameObject.SetActive(true);
+            imageFade.DOFade(1.0f, 1.0f).OnComplete(() =>
             {
                 transform.parent.gameObject.SetActive(false);
 
-                FindObjectOfType<SlideEffector>().SlideOutTo(Direction.Bottom, 1f);
+                imageFade.DOFade(0.0f, 0.0f).OnComplete(() => imageFade.gameObject.SetActive(false));
             });
         });
     }
@@ -47,6 +59,38 @@ public class PanelStore : MonoBehaviour
         textMemorials[3].text = $"메모리얼 {DataManager.GetValueF((SaveManager.GetBookmarkValuePerSec() * 60 * 60))} 개";
         textMemorials[4].text = $"메모리얼 {DataManager.GetValueF((SaveManager.GetBookmarkValuePerSec() * 60 * 120))} 개";
         textMemorials[5].text = $"메모리얼 {DataManager.GetValueF((SaveManager.GetBookmarkValuePerSec() * 60 * 240))} 개";
+    }
+
+    public void OnBuyItemWithInk(int itemIdx)
+    {
+        Action onChange = null;
+        int price = 0;
+
+        switch ((ShopInkItem)itemIdx)
+        {
+            case ShopInkItem.Memorial:
+                break;
+            case ShopInkItem.RemoveAds:
+                price = 35;
+                onChange = () => new Inventory.Item_RemoveAds(0, 1).OnUse();
+                break;
+            case ShopInkItem.ResearchPlus:
+                price = 10;
+                onChange = () => new Inventory.Item_ResearchPlus(0, 1).OnUse();
+                break;
+            case ShopInkItem.ChangeName:
+                price = 50;
+                onChange = () => invenManager.SetItem(new Inventory.Item_NameChanger(0, 1));
+                break;
+            default:
+                break;
+        }
+
+        if (SaveManager.CurInk >= price)
+        {
+            SaveManager.CurInk -= price;
+            onChange?.Invoke();
+        }
     }
 
     public void OnBuyMemorial(int minutes)
@@ -77,11 +121,11 @@ public class PanelStore : MonoBehaviour
                 break;
         }
 
-        if(SaveManager.CurQuillPen >= price)
+        if(SaveManager.CurInk >= price)
         {
-            SaveManager.CurQuillPen -= price;
+            SaveManager.CurInk -= price;
 
-            new Inventory.Item_MemorialPack(0, 1, 60 * minutes);
+            new Inventory.Item_MemorialPack(0, 1, 60 * minutes).OnUse();
         }
     }
 
@@ -94,7 +138,7 @@ public class PanelStore : MonoBehaviour
                 invenManager.SetItem(new Inventory.Item_MemorialPack(0, 5, 60 * 5));
                 invenManager.SetItem(new Inventory.Item_MemorialPack(0, 1, 60 * 15));
                 invenManager.SetItem(new Inventory.Item_ResearchPlus(0, 1));
-                invenManager.SetItem(new Inventory.Item_Ink(0, 30));
+                SaveManager.CurInk += 30;
                 break;
             case ShopItemCash.package_boostup:
                 invenManager.SetItem(new Inventory.Item_Booster(0, 1, 60 * 60));
@@ -102,23 +146,23 @@ public class PanelStore : MonoBehaviour
                 invenManager.SetItem(new Inventory.Item_MemorialPack(0, 3, 60 * 10));
                 invenManager.SetItem(new Inventory.Item_MemorialPack(0, 5, 60 * 5));
                 break;
-            case ShopItemCash.ink_10: 
-                invenManager.SetItem(new Inventory.Item_Ink(0, 10));
+            case ShopItemCash.ink_10:
+                SaveManager.CurInk += 10;
                 break;
             case ShopItemCash.ink_30:
-                invenManager.SetItem(new Inventory.Item_Ink(0, 30));
+                SaveManager.CurInk += 30;
                 break;
             case ShopItemCash.ink_50:
-                invenManager.SetItem(new Inventory.Item_Ink(0, 50));
+                SaveManager.CurInk += 50;
                 break;
             case ShopItemCash.ink_150:
-                invenManager.SetItem(new Inventory.Item_Ink(0, 150));
+                SaveManager.CurInk += 150;
                 break;
             case ShopItemCash.ink_300:
-                invenManager.SetItem(new Inventory.Item_Ink(0, 300));
+                SaveManager.CurInk += 300;
                 break;
             case ShopItemCash.ink_1000:
-                invenManager.SetItem(new Inventory.Item_Ink(0, 1000));
+                SaveManager.CurInk += 1000;
                 break;
             default:
                 break;

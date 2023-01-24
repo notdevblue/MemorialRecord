@@ -36,8 +36,11 @@ namespace MemorialRecord.Data
     [Serializable]
     public class PlayerProfile
     {
+        public bool isNewUser = true;
         public bool isOnAllMusic = false;
         public bool isRemoveAds = false;
+        public bool isPushAlarmOn = false;
+        public bool isStoryAutoPlayOnUnlocked = false;
 
         public string characterName = "$InitalizedPlayerName$";
 
@@ -48,8 +51,6 @@ namespace MemorialRecord.Data
         [Header("Settings")]
         public float musicVolume = 0.3f;
         public float soundEffectVolume = 0.3f;
-        public bool isPushAlarmOn = false;
-        public bool isStoryAutoPlayOnUnlocked = false;
 
         public uint idxCurStory = 0;
     }
@@ -57,7 +58,6 @@ namespace MemorialRecord.Data
     [Serializable]
     public class SaveData : ISerializationCallbackReceiver
     {
-        public bool isNewUser = true;
 
         public string saveTimeString = DateTime.Now.ToString();
 

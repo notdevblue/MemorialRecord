@@ -1,5 +1,7 @@
-#PlayBGM : 1##RemoveNameText : ##FadeInBackground : 1, 0##FadeInSubObject : 0, 0.5##PlaySoundEffect : "Booksound"##TypeInNameText : PlayerName, 0#흐으음...
-#FadeOutSubObject : 0##FadeInSubObject : 1, 0.5##TypeInNameText : ???, 0#[책이 그대들이 원하는 것 을 가져다 주리라.]
+#PlayBGM : 1##RemoveNameText : ##FadeInBackground : 1, 0##FadeInSubObject : 0, 0.5#
+#PlaySoundEffect : "Booksound"##FadeOutSubObject : 0##FadeInSubObject : 1, 0.5#
+#TypeInNameText : PlayerName, 0#흐으음...
+#TypeInNameText : ???, 0#[책이 그대들이 원하는 것을 가져다 주리라.]
 #FadeOutSubObject : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##SetCharEmotion : Thinkellipsis, Boy##FadeInCharacter : Boy, 0.3#책, 책이라…
 #RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Thinkques, Girl##FadeInCharacter : Girl, 0.3#책을 읽으라는 걸까요?
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3#아마도, 그렇겠죠.

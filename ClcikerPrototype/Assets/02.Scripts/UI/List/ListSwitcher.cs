@@ -29,7 +29,7 @@ public class ListSwitcher : MonoBehaviour
 
         btnClose.onClick.AddListener(() =>
         {
-            btnClose.GetComponent<RectTransform>().DOAnchorPosX(250, 0.2f);
+            btnClose.GetComponent<RectTransform>().DOAnchorPosX(300, 0.2f);
             btnOpen.gameObject.SetActive(true);
         });
 

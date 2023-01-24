@@ -131,7 +131,7 @@ public class StorySceneDirector : MonoBehaviour
                 duration = float.Parse(args[0].ToString());
                 result = new WaitForSeconds(duration);
 
-                seDirector.FadeOutWhiteBlank(duration);
+                seDirector.FadeOutBlackBlank(duration);
                 break;
             case "SlideInFrom":
                 duration = float.Parse(args[1].ToString());

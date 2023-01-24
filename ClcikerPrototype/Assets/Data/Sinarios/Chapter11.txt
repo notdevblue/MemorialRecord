@@ -1,3 +1,18 @@
+#PlayBGM : 6##RemoveNameText : ##FadeInBackground : 2, 0##TypeInNameText : "연지우", 0##SetCharEmotion : Smile, Girl##PlaySoundEffect : "Piano"##FadeInCharacter : Girl, 0.3#~♪
+#SetCharEmotion : Suprisedspark, Girl#어, 언제 왔어요?
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Think, Boy##FadeInCharacter : Boy, 0.3#이제야... 봐주시는 거군요…
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Panic, Girl##FadeInCharacter : Girl, 0.3#어… 많이… 기다렸나요?
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#장난입니다~ 방금 왔어요.
+#SetCharEmotion : Ooo, Boy#그나저나, 피아노 정말 잘 치시던데요?
+#SetCharEmotion : Smile, Boy#피아노, 좋아하시나봐요?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Embarrassed, Girl##FadeInCharacter : Girl, 0.3#정말…
+#SetCharEmotion : Smile, Girl#피아노… 좋죠. 사실 악기는 다 좋아해요.
+#SetCharEmotion : Think2, Girl#특히 이 곡은 건반에 손만 올려도 잘만 쳐지더라고요.
+#SetCharEmotion : Headache, Girl#몸에 익기라도 한 걸까요?
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3#그러네요. 그런 걸 지도 모르겠어요.
+#SetCharEmotion : Thinkellipsis, Boy#그나저나 빨리 기억을 다시 떠올려야 할텐데 말이죠.
+#SetCharEmotion : Sightangled, Boy#지우씨랑은 달리 전 하나도 기억나는 게 없는 거 같아요.
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Frown, Girl##FadeInCharacter : Girl, 0.3#아… 그것 참…
 분명 금방 다시 떠올리실 수 있을 거에요.
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#뭐~ 이렇게 축 쳐져 있어봐야 달라지는 건 없겠지만요.
 연주, 한 번 더 들려주시겠어요?

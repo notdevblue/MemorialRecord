@@ -78,6 +78,10 @@ public class ListContent_Research : ListContent
             _lockImage.gameObject.SetActive(true);
             _btnLevelup.gameObject.SetActive(false);
 
+            if(!isUnlocked(data._idx))
+            {
+                GetComponent<CanvasGroup>().alpha = 0;
+            }
             _lockImage.GetComponentInChildren<Text>().text = "연구\n완료";
             _btnLevelup.onClick.RemoveAllListeners();
         }
@@ -101,19 +105,49 @@ public class ListContent_Research : ListContent
                 break;
             case 2:
                 result = !(SaveManager.GetContentLevel(DataType.Research, 2) >= 3);
-                result = result && (SaveManager.GetContentLevel(DataType.Research, 0) >= 1 && SaveManager.GetContentLevel(DataType.Research, 1) >= 1);
+                result = result && isUnlocked(idx);
                 break;
             case 3:
                 result = !(SaveManager.GetContentLevel(DataType.Research, 3) >= 3);
-                result = result && (SaveManager.GetContentLevel(DataType.Research, 0) >= 1 && SaveManager.GetContentLevel(DataType.Research, 1) >= 1);
+                result = result && isUnlocked(idx);
                 break;
             case 4:
                 result = !(SaveManager.GetContentLevel(DataType.Research, 4) >= 6);
-                result = result && (SaveManager.GetContentLevel(DataType.Research, 2) >= 3 && SaveManager.GetContentLevel(DataType.Research, 3) >= 3);
+                result = result && isUnlocked(idx);
                 break;
             case 5:
                 result = !(SaveManager.GetContentLevel(DataType.Research, 5) >= 6);
-                result = result && (SaveManager.GetContentLevel(DataType.Research, 2) >= 3 && SaveManager.GetContentLevel(DataType.Research, 3) >= 3);
+                result = result && isUnlocked(idx);
+                break;
+            default:
+                return false;
+        }
+
+        return result;
+    }
+
+    private bool isUnlocked(int idx)
+    {
+        bool result = false;
+        switch (idx)
+        {
+            case 0:
+                result = true;
+                break;
+            case 1:
+                result = true;
+                break;
+            case 2:
+                result = (SaveManager.GetContentLevel(DataType.Research, 0) >= 1 && SaveManager.GetContentLevel(DataType.Research, 1) >= 1);
+                break;
+            case 3:
+                result = (SaveManager.GetContentLevel(DataType.Research, 0) >= 1 && SaveManager.GetContentLevel(DataType.Research, 1) >= 1);
+                break;
+            case 4:
+                result = (SaveManager.GetContentLevel(DataType.Research, 2) >= 3 && SaveManager.GetContentLevel(DataType.Research, 3) >= 3);
+                break;
+            case 5:
+                result = (SaveManager.GetContentLevel(DataType.Research, 2) >= 3 && SaveManager.GetContentLevel(DataType.Research, 3) >= 3);
                 break;
             default:
                 return false;

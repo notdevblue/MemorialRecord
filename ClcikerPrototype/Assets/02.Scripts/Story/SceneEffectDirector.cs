@@ -18,6 +18,12 @@ public class SceneEffectDirector : MonoBehaviour
     public void FadeInBackground(int idx, float duration)
     {
         curIdx = idx;
+        Debug.Log(curIdx);
+
+        foreach (var item in backgrounds)
+        {
+            item.gameObject.gameObject.SetActive(false);
+        }
 
         backgrounds[curIdx].gameObject.SetActive(true);
         backgrounds[curIdx].color = new Color(1, 1, 1, 0);

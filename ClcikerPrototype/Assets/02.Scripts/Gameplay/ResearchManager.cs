@@ -38,6 +38,23 @@ public class ResearchManager : MonoBehaviour
         _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>().Refresh();
     }
 
+    public void SetResearch(int idx, double time, Action onComplete)
+    {
+        if (idx == -1)
+            return;
+
+        _isResearching = true;
+        SaveManager.ResearchSaveData.curResearchIdx = idx;
+        SaveManager.ResearchSaveData.researchRemainTime = time;
+
+        _onUpgradeCompelete = onComplete;
+        _onUpgradeCompelete += () => _onUpgradeCompelete = null;
+        _onUpgradeCompelete += () => _isResearching = false;
+        _onUpgradeCompelete += () => SaveManager.RefreshResearch();
+        _onUpgradeCompelete += () => SaveManager.ResearchSaveData.curResearchIdx = -1;
+        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>()?.Refresh();
+    }
+
     /// <summary>
     /// 다음 레벨로 올라가는데 필요한 연구 시간을 보여줍니다.
     /// </summary>

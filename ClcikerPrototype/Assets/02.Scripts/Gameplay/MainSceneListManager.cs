@@ -25,7 +25,7 @@ public class MainSceneListManager : MonoBehaviour
 
         _toggles.ForEach(x =>
         {
-            x.image.color = new Color(1.0f, 1.0f, 1.0f, x.isOn ? 1.0f : 0.5f);
+            x.GetComponent<CanvasGroup>().alpha = x.isOn ? 1.0f : 0.5f;
             x.onValueChanged.AddListener(OnAnyTogglesOn);
         });
     }
@@ -35,7 +35,7 @@ public class MainSceneListManager : MonoBehaviour
         for (int i = 0; i < _views.Count; i++)
         {
             _views[i].gameObject.SetActive(_toggles[i].isOn);
-            _toggles[i].image.color = new Color(1.0f, 1.0f, 1.0f, _toggles[i].isOn ? 1.0f : 0.5f);
+            _toggles[i].GetComponent<CanvasGroup>().alpha = _toggles[i].isOn ? 1.0f : 0.5f;
         }
     }
 }

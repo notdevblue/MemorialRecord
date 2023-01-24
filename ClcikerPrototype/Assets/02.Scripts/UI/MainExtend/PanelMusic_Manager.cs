@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class PanelMusic_Manager : MonoBehaviour
     [SerializeField] PanelMusic_Content contentPrefab = null;
 
     [SerializeField] Button btnClose = null;
+    [SerializeField] Image imageFade;
 
     Custom_Slider curSlider = null;
     BGMSelector bgmSelector = null;
@@ -42,11 +44,12 @@ public class PanelMusic_Manager : MonoBehaviour
 
         btnClose.onClick.AddListener(() =>
         {
-            FindObjectOfType<SlideEffector>().SlideInFrom(Direction.Bottom, 1f, () =>
+            imageFade.gameObject.SetActive(true);
+            imageFade.DOFade(1.0f, 1.0f).OnComplete(() =>
             {
                 transform.parent.gameObject.SetActive(false);
 
-                FindObjectOfType<SlideEffector>().SlideOutTo(Direction.Bottom, 1f);
+                imageFade.DOFade(0.0f, 0.0f).OnComplete(() => imageFade.gameObject.SetActive(false));
             });
         });
     }
@@ -62,7 +65,7 @@ public class PanelMusic_Manager : MonoBehaviour
 
     private void OnClickBtnBuy(int idx)
     {
-        if(SaveManager.MusicBoughtArr[idx] && SaveManager.CurQuillPen < 1000)
+        if(SaveManager.MusicBoughtArr[idx] && SaveManager.CurInk < 1000)
         {
             return;
         }
@@ -77,7 +80,7 @@ public class PanelMusic_Manager : MonoBehaviour
         {
 
         },
-        "구매", "취소", "구매", $"곡 '{names[idx]}'를 구매하시겠습니까?", 1000
+        "구매", "취소", "구매", $"곡 '{names[idx]}'를 구매하시겠습니까?", 10
         );
 
     }

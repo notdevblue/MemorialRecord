@@ -13,6 +13,7 @@ public class BGMSelector : MonoBehaviour
     private void Start()
     {
         bgmSource.volume = SaveManager.MusicVolume;
+        maxVolume = SaveManager.MusicVolume;
         SaveManager.OnChangeMusicVolume += (value) => bgmSource.volume = value;
         SaveManager.OnChangeMusicVolume += (value) => maxVolume = value;
     }

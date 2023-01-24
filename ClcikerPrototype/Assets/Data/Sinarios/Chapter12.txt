@@ -1,3 +1,12 @@
+#PlayBGM : 0##FadeInBackground : 1, 0##RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Girl##FadeInCharacter : Girl, 0.3#어디보자 사랑의 꿈이 여기…
+#SetCharEmotion : Sigh2, Girl# 끄응차, 이거 무겁네.
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Say, Boy##FadeInCharacter : Boy, 0.3#지우야, 뭐해?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Normal, Girl##FadeInCharacter : Girl, 0.3#서가 정리, 읽은 건 치워야지.
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Ooo, Boy##FadeInCharacter : Boy, 0.3#오오 성실해. 나도 도와줄까?
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Frown, Girl##FadeInCharacter : Girl, 0.3#여기 너가 읽은 것도 있거든..? 빨리 와서 도와
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Boy##FadeInCharacter : Boy, 0.3#하핫 넵~
+#FadeOutTextBox : 0##FadeInBlackBlank : 2##FadeOutBlackBlank : 0.5##FadeInTextBox : 0##SetCharEmotion : Say, Boy#음… 그래서 지금 정리하는 것들 중에 가장 인상깊게 읽었던 게 이거야? 
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : NomalCrossArm, Girl##FadeInCharacter : Girl, 0.3#아무래도 그렇지.
 #SetCharEmotion : Say, Girl#너는 어느 건데?
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Think, Boy##FadeInCharacter : Boy, 0.3#나는~ '다정함이 어린 창가에' 일까?
 #SetCharEmotion : Say, Boy#책의 마지막 문장이 좋더라고~

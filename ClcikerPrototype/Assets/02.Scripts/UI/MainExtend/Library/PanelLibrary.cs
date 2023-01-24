@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PanelLibrary : MonoBehaviour
 
     [SerializeField] PanelLibrary_Detail detailPanel;
 
+    [SerializeField] Image imageFade;
     [SerializeField] Button btnClose;
 
     private void Awake()
@@ -21,17 +23,18 @@ public class PanelLibrary : MonoBehaviour
         for (int i = 0; i < outlines.Length; i++)
         {
             int y = i;
-            outlines[i].onContentClick += () => detailPanel.SetText(books[y].title, books[y].detail[0], books[y].detail[1]);
+            outlines[y].onContentClick += () => detailPanel.SetText(books[y].title, books[y].detail);
         }
 
         btnClose.onClick.AddListener(() =>
         {
-            FindObjectOfType<SlideEffector>().SlideInFrom(Direction.Bottom, 1f, () =>
+            imageFade.gameObject.SetActive(true);
+            imageFade.DOFade(1.0f, 1.0f).OnComplete(() =>
             {
                 transform.gameObject.SetActive(false);
                 mainCam.gameObject.SetActive(true);
 
-                FindObjectOfType<SlideEffector>().SlideOutTo(Direction.Bottom, 1f);
+                imageFade.DOFade(0.0f, 0.0f).OnComplete(() => imageFade.gameObject.SetActive(false));
             });
         });
     }
@@ -72,5 +75,5 @@ public class PanelLibrary : MonoBehaviour
 public class LibraryBook
 {
     public string title;
-    public string[] detail;
+    [TextArea] public string[] detail;
 }

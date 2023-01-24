@@ -12,17 +12,21 @@ public class SoundEffector : MonoBehaviour
     
     private void Awake()
     {
-        AudioClip[] clips = Resources.LoadAll<AudioClip>("Sound/SoundEffect");
+        AudioClip[] clips = Resources.LoadAll<AudioClip>("Sound/SoundEffects");
 
         for (int i = 0; i < clips.Length; i++)
         {
-            Debug.Log(clips[i].name);
             soundEffects.Add(clips[i].name, clips[i]);
         }
     }
 
     private void Start()
     {
+        foreach (var item in sourcePool)
+        {
+            item.volume = SaveManager.SoundEffectVolume;
+        }
+
         SaveManager.OnChangeSoundEffectVolume += value =>
         {
             foreach (var item in sourcePool)
@@ -36,7 +40,7 @@ public class SoundEffector : MonoBehaviour
     {
         foreach (var item in sourcePool)
         {
-
+            item.Stop();
         }
     }
 

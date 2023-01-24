@@ -30,18 +30,8 @@ public class RoomChanger : MonoBehaviour
         {
             maxIdx = SaveManager.GetRoomValue() - 1;
         }
-            
-        SaveManager.OnUpdateLevel += (idx, type, level) => {
-            if(type == DataType.Room && level > 0)
-            {
-                if (maxIdx < idx)
-                {
-                    maxIdx = idx;
-                    btnLeft.gameObject.SetActive(true);
-                    btnRight.gameObject.SetActive(true);
-                }
-            }
-        };
+
+        SaveManager.OnUpdateLevel += OnLevelUpdated;
 
         if (maxIdx == 0)
         {
@@ -52,6 +42,19 @@ public class RoomChanger : MonoBehaviour
         {
             btnLeft.gameObject.SetActive(true);
             btnRight.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnLevelUpdated(int idx, DataType type, int level)
+    {
+        if (type == DataType.Room && level > 0)
+        {
+            if (maxIdx < idx)
+            {
+                maxIdx = idx;
+                btnLeft.gameObject.SetActive(true);
+                btnRight.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -120,4 +123,8 @@ public class RoomChanger : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        SaveManager.OnUpdateLevel -= OnLevelUpdated;
+    }
 }
