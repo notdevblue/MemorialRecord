@@ -59,10 +59,6 @@ public class ListContent_Book : ListContent
             SaveManager.SetContentLevel(data._idx + 1, DataType.BookMark, 0);
             OnLockOff();
         }
-        else if(level == 1)
-        {
-            _textLevelUp.text = "구매\n";
-        }
 
         if(level >= 100)
         {
@@ -71,7 +67,7 @@ public class ListContent_Book : ListContent
             _textOutput.text = $"{DataManager.GetValueF(ValueCalculator.GetOutputValue(DataType.Book, data))} / 터치";
             _btnLevelup.onClick.RemoveAllListeners();
         }
-        else if (level == 1)
+        else if (level == 0)
         {
             _textLevelUp.text = "구매\n";
             _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValue(DataType.Book, data))}";

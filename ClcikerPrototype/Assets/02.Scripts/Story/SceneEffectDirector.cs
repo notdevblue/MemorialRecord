@@ -18,7 +18,6 @@ public class SceneEffectDirector : MonoBehaviour
     public void FadeInBackground(int idx, float duration)
     {
         curIdx = idx;
-        Debug.Log(curIdx);
 
         foreach (var item in backgrounds)
         {
@@ -68,6 +67,14 @@ public class SceneEffectDirector : MonoBehaviour
     public void FadeInBlackBlank(float duration)
     {
         blackBlank.DOFade(1.0f, duration);
+    }
+
+    public void DisappearAll(float duration)
+    {
+        foreach (var item in backgrounds)
+        {
+            item.DOFade(0.0f, duration).OnComplete(() => item.gameObject.SetActive(false));
+        }
     }
 
     public void FadeOutBlackBlank(float duration)

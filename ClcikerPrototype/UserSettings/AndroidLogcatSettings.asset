@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R3CMA02M3EB",
         "name": "com.OuterGames.Memorial",
-        "processId": 4534,
+        "processId": 25469,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,30 @@
             "deviceId": "R3CMA02M3EB",
             "name": "com.OuterGames.Memorial",
             "processId": 4534,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 20287,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 23408,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 24529,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CMA02M3EB",
+            "name": "com.OuterGames.Memorial",
+            "processId": 25469,
             "exited": false
         }
     ],

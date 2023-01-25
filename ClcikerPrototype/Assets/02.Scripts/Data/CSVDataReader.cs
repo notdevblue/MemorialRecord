@@ -193,6 +193,8 @@ public class CSVDataReader : Editor
     {
         string path = EditorUtility.OpenFilePanel("CSV파일에서 방 데이터 가져오기", "", "csv");
 
+        int count = 0;
+
         if (File.Exists(path))
         {
             using StreamReader sr = new StreamReader(path);
@@ -216,11 +218,12 @@ public class CSVDataReader : Editor
                 roomDataListSO.roomDatas.Add(
                     new RoomData(
                         int.Parse(strArr[0]), // idx
-                        AssetDatabase.LoadAssetAtPath<Sprite>("Assets/03.Sprites/UI/Icons/MainBook.png"), // sprite   
+                        AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/03.Sprites/ListIcons/Icon{count}/RoomIcon.png"), // sprite   
                         strArr[1] // Name
                         )
                     );
 
+                count++;
                 str = sr.ReadLine();
             }
 

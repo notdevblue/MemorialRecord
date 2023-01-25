@@ -20,6 +20,9 @@ public class StoryAlarm : MonoBehaviour
         if (SaveManager.IsNewUser)
         {
             SaveManager.InventoryItems = new List<Inventory.ItemParent>() { new Inventory.Item_Memorial(0, 1), new Inventory.Item_Ink(0, 1), new Inventory.Item_ResearchResource(0, 1) };
+            SaveManager.CurInk = 1;
+            //SaveManager.CurInk = 10000;
+            //SaveManager.CurMemorial = int.MaxValue;
             SaveManager.IsNewUser = false;
         }
     }

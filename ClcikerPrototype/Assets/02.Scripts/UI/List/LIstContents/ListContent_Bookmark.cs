@@ -60,8 +60,8 @@ public class ListContent_Bookmark : ListContent
         else if (level == 1)
         {
             _textLevelUp.text = "구매\n";
-            _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValue(DataType.Book, data))}";
-            _textOutput.text = $"{DataManager.GetValueF(ValueCalculator.GetOutputValue(DataType.Book, data))} / 터치";
+            _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValue(DataType.BookMark, data) * 1.7)}";
+            _textOutput.text = $"{DataManager.GetValueF((ValueCalculator.GetOutputValue(DataType.BookMark, data) * 20 * (SaveManager.GetContentLevel(DataType.Accessory, data._idx) > 0 ? 2 : 1)) / 60d)} / 초당";
         }
         else
         {

@@ -92,7 +92,7 @@ public class StorySceneDirector : MonoBehaviour
                 duration = float.Parse(args[0].ToString());
                 result = new WaitForSeconds(duration);
 
-                DisappearAll(duration);
+                seDirector.DisappearAll(duration);
                 break;
             case "FadeInBackground":
                 duration = float.Parse(args[1].ToString());
@@ -263,11 +263,6 @@ public class StorySceneDirector : MonoBehaviour
                 break;
         }
         return result;
-    }
-
-    public void DisappearAll(float duration)
-    {
-
     }
 
     public void Skip()

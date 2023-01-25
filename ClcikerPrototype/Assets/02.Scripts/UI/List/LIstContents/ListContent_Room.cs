@@ -70,11 +70,11 @@ public class ListContent_Room : ListContent
             case 1:
                 return 1000;
             case 2:
-                return 5000;
+                return 50000;
             case 3:
-                return 10000;
+                return 100000;
             case 4:
-                return 30000;
+                return 3000000;
             default:
                 return -1;
         }

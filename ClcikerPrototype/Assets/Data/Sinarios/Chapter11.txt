@@ -1,4 +1,4 @@
-#PlayBGM : 6##RemoveNameText : ##FadeInBackground : 2, 0##TypeInNameText : "연지우", 0##SetCharEmotion : Smile, Girl##PlaySoundEffect : "Piano"##FadeInCharacter : Girl, 0.3#~♪
+#PlayBGM : 6##RemoveNameText : ##FadeInBackground : 4, 0##TypeInNameText : "연지우", 0##SetCharEmotion : Smile, Girl##StopBGM : ##PlaySoundEffect : "Piano"##PlayBGM : 6##FadeInCharacter : Girl, 0.3#~♪
 #SetCharEmotion : Suprisedspark, Girl#어, 언제 왔어요?
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Think, Boy##FadeInCharacter : Boy, 0.3#이제야... 봐주시는 거군요…
 #RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Panic, Girl##FadeInCharacter : Girl, 0.3#어… 많이… 기다렸나요?

@@ -12,7 +12,7 @@
 #SetCharEmotion : Think2, Girl#그리고, 그리고 평소에 글을 쓰는 걸 좋아했을지도요.
 으음, 글을 좀 써보면 더 떠오를 수도 있을 것 같긴 한데…
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Tilt, Boy##FadeInCharacter : Boy, 0.3#후후, 그럴 줄 알고 미리 이걸 준비해뒀죠
-#RemoveNameText : ##FadeOutCharacter : 0##FadeOutTextBox : 0##FadeInSubObject : 3, 0.5#
+#RemoveNameText : ##FadeOutCharacter : 0##FadeOutTextBox : 0##FadeInSubObject : 2, 0.5#
 #FadeOutSubObject : 0##FadeInTextBox : 0##RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Suprised, Girl##FadeInCharacter : Girl, 0.3#와! 잉크랑 펜이네요. 어디서 찾으신거에요?
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3# 저쪽 창고에 있더라고요.
 #RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : BigBigSmile, Girl##FadeInCharacter : Girl, 0.3#진짜 고마워요!
