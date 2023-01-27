@@ -5,8 +5,8 @@ using DG.Tweening;
 using MemorialRecord.Data;
 using System;
 
-public class ContentListView_Bookmark : ContentListView
-{
+public class ContentListView_Bookmark : GenericContentListView<BookmarkData>
+{   
     private void Start()
     {
         InitChildren(_data._bookmarkListSO.bookmarkDatas);

@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using MemorialRecord.Data;
 
-public class ContentListView_Book : ContentListView
+public class ContentListView_Book : GenericContentListView<BookData>
 {
     private void Start()
     {

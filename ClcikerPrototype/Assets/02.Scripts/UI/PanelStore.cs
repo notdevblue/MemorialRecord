@@ -46,7 +46,7 @@ public class PanelStore : MonoBehaviour
             {
                 transform.parent.gameObject.SetActive(false);
 
-                imageFade.DOFade(0.0f, 0.0f).OnComplete(() => imageFade.gameObject.SetActive(false));
+                imageFade.DOFade(0.0f, 1.0f).OnComplete(() => imageFade.gameObject.SetActive(false));
             });
         });
     }
@@ -63,8 +63,9 @@ public class PanelStore : MonoBehaviour
 
     public void OnBuyItemWithInk(int itemIdx)
     {
-        Action onChange = null;
+        Action onBuy = null;
         int price = 0;
+        string itemInfo = "";
 
         switch ((ShopInkItem)itemIdx)
         {
@@ -72,25 +73,24 @@ public class PanelStore : MonoBehaviour
                 break;
             case ShopInkItem.RemoveAds:
                 price = 35;
-                onChange = () => new Inventory.Item_RemoveAds(0, 1).OnUse();
+                onBuy = () => new Inventory.Item_RemoveAds(0, 1).OnUse();
+                itemInfo = "광고 제거\n상품을 구매하시겠습니까?";
                 break;
             case ShopInkItem.ResearchPlus:
                 price = 10;
-                onChange = () => new Inventory.Item_ResearchPlus(0, 1).OnUse();
+                onBuy = () => new Inventory.Item_ResearchPlus(0, 1).OnUse();
+                itemInfo = "연구 자원 한계 증가\n상품을 구매하시겠습니까?";
                 break;
             case ShopInkItem.ChangeName:
                 price = 50;
-                onChange = () => invenManager.SetItem(new Inventory.Item_NameChanger(0, 1));
+                onBuy = () => invenManager.SetItem(new Inventory.Item_NameChanger(0, 1));
+                itemInfo = "이름 변경권\n상품을 구매하시겠습니까?";
                 break;
             default:
                 break;
         }
 
-        if (SaveManager.CurInk >= price)
-        {
-            SaveManager.CurInk -= price;
-            onChange?.Invoke();
-        }
+        FindObjectOfType<PanelGameNotice>(true).SetShopNoticePanel(onBuy, () => { }, "구매", "취소", "구매", itemInfo, price);
     }
 
     public void OnBuyMemorial(int minutes)
@@ -121,12 +121,11 @@ public class PanelStore : MonoBehaviour
                 break;
         }
 
-        if(SaveManager.CurInk >= price)
+        FindObjectOfType<PanelGameNotice>(true).SetShopNoticePanel(() =>
         {
-            SaveManager.CurInk -= price;
-
             new Inventory.Item_MemorialPack(0, 1, 60 * minutes).OnUse();
-        }
+        }, 
+        () => { },"구매","취소","구매",$"메모리얼\n{DataManager.GetValueF(60 * minutes * SaveManager.GetBookmarkValuePerSec())} 개를 구매하시겠습니까?", price);
     }
 
     public void OnBuyCash(ShopItemCash itemType)

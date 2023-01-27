@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ListContent : MonoBehaviour
+public abstract class ListContent<T> : MonoBehaviour where T : DataParent
 {
     bool isPressed = false;
 
@@ -21,7 +21,7 @@ public abstract class ListContent : MonoBehaviour
     [SerializeField] protected UpgradeBtn _btnLevelup = null;
 
     public Action OnLockOff;
-    protected DataParent _cachedData = null;
+    protected T _cachedData = null;
 
     float timer = 0f;
     float clickInterval = 0.05f;
@@ -45,7 +45,7 @@ public abstract class ListContent : MonoBehaviour
         _btnLevelup.gameObject.SetActive(level > -1);
     }
 
-    public virtual void InitContent<T>(T data) where T : DataParent
+    public virtual void InitContent(T data)
     {
         _cachedData = data;
         _contentImage.sprite = data._image;
@@ -55,8 +55,13 @@ public abstract class ListContent : MonoBehaviour
         _btnLevelup.onClick.AddListener(() => LevelUp(_cachedData));
     }
 
-    public abstract void RefreshContent<T>(T data) where T : DataParent;
+    public abstract void RefreshContent(T data);
 
-    protected abstract void LevelUp<T>(T data) where T : DataParent;
-    protected abstract void RefreshBtn<T>(T data, int level) where T : DataParent;
+    protected abstract void LevelUp(T data);
+    protected abstract void RefreshBtn(T data, int level);
+
+    private void OnDestroy()
+    {
+        OnLockOff = null;
+    }
 }

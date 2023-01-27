@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MemorialRecord.Data;
 
-public class ListContent_Bookmark : ListContent
+public class ListContent_Bookmark : ListContent<BookmarkData>
 {
-    public override void InitContent<T>(T data)
+    public override void InitContent(BookmarkData data)
     {
         base.InitContent(data);
 
@@ -18,7 +19,7 @@ public class ListContent_Bookmark : ListContent
         RefreshBtn(data, level);
     }
 
-    public override void RefreshContent<T>(T data)
+    public override void RefreshContent(BookmarkData data)
     {
         int level = SaveManager.GetContentLevel(DataType.BookMark, data._idx);
         _textTitle.text = $"{data._name} Lv.{(level < 0 ? 0 : level)}";
@@ -27,7 +28,7 @@ public class ListContent_Bookmark : ListContent
         RefreshBtn(data, level);
     }
 
-    protected override void LevelUp<T>(T data)
+    protected override void LevelUp(BookmarkData data)
     {
         if (SaveManager.GetContentLevel(DataType.BookMark, data._idx) >= 100)
             return;
@@ -42,7 +43,7 @@ public class ListContent_Bookmark : ListContent
         }
     }
 
-    protected override void RefreshBtn<T>(T data, int level)
+    protected override void RefreshBtn(BookmarkData data, int level)
     {
         if (level == 50 && SaveManager.GetContentLevel(DataType.Accessory, data._idx) == -1)
         {
@@ -57,7 +58,7 @@ public class ListContent_Bookmark : ListContent
             _textOutput.text = $"{DataManager.GetValueF((ValueCalculator.GetOutputValue(DataType.BookMark, data) * 20 * (SaveManager.GetContentLevel(DataType.Accessory, data._idx) > 0 ? 2 : 1)) / 60d)} / 초당";
             _btnLevelup.onClick.RemoveAllListeners();
         }
-        else if (level == 1)
+        else if (level == 0)
         {
             _textLevelUp.text = "구매\n";
             _textLevelUpCost.text = $"{DataManager.GetValueF(ValueCalculator.GetUpgradeValue(DataType.BookMark, data) * 1.7)}";

@@ -30,7 +30,6 @@ public static class CustomSceneManager
         isLoading = true;
 
         curChapter = chapter;
-        SaveManager.SetStoryDict(chapter, true);
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
 
         SceneManager.sceneLoaded += OnSceneChangedFromMain;
@@ -62,6 +61,7 @@ public static class CustomSceneManager
     {
         if (scene.name == "LoadingScene")
         {
+            SaveManager.WatchedStories[curChapter] = true;
             GameObject.FindObjectOfType<LoadingSceneFade>().onFadeOutComplete += () =>
             {
                 SceneManager.UnloadSceneAsync("StoryScene");

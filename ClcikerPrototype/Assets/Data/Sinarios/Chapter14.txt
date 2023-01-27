@@ -1,0 +1,38 @@
+#PlayBGM : 7##FadeInBackground : 5, 0##RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0#아마 나는 너를 잊지 못하리라.
+그리고 다시 만나지도 못하리라.
+그야, 너는 그날 죽었으니까.
+#FadeOutBackground : 0##FadeInBackground : 0, 1##RemoveNameText : ##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0##MoveCharacter : Left, 0##SetCharacterJump : 0.5# 
+#FadeOutCharacter : 0##FadeOutBackground : 0.0##FadeInBackground : 1, 1##MoveCharacterReturn : 0##MoveCharacter : Right, 0##SetCharEmotion : Tiltques, Boy##FadeInCharacter : Boy, 0##SetCharacterStandUp : 0.5#
+#FadeOutCharacter : 0##FadeOutBackground : 0.0##FadeInBackground : 4, 1##MoveCharacterReturn : 0##SetCharEmotion : Embarrassed, Boy##FadeInCharacter : Boy, 0#
+#FadeInIllustration : 18, 0.5##FadeOutBackground : 0#깨달은 건… 언제 부터였을까.
+어쩌면, 그저 외면하고 있었을지도 몰라.
+#FadeOutIllustration : 0.5##FadeInIllustration : 24, 0.5##WaitForSeconds : 2##FadeOutIllustration : 0##FadeInBackground : 5, 0#그날, 너는 교통사고를 당했다.
+나와 만나는 길에.
+그날, 너의 오른손에는 갈 곳 잃은 꽃다발이 고이 쥐여져 있었다.
+화창한 봄날, 빨갛게 꽃잎은 휘날린다.
+#FadeInIllustration : 25, 0.5#어쩌면, 정말 어쩌면 우리가 이어졌을지도 모르는 그날.
+나는 천천히 스러져 가는 너의 모습을 지켜보았다.
+#FadeOutIllustration : 0.5##FadeInIllustration : 24, 0.5#어째서인지 더는 너가 손에 잡히지 않아서,
+내 손은 허공을 유영했다.
+그런 나에게 너는,
+#FadeOutIllustration : 0##FadeInIllustration : 19, 0.5#너는, 평소와도 같은 그 무심한 무표정한 얼굴에서
+#FadeOutIllustration : 0##FadeInIllustration : 26, 0.5#그리고는 그 능글맞은 얼굴을.
+그리고는, 그리고는 슬며시,
+#FadeOutIllustration : 0##FadeInIllustration : 20, 0.5#슬며시 미소지었다.
+그 슬픈 웃음은 어쩐지 따스해보였다.
+#FadeOutIllustration : 0##DisappearAll : 0##FadeInBackground : 0, 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Smile, Boy##FadeInCharacter : Boy, 0.3#내 몫까지 열심히 살아줘.
+#SetCharEmotion : BigBigSmile, Boy#너와 함께한 하루하루가 행복했어.
+#FadeOutCharacter : 0##FadeInIllustration : 21, 0.5##PlaySoundEffect : "Door"#
+#RemoveNameText : ##TypeInNameText : "연지우", 0#덜컥,하고 결코 열릴 기미가 보이지 않던 도서관의 정문이 활짝 열렸다
+#FadeOutIllustration : 0##FadeInIllustration : 20, 0.5#그리고 뒤를 돌아보았을때,
+#FadeOutIllustration : 0##FadeInIllustration : 27, 0.5#너는 너를 잊을 수 없게 만든 그 미소만 남긴 채, 떠나갔다.
+#FadeOutIllustration : 0##FadeInBackground : 5, 0#나는 너의 그 미소를 영원히 마음에 담은 채 살아가리라.
+#FadeInWhiteBlank : 2#하이얀 햇살이 가득찬 유리창. 그래 그 너머에 자리한것은….#FadeOutWhiteBlank : 0#
+#RemoveNameText : #삐---
+--씨 제 말 들려요?
+--씨!
+삐---
+#FadeInIllustration : 22, 2#은하쌤 여기 환자분 깨어나셨어요!
+은하쌤!!
+삐---
+#FadeOutIllustration : 0#소녀는, 조용히 울음을 삼켰다.

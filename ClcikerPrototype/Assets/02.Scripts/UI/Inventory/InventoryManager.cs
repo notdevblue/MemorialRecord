@@ -43,7 +43,7 @@ namespace Inventory
                 Delete();
             }
 
-            onUse();
+            onUse?.Invoke();
         }
 
         public virtual void Delete()

@@ -35,7 +35,6 @@ public class ExtendMenuManager : MonoBehaviour
                             sub.gameObject.SetActive(true);
                         }
 
-                       
                         imageFade.DOFade(0.0f, 1f).OnComplete(() => imageFade.gameObject.SetActive(false));
                     });
                 });

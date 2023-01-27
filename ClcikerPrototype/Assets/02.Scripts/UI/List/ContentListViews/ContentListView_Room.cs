@@ -5,7 +5,7 @@ using DG.Tweening;
 using MemorialRecord.Data;
 using System;
 
-public class ContentListView_Room : ContentListView
+public class ContentListView_Room : GenericContentListView<RoomData>
 {
     private void Start()
     {

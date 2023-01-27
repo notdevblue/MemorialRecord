@@ -1,10 +1,11 @@
+using MemorialRecord.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListContent_Book : ListContent
+public class ListContent_Book : ListContent<BookData>
 {
-    public override void InitContent<T>(T data)
+    public override void InitContent(BookData data)
     {
         base.InitContent(data);
 
@@ -18,7 +19,7 @@ public class ListContent_Book : ListContent
         RefreshBtn(data, level);
     }
 
-    public override void RefreshContent<T>(T data)
+    public override void RefreshContent(BookData data)
     {
         int level = SaveManager.GetContentLevel(DataType.Book, data._idx);
         _textTitle.text = $"{data._title} Lv.{(level < 0 ? 0 : level)}";
@@ -27,7 +28,7 @@ public class ListContent_Book : ListContent
         RefreshBtn(data, level);
     }
 
-    protected override void LevelUp<T>(T data)
+    protected override void LevelUp(BookData data)
     {
         if (SaveManager.GetContentLevel(DataType.Book, data._idx) >= 100)
             return;
@@ -41,7 +42,9 @@ public class ListContent_Book : ListContent
 
             if (SaveManager.GetContentLevel(DataType.Book, data._idx) == 1)
             {
-                FindObjectOfType<StoryAlarm>().CallStoryAlarm((int)SaveManager.IdxCurStory);
+                SaveManager.UnlockNewChapter();
+                Debug.Log(SaveManager.UnlockedStories.Count);
+                FindObjectOfType<StoryAlarm>().CallStoryAlarm(SaveManager.UnlockedStories.Count - 1);
             }
 
             RefreshContent(data);
@@ -49,7 +52,7 @@ public class ListContent_Book : ListContent
         }
     }
 
-    protected override void RefreshBtn<T>(T data, int level)
+    protected override void RefreshBtn(BookData data, int level)
     {
         if (level == 20 && SaveManager.GetContentLevel(DataType.Book, data._idx + 1) == -1)
         {

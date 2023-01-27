@@ -8,6 +8,7 @@ public class CameraResoultion : MonoBehaviour
     {
         SetGameResolution();
     }
+
     void SetGameResolution()
     {
         Camera.main.orthographicSize *= ((float)Screen.height / Screen.width) / (1920f / 1080);

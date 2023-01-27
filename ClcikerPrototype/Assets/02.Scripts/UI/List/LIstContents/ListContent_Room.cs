@@ -1,10 +1,11 @@
+using MemorialRecord.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListContent_Room : ListContent
+public class ListContent_Room : ListContent<RoomData>
 {
-    public override void InitContent<T>(T data)
+    public override void InitContent(RoomData data)
     {
         base.InitContent(data);
 
@@ -16,7 +17,7 @@ public class ListContent_Room : ListContent
         CommonRefresh(level);
     }
 
-    public override void RefreshContent<T>(T data)
+    public override void RefreshContent(RoomData data)
     {
         int level = SaveManager.GetContentLevel(DataType.Room, data._idx);
         _textTitle.text = $"{data._name} Lv.{(level < 0 ? 0 : level)}";
@@ -25,7 +26,7 @@ public class ListContent_Room : ListContent
         RefreshBtn(data, level);
     }
 
-    protected override void LevelUp<T>(T data)
+    protected override void LevelUp(RoomData data)
     {
         if (SaveManager.GetContentLevel(DataType.Room, data._idx) >= 1)
             return;
@@ -40,7 +41,7 @@ public class ListContent_Room : ListContent
         }
     }
 
-    protected override void RefreshBtn<T>(T data, int level)
+    protected override void RefreshBtn(RoomData data, int level)
     {
         if (level == 1 && SaveManager.GetContentLevel(DataType.Room, data._idx + 1) == -1)
         {
@@ -68,13 +69,13 @@ public class ListContent_Room : ListContent
         switch (idx)
         {
             case 1:
-                return 1000;
-            case 2:
                 return 50000;
+            case 2:
+                return 50000000;
             case 3:
-                return 100000;
+                return 5000000000;
             case 4:
-                return 3000000;
+                return 100000000000;
             default:
                 return -1;
         }

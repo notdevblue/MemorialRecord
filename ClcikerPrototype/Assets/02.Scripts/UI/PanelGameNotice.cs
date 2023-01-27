@@ -38,14 +38,14 @@ public class PanelGameNotice : MonoBehaviour
         btnCancel.onClick.AddListener(() => btnCancel.onClick.RemoveAllListeners());
     }
 
-    public void SetShopNoticePanel(Action onBuy, Action onCancel, string okBtnText, string cancelBtnText, string noticeTitle, string noticeMsg, int price)
+    public void SetShopNoticePanel(Action onBuy, Action onCancel, string buyBtnText, string cancelBtnText, string noticeTitle, string noticeMsg, int price)
     {
         noticeUI.gameObject.SetActive(true);
 
         textNoticeTitle.text = noticeTitle;
         textNoticeMsg.text = noticeMsg;
         textPrice.text = price.ToString();
-        btnBuy.GetComponentInChildren<Text>().text = okBtnText;
+        btnBuy.GetComponentInChildren<Text>().text = buyBtnText;
         btnCancel.GetComponentInChildren<Text>().text = cancelBtnText;
 
         btnBuy.gameObject.SetActive(true);

@@ -65,7 +65,7 @@ public class PanelMusic_Manager : MonoBehaviour
 
     private void OnClickBtnBuy(int idx)
     {
-        if(SaveManager.MusicBoughtArr[idx] && SaveManager.CurInk < 1000)
+        if(SaveManager.MusicBoughtArr[idx] && SaveManager.CurInk < 10)
         {
             return;
         }

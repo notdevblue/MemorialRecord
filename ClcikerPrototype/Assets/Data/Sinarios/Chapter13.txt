@@ -13,6 +13,6 @@
 ...그렇게 나는 처음으로 좋아하는 사람이 생겼다.
 #FadeInIllustration : 17, 0##FadeOutIllustration : 0.5##FadeInIllustration : 17, 0##FadeOutIllustration : 0.5##FadeInIllustration : 17, 0##FadeOutIllustration : 0.5#그러나, 한 편의 영화에도 끝이 있듯이
 그러나, 영화와는 달리,
-나의 정말로 행복은 갑작스럽게,
+나의 행복은 정말로 갑작스럽게,
 #FadeInIllustration : 17, 0##RemoveNameText : ##TypeInNameText : PlayerName, 0#다행이야… 다치지 않아서…
 #FadeOutIllustration : 0.5#갑작스럽게 끝을 고하게 되었다.

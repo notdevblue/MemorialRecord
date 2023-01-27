@@ -19,6 +19,8 @@ public class PanelText : MonoBehaviour
     [SerializeField] Image textFinishImage;
     [SerializeField] Button btnSkip;
 
+    int _idx = 0;
+
     private void Awake()
     {
         textFinishImage.gameObject.SetActive(false);
@@ -49,6 +51,7 @@ public class PanelText : MonoBehaviour
             return;
         }
 
+        _idx = idx;
         StartCoroutine(PlayScenarios(scenarios[idx]));
     }
 

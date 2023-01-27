@@ -33,6 +33,9 @@ public class PanelLibrary_Detail : MonoBehaviour
 
     public void Refresh()
     {
+        _btnLeft.gameObject.SetActive(_curidx != 0);
+        _btnRight.gameObject.SetActive((_curidx + 1) * 2 < _details.Length);
+
         if (_curidx == 0)
         {
             _textTitle.gameObject.SetActive(true);
@@ -68,7 +71,7 @@ public class PanelLibrary_Detail : MonoBehaviour
     }
 
     public void OnClickRight()
-    {
+    {   
         if ((_curidx + 1) * 2 < _details.Length)
         {
             _curidx++;

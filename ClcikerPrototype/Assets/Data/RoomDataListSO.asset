@@ -18,28 +18,28 @@ MonoBehaviour:
     _writer: 
     _name: "\uCE74\uC6B4\uD130"
     _info: 
-    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+    _image: {fileID: 21300000, guid: 84a4c282be72d9b4eb7bdba15fb79879, type: 3}
   - _idx: 1
     _title: 
     _writer: 
     _name: "\uC11C\uACE0"
     _info: 
-    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+    _image: {fileID: 21300000, guid: 00573a36e40a8b746a009e08391ec13e, type: 3}
   - _idx: 2
     _title: 
     _writer: 
     _name: "\uC815\uC6D0"
     _info: 
-    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+    _image: {fileID: 21300000, guid: ed9ccb34670a7ab49b999c9655afdf75, type: 3}
   - _idx: 3
     _title: 
     _writer: 
     _name: "\uC11C\uC7AC"
     _info: 
-    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+    _image: {fileID: 21300000, guid: 64fba087a7c8455428d74bb7b4164004, type: 3}
   - _idx: 4
     _title: 
     _writer: 
     _name: "\uD53C\uC544\uB178\uBC29"
     _info: 
-    _image: {fileID: 21300000, guid: 9380a80e5cb95464596687f3b015bc96, type: 3}
+    _image: {fileID: 21300000, guid: a39d13ee468191146aac9473d138cb6d, type: 3}

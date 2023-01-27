@@ -50,6 +50,7 @@ public class BGMSelector : MonoBehaviour
 
     public void SetActiveBGM(bool isActive, float duration, System.Action onComplete = null)
     {
+        bgmSource.DOComplete();
         bgmSource.DOFade(isActive ? maxVolume : 0, duration).OnComplete(() => onComplete?.Invoke());
     }
 }

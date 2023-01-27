@@ -14,13 +14,13 @@
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Panic, Boy##FadeInCharacter : Boy, 0.3#엇, 거기 조심!
 #RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Suprisedspark, Girl##FadeInCharacter : Girl, 0.3##PlaySoundEffect : "Crash"#어? 으악! 
 #StopBGM : ##FadeInIllustration : 16, 0.5#
-#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0#괜찮아..? 조심해야지.#FadeOutIllustration : 0##FadeInIllustration : 17, 0##WaitForSecons : 0.7##FadeOutIllustration : 0##FadeInIllustration : 16, 0#
-#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutIllustration : 0##FadeInIllustration : 17, 0##WaitForSecons : 0.7##FadeOutIllustration : 0##FadeInIllustration : 16, 0#어… 어….?
+#RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0#괜찮아..? 조심해야지.#FadeOutIllustration : 0##FadeInIllustration : 17, 0##WaitForSeconds : 0.7##FadeOutIllustration : 0##FadeInIllustration : 16, 0#
+#RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutIllustration : 0##FadeInIllustration : 17, 0##WaitForSeconds : 0.7##FadeOutIllustration : 0##FadeInIllustration : 16, 0#어… 어….?
 #FadeOutIllustration : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Panic, Boy##FadeInCharacter : Boy, 0.3#듣고 있어? 
 #SetCharEmotion : Think, Boy#(틀렸다. 그녀는 더 이상 듣고 있지 않다.)
 #RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Panic, Girl##FadeInCharacter : Girl, 0.3#어…. 어….!
 #RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Say, Boy##FadeInCharacter : Boy, 0.3#저기…
 #RemoveNameText : ##TypeInNameText : "연지우", 0##FadeOutCharacter : 0##SetCharEmotion : Frown, Girl##FadeInCharacter : Girl, 0.3##MoveCharacter : Left, 0.5##FadeOutCharacter : 0##MoveCharacterReturn : 0##RemoveNameText : #
-#RemoveNameText : ##MoveCharacterReturn : 0##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Think Boy##FadeInCharacter : Boy, 0.3#(그녀는 내 말을 듣지도 않고 달려 나갔다.) 
+#RemoveNameText : ##MoveCharacterReturn : 0##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : Think, Boy##FadeInCharacter : Boy, 0.3#(그녀는 내 말을 듣지도 않고 달려 나갔다.) 
 (그리고..)
 #MoveCharacterReturn : 0##RemoveNameText : ##TypeInNameText : PlayerName, 0##FadeOutCharacter : 0##SetCharEmotion : TearUp, Girl##FadeInCharacter : Girl, 0.3#(그녀의 얼굴 한 뼘에서는 눈물이 흐르고 있었다.)

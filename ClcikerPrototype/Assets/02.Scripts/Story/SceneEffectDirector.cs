@@ -25,7 +25,7 @@ public class SceneEffectDirector : MonoBehaviour
         }
 
         backgrounds[curIdx].gameObject.SetActive(true);
-        backgrounds[curIdx].color = new Color(1, 1, 1, 0);
+        backgrounds[curIdx].color = new Color(backgrounds[curIdx].color.r, backgrounds[curIdx].color.g, backgrounds[curIdx].color.b, 0);
         backgrounds[curIdx].DOFade(1.0f, duration);
     }
 

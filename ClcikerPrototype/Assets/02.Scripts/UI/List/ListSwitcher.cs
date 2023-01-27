@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MemorialRecord.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,8 @@ public class ListSwitcher : MonoBehaviour
     public Button btnOpen;
 
     public List<Button> btns;
-    public List<ContentListView> switchLists = null;
+
+    public List<ListView> listViews = null;
 
     private bool isSwitching = false;
 
@@ -47,10 +49,11 @@ public class ListSwitcher : MonoBehaviour
 
         curIdx = listNum;
         isSwitching = true;
-        switchLists.Find(x => x.gameObject.activeSelf).HideItems(() =>
+
+        listViews.Find(x => x.gameObject.activeSelf).HideItems(() =>
         {
-            switchLists.ForEach(x => x.gameObject.SetActive(false));
-            switchLists[listNum].gameObject.SetActive(true);
+            listViews.ForEach(x => x.gameObject.SetActive(false));
+            listViews[listNum].gameObject.SetActive(true);
             isSwitching = false;
         });
     }

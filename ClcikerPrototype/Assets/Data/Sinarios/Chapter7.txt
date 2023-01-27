@@ -1,3 +1,15 @@
+#PlayBGM : 0##RemoveNameText : ##FadeInBlackBlank : 0#나는 책이 너무 좋았다.
+책 속에서 나는 무엇이든 될 수 있었다.
+멋진 왕자님의 사랑을 받는 공주님도, 위풍당당한 여해적도, 그 무엇도.
+학교에서도, 집에서도, 늘 책을 끼고 살았다. 쉬는시간만 되면 학교 도서관에 들렸고, 하교 후에도 동네 도서관이나 헌책방을 서성였다. 
+#FadeOutBlackBlank : 0.5##FadeInBackground : 0, 0#그래서 나는 도서부에 들어갔다. 그만큼이나 책이 좋았으니까.
+그러나 그곳에서 만난 사람들은 그렇지 않은 듯 했다.
+#FadeInIllustration : 9, 0.5##PlaySoundEffect : "Loud"#도서부랍시고 들어온 주제에 도서관에서 떠들질 않나, 서가정리도 맨날 엉망에, 항상 내가 다 해버리기 일쑤였다.
+#FadeOutIllustration : 0#그런 나날들이었지만, 나는 도서부에 남았다.
+여전히 책이 좋았으니까.
+#RemoveNameText : ##SetCharEmotion : Normal, Boy##FadeInCharacter : Boy, 0.3#그렇지만 그런 도서부 속에서도 나를 신경써주는 사람은 있었다.
+#SetCharEmotion : Smile, Boy#늘 웃는 얼굴이던 사람, PlayerName.
+그는 친구도 많았고, 항상 자신감에 차있었다. 그의 주변에는 언제나 웃음이 가득했다.
 #DisappearAll : 0##FadeInBackground : 3, 0##SetCharacterShadow : 0.5#... 멋있는 사람이었다. 마치 책 속에서나 나올 법한 사람. 우중충하고 음울한 나와는 달리.
 그럼에도 그는 늘 겉도는 나를 챙겨주곤 했다.
 다른 친구들과 친하게 지내도록 도와주고, 사람들 앞에만 서면 자신이 없어져서 축 쳐진 나를 응원해줬다.
@@ -7,6 +19,6 @@
 #FadeInIllustration : 10, 0.5#
 #TypeInNameText : PlayerName, 0#지우는 책을 진짜 좋아하나보다.
 … 나도 그렇게 무언가 정말 좋아하는 게 있다면 좋을텐데.
-#FadeOutIllustration : 0##FadeInIllustration : 11, 0.5##WaitForSeconds : 2##FadeOutIllustration : 0##FadeInIllustration : 12, 0.5#
-그렇다면 같이 책을 읽자고 말하고 싶었다. 그러나 그가 바라는 것은 그것이 아님을 나는 어렴풋이 알고 있었기에 말을 삼켰다.
+#FadeOutIllustration : 0##FadeInIllustration : 11, 0.5##WaitForSeconds : 2##FadeOutIllustration : 0##FadeInIllustration : 12, 0#
+#RemoveNameText : #그렇다면 같이 책을 읽자고 말하고 싶었다. 그러나 그가 바라는 것은 그것이 아님을 나는 어렴풋이 알고 있었기에 말을 삼켰다.
 #FadeOutIllustration : 0##FadeInBackground : 5, 0#그날의, 얼핏 서글퍼 보이는 그의 인상은 내 기억 앨범의 한 장의 사진이 되어 있었다.

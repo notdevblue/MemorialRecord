@@ -1,10 +1,11 @@
+using MemorialRecord.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListContent_Acc : ListContent
+public class ListContent_Acc : ListContent<AccessoryData>
 {
-    public override void InitContent<T>(T data)
+    public override void InitContent(AccessoryData data)
     {
         base.InitContent(data);
 
@@ -16,7 +17,7 @@ public class ListContent_Acc : ListContent
         CommonRefresh(level);
     }
 
-    public override void RefreshContent<T>(T data)
+    public override void RefreshContent(AccessoryData data)
     {
         int level = SaveManager.GetContentLevel(DataType.Accessory, data._idx);
         _textTitle.text = $"{data._name} Lv.{(level < 0 ? 0 : level)}";
@@ -25,7 +26,7 @@ public class ListContent_Acc : ListContent
         RefreshBtn(data, level);
     }
 
-    protected override void LevelUp<T>(T data)
+    protected override void LevelUp(AccessoryData data)
     {
         if (SaveManager.GetContentLevel(DataType.Accessory, data._idx) >= 1)
             return;
@@ -40,7 +41,7 @@ public class ListContent_Acc : ListContent
         }
     }
 
-    protected override void RefreshBtn<T>(T data, int level)
+    protected override void RefreshBtn(AccessoryData data, int level)
     {
         if (level >= 1)
         {

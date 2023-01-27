@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using MemorialRecord.Data;
 
 public class MainSceneListManager : MonoBehaviour
 {
     [SerializeField] InitDataSO _listInfos;
-    [SerializeField] List<ContentListView> _contentListViews;
+
+    [SerializeField] List<ListView> listViews = null;
+
     [SerializeField] List<Transform> _views;
     [SerializeField] List<Toggle> _toggles;
 
     private void Awake()
     {
-        foreach (var item in _contentListViews)
+        listViews.ForEach(item =>
         {
             item.SetData(_listInfos);
-        }
+        });
     }
 
     private void Start()

@@ -1,11 +1,12 @@
 using DG.Tweening;
+using MemorialRecord.Data;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContentListView_Research : ContentListView
+public class ContentListView_Research : GenericContentListView<ResearchData>
 {
     [SerializeField] Button btnExit = null;
     [SerializeField] Image imageFade;
@@ -46,15 +47,15 @@ public class ContentListView_Research : ContentListView
         }
     }
 
-    protected override void InitChildren<T>(List<T> data)
+    protected override void InitChildren(List<ResearchData> data)
     {
         foreach (var item in data)
         {
-            AddItem(item).OnLockOff += () => FindObjectsOfType<ContentListView>().ToList().ForEach((x) => x.RefreshOnlyData(data));
+            AddItem(item).OnLockOff += () => FindObjectsOfType<GenericContentListView<ResearchData>>().ToList().ForEach((x) => x.RefreshOnlyData(data));
         }
     }
 
-    protected override void RefreshItems<T>(List<T> data)
+    protected override void RefreshItems(List<ResearchData> data)
     {
         for (int i = 0; i < _children.Count; i++)
         {

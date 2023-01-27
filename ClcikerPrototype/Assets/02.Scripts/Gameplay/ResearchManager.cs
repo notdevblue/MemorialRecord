@@ -35,7 +35,7 @@ public class ResearchManager : MonoBehaviour
         _onUpgradeCompelete += () => _isResearching = false;
         _onUpgradeCompelete += () => SaveManager.RefreshResearch();
         _onUpgradeCompelete += () => SaveManager.ResearchSaveData.curResearchIdx = -1;
-        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>().Refresh();
+        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>(true).Refresh();
     }
 
     public void SetResearch(int idx, double time, Action onComplete)
@@ -52,7 +52,7 @@ public class ResearchManager : MonoBehaviour
         _onUpgradeCompelete += () => _isResearching = false;
         _onUpgradeCompelete += () => SaveManager.RefreshResearch();
         _onUpgradeCompelete += () => SaveManager.ResearchSaveData.curResearchIdx = -1;
-        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>()?.Refresh();
+        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>(true)?.Refresh();
     }
 
     /// <summary>

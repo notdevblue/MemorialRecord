@@ -5,7 +5,7 @@ using UnityEngine;
 using MemorialRecord.Data;
 using UnityEngine.UI;
 
-public class ListContent_Research : ListContent
+public class ListContent_Research : ListContent<ResearchData>
 {
     [SerializeField] PanelResearchResource _panelResource = null;
     [SerializeField] Image fillImage = null;
@@ -25,7 +25,7 @@ public class ListContent_Research : ListContent
         }
     }
 
-    public override void InitContent<T>(T data)
+    public override void InitContent(ResearchData data)
     {
         int level = SaveManager.GetContentLevel(DataType.Research, data._idx);
 
@@ -41,7 +41,7 @@ public class ListContent_Research : ListContent
         RefreshBtn(data, SaveManager.GetContentLevel(DataType.Research, data._idx));
     }
 
-    public override void RefreshContent<T>(T data)
+    public override void RefreshContent(ResearchData data)
     {
         int level = SaveManager.GetContentLevel(DataType.Research, data._idx);
         _textTitle.text = $"{data._name} Lv.{(level < 0 ? 0 : level)}";
@@ -50,7 +50,7 @@ public class ListContent_Research : ListContent
         fillImage.fillAmount = 0;
     }
 
-    protected override void LevelUp<T>(T data)
+    protected override void LevelUp(ResearchData data)
     {
         if (CanUpgrade(data._idx) && !researchManager._isResearching)   
         {
@@ -71,7 +71,7 @@ public class ListContent_Research : ListContent
         }
     }
 
-    protected override void RefreshBtn<T>(T data, int level)
+    protected override void RefreshBtn(ResearchData data, int level)
     {
         if(!CanUpgrade(data._idx))
         {

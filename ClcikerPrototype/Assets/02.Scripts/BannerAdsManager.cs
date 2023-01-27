@@ -11,6 +11,7 @@ public class BannerAdsManager : MonoBehaviour, IUnityAdsInitializationListener, 
 
     public void OnInitializationComplete()
     {
+
         Advertisement.Banner.SetPosition(_bannerPosition);
         Advertisement.Banner.Load(BANNER_PLACEMENT);
         Advertisement.Banner.Show(BANNER_PLACEMENT);
@@ -53,18 +54,24 @@ public class BannerAdsManager : MonoBehaviour, IUnityAdsInitializationListener, 
 
     private void Start()
     {
-        if(Advertisement.isInitialized == false)
+        if (!SaveManager.IsRemoveAds)
         {
-            Advertisement.Initialize("5131655", true, this);
-        }
-        else
-        {
-            Advertisement.Banner.Show(BANNER_PLACEMENT);
+            if (Advertisement.isInitialized == false)
+            {
+                Advertisement.Initialize("5131655", true, this);
+            }
+            else
+            {
+                Advertisement.Banner.Show(BANNER_PLACEMENT);
+            }
         }
     }
 
     private void OnDestroy()
     {
-        Advertisement.Banner.Hide(false);
+        if(Advertisement.isInitialized)
+        {
+            Advertisement.Banner.Hide(false);
+        }
     }
 }
