@@ -55,26 +55,9 @@ public class SoundEffector : MonoBehaviour
     }
 
     public AudioSource GetAudioSource()
-    {
-        AudioSource result = null;
-        if(sourcePool.Count > 0)
-        {
-            if(!sourcePool.Peek().gameObject.activeSelf)
-            {
-                result = sourcePool.Dequeue();
-            }
-            else
-            {
-                result = InstantiateAudioClip();
-            }
-        }
-        else
-        {
-            result = InstantiateAudioClip();
-        }
-
-        return result;
-    }
+        =>  (sourcePool.Count <= 0
+            || sourcePool.Peek().gameObject.activeSelf)
+                ? InstantiateAudioClip() : sourcePool.Dequeue();
 
     public AudioSource InstantiateAudioClip()
     {

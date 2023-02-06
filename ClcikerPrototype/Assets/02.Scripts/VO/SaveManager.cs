@@ -28,7 +28,7 @@ public static class SaveManager
     public static event Action OnChangedWatchedStoryList;
     public static event Action OnSetBooster;
 
-    #region ¿ÜºÎ º¯¼ö ÂüÁ¶¿ë Getter, Setter
+    #region ì™¸ë¶€ ë³€ìˆ˜ ì°¸ì¡°ìš© Getter, Setter
     public static double CurMemorial
     {
         get
@@ -215,19 +215,19 @@ public static class SaveManager
     public static readonly string _profileSavePath = _saveDir + "/ProfileData.sav";
     public static readonly string _dataSavePath = _saveDir + "/SaveData.sav";
     public static readonly string _defaultSavePath = "Assets/Resources/DefaultSaveData.txt";
-    private static readonly string _privateKey = "z$C&F)J@NcRfUjXn";//16byte ÀÌ»óÀÇ ¹®ÀÚ¿­
+    private static readonly string _privateKey = "z$C&F)J@NcRfUjXn";//16byte ì´ìƒì˜ ë¬¸ìì—´
     private readonly static string pushers = 
-        "Twilight,KDiwhY,RomiDal,kmg0924,±è·ùºó,°í‚ó,Á¤¿ì¸°,BigDrum,DeCKer,Å¥¼¼,¸»¶ûÇÑº¼," +
-        "°­º´¼±,SPIEA,Çì·¹ÀÌ½º,½Ã´Ï¿©ºñ,¹é°õ96,¾È°¡·É°­¼ÒÀº,Chron,ÄÚ¸¶Å°,°Ë´õ¸®ÄíÅ°,Ä«»ç¸£,ÇÏ·çº°»çÀÌ,SHak,K.Kaki28,¿¬¸®È­,Å©·Ò,ÇÏ´ÃÆäÀÌÁö," +
-        "á³äñ-mellrose,ÅÃ³Û,Taehoon Lim,µµ·òµµ·ò,Àº¿µÀÌ¸ğ,Nuri,Pnamue,xonoa,³ÊÀÓ³ªÀÓ,LadyCALLA,nadaimma,PARKING,PARKING,ÈûÀÌ³­´Ù,BRISAK," +
-        "Áı¿¡ º¸³»Áà¿ä,¿µµû¸®,À±ÇüÁØ,mayouka,¿ä¿£,ÇÑÀçÁø,¸»·Õ,7½Ã ¾Ë¶÷,¼³È£¾Æ,Á¶¼ººó,¾àºşÅä²¤ÀÌ,ÃÖÁ¤Àº,whgustn7030,ÃÖ¿íÁø,ÀÏ·ºÆ®·Î¸¶½ºÅÍ,¼³È­," +
-        "°¨»ç¼şÀÌ,±èÂ´¹ÎÀÌ,³­°ü,¾ÈÀ¯Çö,ÇÚµå¸Ó½Å,Á¤Áø±Ô,Áø,¼­Çö½Â,µ¥·¹,return P,Bengi,Kyrien,¸¶¿ëÀÌ,¸®ºê¶ó½Ã¾Æ,±æÅÂ°Ç,MJ,·çµ§½º,±è¿Áµ¹,The Lingker," +
-        "Sinhyun,¼­ÇØ¼º,¼ö¾Æ¸°,¸®Ã¾½Ã¾Æ,°íÇö¿í,¿ì»ê,Áö½Â,alvin1007,lemonhurt,Ä«ÀÌ³Ê½º,¸¶Â°½Â,¡Ú¼¼½Ç¸®¾Æ¡Ú,¼Õ¹Î±â,È«½ÃÆ¼¸¶,¸¶¸¶¿ÀÀÌÂ¯,¸±¸®À¯,ÃÖ¼®ÈÆ," +
-        "dding,¾Ï¾î¶ø½ºÅ¸,kasir,´ë·©ÀÌ,zzune,Âû·Ğ,Qno,´Ã,C¿ë¿ø,Àå¼º¹Î,ÀÌ·çÈ­,¹®¼ºÇö,¹Ì³ª,Lempt,¼±µ¥ÀÌ¶ó¶¼,³«Àº¾Ö,½î°¡¸®,ºŞ,°ø·æ,MG,¾ÆÄ§¼Ò¸®,ÇÏ¾çÈÆ," +
-        "Kariyon,ÇÏ»ç³ª,°Ü¿ï»õº®,hyunuoo,¹Ù´Ò¶ó¿¡ºüÁü,ÀúÇÏ´ÃÀÇ´Ş,Rylalaop,dos245,´Ü¿À½Ã¶û,Sein¼¼ÀÎ,°õ³ÉÀÌ,Ä«¸£,ÆÒÅÒ,ÇÜ±Ô,¿¬È­»ç,¸®ÇÁ,¼­¿îÇÏ³×¿ä_,Àü¹Î¼®," +
-        "µô·Ğ,½Å½Â¿±,¶óÇÁ,¹ÚÅÂÈ¯,SummerFlo,¾çÀ¯,¹Úº¸Á¾,ÀÌÈ²Èñ,ÀÌ·ç´Ù ¹à´Ù,empty,ÀÌµ¿±¹,Àüº´¿í,Èæ·Ä,±Ç¿µÀÏ,¼Ò½º¹ü¹÷,friedrose,¼Ç,Á¤´ë¿ø,°ÇÅÂ,ÇÑÀ¯³ªÇÑÀ¯³ª," +
-        "ÅÂ¿ù¿µ,ÁÖ¿¹¶û,jonrok,ÇÑºóÀÌ,Ä­¾ßÁ¦,0ÀÚ¶ó0,¼ö³²,±è¾È³ç,ÀÌÁØÇù,±è¼º¼ö,»ç¿µÈ­,ÃÖµ¿ÁÖ,Àå¿øÇõ,¼ºÁö¿ë,ÃµÇö¼º,ÃÖÈñ¼±,°­Ã¶È£,¾ÈÇö¾Æ,±Ç¹Î»ó,±èÂù±Ô,¹Ú±ÙÇü,ÃÖÈÆÁ¤," +
-        "ÇÑ¼¼Çö,ÀÌµ¿Çõ,ÇãÁ¤,ÇÑ½ÂÈÆ,ÀÌÀç¿ø";
+        "Twilight,KDiwhY,RomiDal,kmg0924,ê¹€ë¥˜ë¹ˆ,ê³ ê·¬,ì •ìš°ë¦°,BigDrum,DeCKer,íì„¸,ë§ë‘í•œë³¼," +
+        "ê°•ë³‘ì„ ,SPIEA,í—¤ë ˆì´ìŠ¤,ì‹œë‹ˆì—¬ë¹„,ë°±ê³°96,ì•ˆê°€ë ¹ê°•ì†Œì€,Chron,ì½”ë§ˆí‚¤,ê²€ë”ë¦¬ì¿ í‚¤,ì¹´ì‚¬ë¥´,í•˜ë£¨ë³„ì‚¬ì´,SHak,K.Kaki28,ì—°ë¦¬í™”,í¬ë¡¬,í•˜ëŠ˜í˜ì´ì§€," +
+        "å°æ„›-mellrose,íƒë„´,Taehoon Lim,ë„ë¤¼ë„ë¤¼,ì€ì˜ì´ëª¨,Nuri,Pnamue,xonoa,ë„ˆì„ë‚˜ì„,LadyCALLA,nadaimma,PARKING,PARKING,í˜ì´ë‚œë‹¤,BRISAK," +
+        "ì§‘ì— ë³´ë‚´ì¤˜ìš”,ì˜ë”°ë¦¬,ìœ¤í˜•ì¤€,mayouka,ìš”ì—”,í•œì¬ì§„,ë§ë¡±,7ì‹œ ì•ŒëŒ,ì„¤í˜¸ì•„,ì¡°ì„±ë¹ˆ,ì•½ë¹¤í† ê¹½ì´,ìµœì •ì€,whgustn7030,ìµœìš±ì§„,ì¼ë ‰íŠ¸ë¡œë§ˆìŠ¤í„°,ì„¤í™”," +
+        "ê°ì‚¬ìˆ­ì´,ê¹€ì¨ˆë¯¼ì´,ë‚œê´€,ì•ˆìœ í˜„,í•¸ë“œë¨¸ì‹ ,ì •ì§„ê·œ,ì§„,ì„œí˜„ìŠ¹,ë°ë ˆ,return P,Bengi,Kyrien,ë§ˆìš©ì´,ë¦¬ë¸Œë¼ì‹œì•„,ê¸¸íƒœê±´,MJ,ë£¨ë´ìŠ¤,ê¹€ì˜¥ëŒ,The Lingker," +
+        "Sinhyun,ì„œí•´ì„±,ìˆ˜ì•„ë¦°,ë¦¬ì²¸ì‹œì•„,ê³ í˜„ìš±,ìš°ì‚°,ì§€ìŠ¹,alvin1007,lemonhurt,ì¹´ì´ë„ˆìŠ¤,ë§ˆì§¸ìŠ¹,â˜…ì„¸ì‹¤ë¦¬ì•„â˜…,ì†ë¯¼ê¸°,í™ì‹œí‹°ë§ˆ,ë§ˆë§ˆì˜¤ì´ì§±,ë¦´ë¦¬ìœ ,ìµœì„í›ˆ," +
+        "dding,ì•”ì–´ëìŠ¤íƒ€,kasir,ëŒ€ë­ì´,zzune,ì°°ë¡ ,Qno,ëŠ˜,Cìš©ì›,ì¥ì„±ë¯¼,ì´ë£¨í™”,ë¬¸ì„±í˜„,ë¯¸ë‚˜,Lempt,ì„ ë°ì´ë¼ë–¼,ë‚™ì€ì• ,ì˜ê°€ë¦¬,ë¶¸,ê³µë£¡,MG,ì•„ì¹¨ì†Œë¦¬,í•˜ì–‘í›ˆ," +
+        "Kariyon,í•˜ì‚¬ë‚˜,ê²¨ìš¸ìƒˆë²½,hyunuoo,ë°”ë‹ë¼ì—ë¹ ì§,ì €í•˜ëŠ˜ì˜ë‹¬,Rylalaop,dos245,ë‹¨ì˜¤ì‹œë‘,Seinì„¸ì¸,ê³°ëƒ¥ì´,ì¹´ë¥´,íŒ¬í…€,í–„ê·œ,ì—°í™”ì‚¬,ë¦¬í”„,ì„œìš´í•˜ë„¤ìš”_,ì „ë¯¼ì„," +
+        "ë”œë¡ ,ì‹ ìŠ¹ì—½,ë¼í”„,ë°•íƒœí™˜,SummerFlo,ì–‘ìœ ,ë°•ë³´ì¢…,ì´í™©í¬,ì´ë£¨ë‹¤ ë°ë‹¤,empty,ì´ë™êµ­,ì „ë³‘ìš±,í‘ë ¬,ê¶Œì˜ì¼,ì†ŒìŠ¤ë²”ë²…,friedrose,ì…˜,ì •ëŒ€ì›,ê±´íƒœ,í•œìœ ë‚˜í•œìœ ë‚˜," +
+        "íƒœì›”ì˜,ì£¼ì˜ˆë‘,jonrok,í•œë¹ˆì´,ì¹¸ì•¼ì œ,0ìë¼0,ìˆ˜ë‚¨,ê¹€ì•ˆë…•,ì´ì¤€í˜‘,ê¹€ì„±ìˆ˜,ì‚¬ì˜í™”,ìµœë™ì£¼,ì¥ì›í˜,ì„±ì§€ìš©,ì²œí˜„ì„±,ìµœí¬ì„ ,ê°•ì² í˜¸,ì•ˆí˜„ì•„,ê¶Œë¯¼ìƒ,ê¹€ì°¬ê·œ,ë°•ê·¼í˜•,ìµœí›ˆì •," +
+        "í•œì„¸í˜„,ì´ë™í˜,í—ˆì •,í•œìŠ¹í›ˆ,ì´ì¬ì›";
     #endregion
 
     private static SaveData _savedata = new MemorialRecord.Data.SaveData();
@@ -242,7 +242,7 @@ public static class SaveManager
         }
     }
 
-    #region ±âÅ¸ ºñÁî´Ï½º ·ÎÁ÷
+    #region ê¸°íƒ€ ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§
     public static void UnlockNewChapter()
     {
         WatchedStories.Add(false);
@@ -360,10 +360,10 @@ public static class SaveManager
     }
 
     /// <summary>
-    /// ÇØ´ç ÄÜÅÙÃ÷ÀÇ ·¹º§À» °¡Á®¿É´Ï´Ù.
-    /// ÇØ±İ µÇÁö ¾ÊÀº ÄÜÅÙÃ÷´Â -1 À» ¹İÈ¯ÇÕ´Ï´Ù.
-    /// °ªÀÌ ¾øÀ¸¸é ÇØ´ç ·¹º§¿¡ -1 ÀÇ ÄÜÅÙÃ÷¸¦ ¸¸µì´Ï´Ù.
-    /// ¿¹¿Ü »óÈ²¿£ -2¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+    /// í•´ë‹¹ ì½˜í…ì¸ ì˜ ë ˆë²¨ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
+    /// í•´ê¸ˆ ë˜ì§€ ì•Šì€ ì½˜í…ì¸ ëŠ” -1 ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// ê°’ì´ ì—†ìœ¼ë©´ í•´ë‹¹ ë ˆë²¨ì— -1 ì˜ ì½˜í…ì¸ ë¥¼ ë§Œë“­ë‹ˆë‹¤.
+    /// ì˜ˆì™¸ ìƒí™©ì—” -2ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
     /// <param name="type"></param>
     /// <param name="idx"></param>
@@ -502,14 +502,14 @@ public static class SaveManager
                 break;
         }
 
-        if(isSuccessful) // ÀÛ¾÷ÀÌ ¼º°øÇßÀ» ¶§¸¸ ÀÌº¥Æ® ¹ß»ı
+        if(isSuccessful) // ì‘ì—…ì´ ì„±ê³µí–ˆì„ ë•Œë§Œ ì´ë²¤íŠ¸ ë°œìƒ
             OnUpdateLevel?.Invoke(idx, type, level);
 
         return isSuccessful;
     }
     #endregion
 
-    #region ¼¼ÀÌºê °ü·Ã ·ÎÁ÷
+    #region ì„¸ì´ë¸Œ ê´€ë ¨ ë¡œì§
     public static void SaveData()
     {
         _savedata.saveTimeString = DateTime.Now.ToString();
@@ -523,7 +523,7 @@ public static class SaveManager
 
     public static SaveData LoadData()
     {
-        //ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁöºÎÅÍ Ã¼Å©.
+        //íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ë¶€í„° ì²´í¬.
         if (File.Exists(_dataSavePath))
         {
             _savedata = JsonUtility.FromJson<SaveData>(Decrypt(LoadFile(_dataSavePath)));
@@ -548,7 +548,7 @@ public static class SaveManager
 
     public static PlayerProfile LoadProfile()
     {
-        //ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁöºÎÅÍ Ã¼Å©.
+        //íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ë¶€í„° ì²´í¬.
         if (File.Exists(_profileSavePath))
         {
             _profileData = JsonUtility.FromJson<PlayerProfile>(Decrypt(LoadFile(_profileSavePath)));
@@ -659,10 +659,10 @@ public static class SaveManager
     {
         using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
         {
-            //ÆÄÀÏ·Î ÀúÀåÇÒ ¼ö ÀÖ°Ô ¹ÙÀÌÆ®È­
+            //íŒŒì¼ë¡œ ì €ì¥í•  ìˆ˜ ìˆê²Œ ë°”ì´íŠ¸í™”
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
 
-            //bytesÀÇ ³»¿ë¹°À» 0 ~ max ±æÀÌ±îÁö fs¿¡ º¹»ç
+            //bytesì˜ ë‚´ìš©ë¬¼ì„ 0 ~ max ê¸¸ì´ê¹Œì§€ fsì— ë³µì‚¬
             fs.Write(bytes, 0, bytes.Length);
         }
     }
@@ -671,20 +671,20 @@ public static class SaveManager
     {
         using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
         {
-            //ÆÄÀÏÀ» ¹ÙÀÌÆ®È­ ÇßÀ» ¶§ ´ãÀ» º¯¼ö¸¦ Á¦ÀÛ
+            //íŒŒì¼ì„ ë°”ì´íŠ¸í™” í–ˆì„ ë•Œ ë‹´ì„ ë³€ìˆ˜ë¥¼ ì œì‘
             byte[] bytes = new byte[(int)fs.Length];
 
-            //ÆÄÀÏ½ºÆ®¸²À¸·Î ºÎÅÍ ¹ÙÀÌÆ® ÃßÃâ
+            //íŒŒì¼ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ë¶€í„° ë°”ì´íŠ¸ ì¶”ì¶œ
             fs.Read(bytes, 0, (int)fs.Length);
 
-            //ÃßÃâÇÑ ¹ÙÀÌÆ®¸¦ json stringÀ¸·Î ÀÎÄÚµù
+            //ì¶”ì¶œí•œ ë°”ì´íŠ¸ë¥¼ json stringìœ¼ë¡œ ì¸ì½”ë”©
             string jsonString = System.Text.Encoding.UTF8.GetString(bytes);
             return jsonString;
         }
     }
     #endregion
 
-    #region ¾ÏÈ£È­
+    #region ì•”í˜¸í™”
     private static string Encrypt(string data)
     {
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(data);

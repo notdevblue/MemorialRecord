@@ -11,13 +11,14 @@ public class ResearchManager : MonoBehaviour
 
     public void Update()
     {
-        if(_isResearching)
+        if (!_isResearching)
+            return;
+
+        SaveManager.ResearchSaveData.researchRemainTime -= Time.deltaTime;
+
+        if (SaveManager.ResearchSaveData.researchRemainTime <= 0)
         {
-            SaveManager.ResearchSaveData.researchRemainTime -= Time.deltaTime;
-            if(SaveManager.ResearchSaveData.researchRemainTime <= 0)
-            {
-                _onUpgradeCompelete?.Invoke();
-            }
+            _onUpgradeCompelete?.Invoke();
         }
     }
 
@@ -26,16 +27,7 @@ public class ResearchManager : MonoBehaviour
         if (idx == -1)
             return;
 
-        _isResearching = true;
-        SaveManager.ResearchSaveData.curResearchIdx = idx;
-        SaveManager.ResearchSaveData.researchRemainTime = GetUpgradeTime(idx);
-
-        _onUpgradeCompelete = onComplete;
-        _onUpgradeCompelete += () => _onUpgradeCompelete = null;
-        _onUpgradeCompelete += () => _isResearching = false;
-        _onUpgradeCompelete += () => SaveManager.RefreshResearch();
-        _onUpgradeCompelete += () => SaveManager.ResearchSaveData.curResearchIdx = -1;
-        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>(true).Refresh();
+        SetResearch(idx, GetUpgradeTime(idx), onComplete);
     }
 
     public void SetResearch(int idx, double time, Action onComplete)
@@ -47,16 +39,18 @@ public class ResearchManager : MonoBehaviour
         SaveManager.ResearchSaveData.curResearchIdx = idx;
         SaveManager.ResearchSaveData.researchRemainTime = time;
 
-        _onUpgradeCompelete = onComplete;
-        _onUpgradeCompelete += () => _onUpgradeCompelete = null;
-        _onUpgradeCompelete += () => _isResearching = false;
-        _onUpgradeCompelete += () => SaveManager.RefreshResearch();
-        _onUpgradeCompelete += () => SaveManager.ResearchSaveData.curResearchIdx = -1;
-        _onUpgradeCompelete += () => FindObjectOfType<ContentListView_Research>(true)?.Refresh();
+        _onUpgradeCompelete = () => {
+            onComplete();
+            _onUpgradeCompelete = null;
+            _isResearching = false;
+            SaveManager.RefreshResearch();
+            SaveManager.ResearchSaveData.curResearchIdx = -1;
+            FindObjectOfType<ContentListView_Research>(true).Refresh();
+        };
     }
 
     /// <summary>
-    /// ´ÙÀ½ ·¹º§·Î ¿Ã¶ó°¡´Âµ¥ ÇÊ¿äÇÑ ¿¬±¸ ½Ã°£À» º¸¿©Áİ´Ï´Ù.
+    /// ë‹¤ìŒ ë ˆë²¨ë¡œ ì˜¬ë¼ê°€ëŠ”ë° í•„ìš”í•œ ì—°êµ¬ ì‹œê°„ì„ ë³´ì—¬ì¤ë‹ˆë‹¤.
     /// </summary>
     /// <param name="idx"></param>
     /// <returns></returns>
@@ -67,7 +61,7 @@ public class ResearchManager : MonoBehaviour
             case 0:
                 return 30f;
             case 1:
-                return 60 * 3; // 3ºĞ
+                return 60 * 3; // 3ë¶„
             case 2:
                 switch (SaveManager.GetContentLevel(DataType.Research, 2))
                 {

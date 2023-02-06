@@ -35,12 +35,10 @@ public class BGMSelector : MonoBehaviour
 
     public void SetBGM(int idx)
     {
-        SetActiveBGM(false, 0.5f, () =>
-        {
-            bgmSource.clip = bgmClips[idx];
-            SetActiveBGM(true, 0.5f);
-            bgmSource.Play();
-        });
+        if (idx >= bgmClips.Length || idx < 0)
+            return;
+
+        SetBGM(bgmClips[idx]);
     }
 
     public void SetMainBGM()

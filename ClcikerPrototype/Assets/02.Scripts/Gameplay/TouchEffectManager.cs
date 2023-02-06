@@ -10,25 +10,10 @@ public class TouchEffectManager : MonoBehaviour
 
     public ParticleSystem GetEffect(Vector2 pos)
     {
-        ParticleSystem result = null;
-
-        if(_effectPool.Count > 0)
-        {
-            if(_effectPool.Peek().gameObject.activeSelf)
-            {
-                result = MakeEffect();
-            }
-            else
-            {
-                result = _effectPool.Dequeue();
-
-                _effectPool.Enqueue(result);
-            }
-        }
-        else
-        {
-            result = MakeEffect();
-        }
+        ParticleSystem result
+            = (_effectPool.Count <= 0
+                || _effectPool.Peek().gameObject.activeSelf)
+                    ? MakeEffect() : _effectPool.Peek();
 
         result.transform.position = pos;
         result.gameObject.SetActive(true);
